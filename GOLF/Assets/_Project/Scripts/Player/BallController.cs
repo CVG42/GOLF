@@ -20,9 +20,9 @@ namespace Golf
         private float _currentAngle = 0f;
         private float _minRbVelocity = 0.01f;
 
-        void Start()
+        private void Awake()
         {
-            _rb = GetComponent<Rigidbody2D>();
+            _rb = GetComponent<Rigidbody2D>();           
         }
 
         void Update()
@@ -58,7 +58,7 @@ namespace Golf
         /// <summary>
         /// Checks if the ball is moving.
         /// </summary>
-        bool isMoving()
+        bool IsMoving()
         {
             // If the velocity of the ball is greater than 0.01, return true.
             return _rb.velocity.magnitude > _minRbVelocity;
@@ -66,7 +66,7 @@ namespace Golf
 
         void ApplyForce()
         {
-            if (!isMoving())
+            if (!IsMoving())
             {
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
