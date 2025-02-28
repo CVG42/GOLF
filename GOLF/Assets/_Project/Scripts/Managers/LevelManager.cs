@@ -19,9 +19,9 @@ namespace Golf
             _canvasGroup.gameObject.SetActive(false);
         }
 
-        public async void LoadScene(string sceneName) 
+        public void LoadScene(string sceneName) 
         {
-            await LoadSceneAsync(sceneName);
+            LoadSceneAsync(sceneName).Forget();
         }
     }
 }
