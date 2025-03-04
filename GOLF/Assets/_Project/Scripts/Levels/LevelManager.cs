@@ -5,7 +5,7 @@ using DG.Tweening;
 
 namespace Golf
 {
-    public class LevelManager : Singleton<LevelManager>
+    public class LevelManager : Singleton<ILevelSource>, ILevelSource
     {
         [SerializeField] private CanvasGroup _canvasGroup;
 
@@ -13,8 +13,7 @@ namespace Golf
         {
             _canvasGroup.gameObject.SetActive(true);
             await _canvasGroup.DOFade(1, 2).AsyncWaitForCompletion();
-            var asyncOperation = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
-            await asyncOperation.ToUniTask();
+            await SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single).ToUniTask();
             await _canvasGroup.DOFade(0, 1.5f).AsyncWaitForCompletion();
             _canvasGroup.gameObject.SetActive(false);
         }

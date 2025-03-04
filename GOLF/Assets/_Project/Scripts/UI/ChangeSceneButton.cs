@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Golf
@@ -19,7 +18,7 @@ namespace Golf
             _button.onClick.AddListener(ChangeScene);
         }
 
-        public void ChangeScene()
+        private void ChangeScene()
         {
             LevelManager.Source.LoadScene(_sceneName);
         }
