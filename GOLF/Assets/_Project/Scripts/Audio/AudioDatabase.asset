@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfba537acd18fba4bbce3a1e454f3911, type: 3}
+  m_Name: AudioDatabase
+  m_EditorClassIdentifier: 
+  _audioData:
+  - audio: {fileID: 8300000, guid: f9f3b795a7ff6c84a9b82534ea5f8672, type: 3}
+    audioName: BallHitSFX
+  - audio: {fileID: 8300000, guid: c4c0bb5ca7c344a4a8a9e1bee640dbfb, type: 3}
+    audioName: PauseSFX
+  - audio: {fileID: 8300000, guid: 78e9a27a3b6e54a44bdbd7fbb428bb7c, type: 3}
+    audioName: ButtonSelectHoverSFX
+  - audio: {fileID: 8300000, guid: af5dc21f7b991c842ba92baa8ca92325, type: 3}
+    audioName: ButtonClickSFX
+  - audio: {fileID: 8300000, guid: 130e9052e497db945893802bc21f985a, type: 3}
+    audioName: SetAngleSFX
