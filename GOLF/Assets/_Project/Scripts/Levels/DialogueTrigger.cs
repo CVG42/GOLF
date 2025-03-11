@@ -1,20 +1,19 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Golf
 {
     public class DialogueTrigger : MonoBehaviour
     {
-        [SerializeField] private Dialogue dialogue;
+        [SerializeField] private Dialogue _dialogue;
 
         public void TriggerDialogue()
         {
-            DialogueManager.instance.StartDialogue(dialogue);
+            DialogueManager.Source.StartDialogue(_dialogue);
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.tag == "Player")
+            if (collision.CompareTag("Player"))
             {
                 TriggerDialogue();
             }

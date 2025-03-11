@@ -1,27 +1,27 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 namespace Golf
 {
-    [System.Serializable]
+    [Serializable]
     public class DialogueCharacter
     {
-        public string name;
-        public Sprite icon;
+        public string Name;
+        public Sprite Icon;
     }
 
-    [System.Serializable]
+    [Serializable]
     public class DialogueLine
     {
-        public DialogueCharacter character;
+        public DialogueCharacter Character;
         [TextArea(3, 10)]
-        public string line;
+        public string Line;
     }
 
-    [System.Serializable]
+    [Serializable]
     public class Dialogue
     {
-        public List<DialogueLine> dialogueLines = new List<DialogueLine>();
+        public List<DialogueLine> DialogueLines = new List<DialogueLine>();
     }
-
 }

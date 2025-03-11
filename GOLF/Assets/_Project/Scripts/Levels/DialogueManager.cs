@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -8,35 +7,22 @@ using System;
 
 namespace Golf
 {
-    public class DialogueManager : MonoBehaviour
+    public class DialogueManager : Singleton<IDialogueSource>, IDialogueSource
     {
-        public static DialogueManager instance;
-
         [SerializeField] private Image _characterImage;
         [SerializeField] private TextMeshProUGUI _characterName;
         [SerializeField] private TextMeshProUGUI _dialogueArea;
-        private Queue<DialogueLine> _lines = new Queue<DialogueLine>();
-        [SerializeField] private bool _isDialogueActive = false;
         [SerializeField] private float _typingSpeed = 0.2f;
         [SerializeField] private GameObject _dialoguePrefab;
 
-        void Start()
-        {
-
-            if (instance == null)
-            {
-                instance = this;
-            }
-        }
-
+        private readonly Queue<DialogueLine> _lines = new Queue<DialogueLine>();
+        
         public void StartDialogue(Dialogue dialogue)
         {
-            _isDialogueActive = true;
-
             _dialoguePrefab.gameObject.SetActive(true);
             _lines.Clear();
 
-            foreach (DialogueLine dialogueline in dialogue.dialogueLines)
+            foreach (DialogueLine dialogueline in dialogue.DialogueLines)
             {
                 _lines.Enqueue(dialogueline);
             }
@@ -54,8 +40,8 @@ namespace Golf
 
             DialogueLine currentline = _lines.Dequeue();
 
-            _characterImage.sprite = currentline.character.icon;
-            _characterName.text = currentline.character.name;
+            _characterImage.sprite = currentline.Character.Icon;
+            _characterName.text = currentline.Character.Name;
 
             TypeSentence(currentline);
         }
@@ -63,7 +49,7 @@ namespace Golf
         private async void TypeSentence(DialogueLine dialogueline)
         {
             _dialogueArea.text = "";
-            foreach (char letter in dialogueline.line.ToCharArray())
+            foreach (char letter in dialogueline.Line.ToCharArray())
             {
                 _dialogueArea.text += letter;
                 await UniTask.Delay(TimeSpan.FromSeconds(_typingSpeed), DelayType.DeltaTime);
@@ -72,8 +58,6 @@ namespace Golf
 
         private void EndDialogue()
         {
-            _isDialogueActive = false;
-
             _dialoguePrefab.gameObject.SetActive(false);
         }
     }
