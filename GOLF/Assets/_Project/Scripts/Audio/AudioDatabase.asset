@@ -18,8 +18,8 @@ MonoBehaviour:
   - audio: {fileID: 8300000, guid: c4c0bb5ca7c344a4a8a9e1bee640dbfb, type: 3}
     audioName: PauseSFX
   - audio: {fileID: 8300000, guid: 78e9a27a3b6e54a44bdbd7fbb428bb7c, type: 3}
-    audioName: ButtonClickSFX
-  - audio: {fileID: 8300000, guid: af5dc21f7b991c842ba92baa8ca92325, type: 3}
     audioName: ButtonSelectHoverSFX
+  - audio: {fileID: 8300000, guid: af5dc21f7b991c842ba92baa8ca92325, type: 3}
+    audioName: ButtonClickSFX
   - audio: {fileID: 8300000, guid: 130e9052e497db945893802bc21f985a, type: 3}
     audioName: SetAngleSFX
