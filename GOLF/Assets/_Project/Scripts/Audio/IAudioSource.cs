@@ -5,8 +5,7 @@ namespace Golf
     public interface IAudioSource
     {
         float CurrentVolume { get; }
-        void SetSFXVolume(bool volUp);
-        void GetAudio(string audioName); // method just for testing
+        void SetSFXVolume(bool setVolumeUp);
         void BallHitSFX();
         void ButtonClickSFX();
         void ButtonSelectHoverSFX();

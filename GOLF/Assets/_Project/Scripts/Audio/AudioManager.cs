@@ -16,9 +16,9 @@ namespace Golf
             GetAudioPlayerPrefKeys();
         }
 
-        public void SetSFXVolume(bool volUp)
+        public void SetSFXVolume(bool setVolumeUp)
         {
-            CurrentVolume = volUp ? Mathf.Max(-80, CurrentVolume - 20):Mathf.Min(0, CurrentVolume + 20);
+            CurrentVolume = setVolumeUp ? Mathf.Max(-80, CurrentVolume - 20):Mathf.Min(0, CurrentVolume + 20);
             _sfxMixer.SetFloat("sfx_vol", CurrentVolume);
             PlayerPrefs.SetFloat("sfx_vol", CurrentVolume);
         }
@@ -32,8 +32,6 @@ namespace Golf
             }
             else CurrentVolume = 0;
         }
-
-        public void GetAudio(string audioName) => _sfxAudioSource.PlayOneShot(_audioDatabase.GetAudio(audioName));
 
         public void BallHitSFX() => _sfxAudioSource.PlayOneShot(_audioDatabase.GetAudio("BallHitSFX"));
 
