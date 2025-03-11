@@ -19,6 +19,6 @@ namespace Golf
             _button.onClick.AddListener(PlaySFX);
         }
 
-        public void PlaySFX() => AudioManager.Source.GetAudio(_audioName);
+        public void PlaySFX() => AudioManager.Source.ButtonClickSFX();
     }
 }
