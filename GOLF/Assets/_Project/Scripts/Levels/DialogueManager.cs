@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Cysharp.Threading.Tasks;
+using System;
 
 namespace Golf
 {
@@ -55,18 +57,16 @@ namespace Golf
             _characterImage.sprite = currentline.character.icon;
             _characterName.text = currentline.character.name;
 
-            StopAllCoroutines();
-
-            StartCoroutine(TypeSentence(currentline));
+            TypeSentence(currentline);
         }
 
-        IEnumerator TypeSentence(DialogueLine dialogueline)
+        private async void TypeSentence(DialogueLine dialogueline)
         {
             _dialogueArea.text = "";
             foreach (char letter in dialogueline.line.ToCharArray())
             {
                 _dialogueArea.text += letter;
-                yield return new WaitForSeconds(_typingSpeed);
+                await UniTask.Delay(TimeSpan.FromSeconds(_typingSpeed), DelayType.DeltaTime);
             }
         }
 
