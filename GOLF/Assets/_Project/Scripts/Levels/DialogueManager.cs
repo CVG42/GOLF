@@ -10,17 +10,13 @@ namespace Golf
     {
         public static DialogueManager instance;
 
-        public Image characterImage;
-
-        public TextMeshProUGUI characterName;
-        public TextMeshProUGUI dialogueArea;
-
-        private Queue<DialogueLine> lines = new Queue<DialogueLine>();
-
-        public bool isDialogueActive = false;
-        public float typingSpeed = 0.2f;
-        //public Animator animator;
-        [SerializeField] GameObject dialoguePrefab;
+        [SerializeField] private Image _characterImage;
+        [SerializeField] private TextMeshProUGUI _characterName;
+        [SerializeField] private TextMeshProUGUI _dialogueArea;
+        private Queue<DialogueLine> _lines = new Queue<DialogueLine>();
+        [SerializeField] private bool _isDialogueActive = false;
+        [SerializeField] private float _typingSpeed = 0.2f;
+        [SerializeField] private GameObject _dialoguePrefab;
 
         void Start()
         {
@@ -33,14 +29,14 @@ namespace Golf
 
         public void StartDialogue(Dialogue dialogue)
         {
-            isDialogueActive = true;
-            //animator.Play("show");
-            dialoguePrefab.gameObject.SetActive(true);
-            lines.Clear();
+            _isDialogueActive = true;
+
+            _dialoguePrefab.gameObject.SetActive(true);
+            _lines.Clear();
 
             foreach (DialogueLine dialogueline in dialogue.dialogueLines)
             {
-                lines.Enqueue(dialogueline);
+                _lines.Enqueue(dialogueline);
             }
 
             DisplayNextDialogueLine();
@@ -48,41 +44,37 @@ namespace Golf
 
         public void DisplayNextDialogueLine()
         {
-
-
-            if (lines.Count == 0)
+            if (_lines.Count == 0)
             {
                 EndDialogue();
                 return;
             }
 
-            DialogueLine currentline = lines.Dequeue();
+            DialogueLine currentline = _lines.Dequeue();
 
-
-            characterImage.sprite = currentline.character.icon;
-            characterName.text = currentline.character.name;
+            _characterImage.sprite = currentline.character.icon;
+            _characterName.text = currentline.character.name;
 
             StopAllCoroutines();
 
             StartCoroutine(TypeSentence(currentline));
-
-
         }
+
         IEnumerator TypeSentence(DialogueLine dialogueline)
         {
-            dialogueArea.text = "";
+            _dialogueArea.text = "";
             foreach (char letter in dialogueline.line.ToCharArray())
             {
-                dialogueArea.text += letter;
-                yield return new WaitForSeconds(typingSpeed);
+                _dialogueArea.text += letter;
+                yield return new WaitForSeconds(_typingSpeed);
             }
         }
 
-        void EndDialogue()
+        private void EndDialogue()
         {
-            isDialogueActive = false;
-            //animator.Play("hide");
-            dialoguePrefab.gameObject.SetActive(false);
+            _isDialogueActive = false;
+
+            _dialoguePrefab.gameObject.SetActive(false);
         }
     }
 }
