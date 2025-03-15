@@ -4,25 +4,20 @@ using Newtonsoft.Json;
 
 namespace Golf
 {
-    public class SaveSystem : MonoBehaviour, ISaveSource
+    public class SaveSystem : Singleton<ISaveSource>, ISaveSource
     {
-        private static SaveSystem _instance;
         private string _savePath;
         private GameData currentData;
 
-        private void Awake()
+        protected override void Awake()
         {
-            if (_instance == null)
-            {
-                _instance = this;
-                DontDestroyOnLoad(gameObject);
-                _savePath = Application.persistentDataPath + "/save.json";
-                currentData = Load();
-            }
-            else
-            {
-                Destroy(gameObject);
-            }
+            _savePath = Application.persistentDataPath + "/save.json";
+            currentData = Load();
+        }
+
+        private void Start()
+        {
+            GameData data = Load();
         }
 
         public void Save(GameData data)
@@ -32,6 +27,19 @@ namespace Golf
             File.WriteAllText(_savePath, json);
         }
 
+        private void SavePlayerData()
+        {
+            GameData data = new GameData
+            {
+            };
+            Save(data);
+        }
+
+        private void OnGameQuit()
+        {
+            SavePlayerData();
+        }
+
         public GameData Load()
         {
             if (File.Exists(_savePath))
@@ -39,27 +47,14 @@ namespace Golf
                 string json = File.ReadAllText(_savePath);
                 return JsonConvert.DeserializeObject<GameData>(json);
             }
-            return new GameData { _playerVolume = 1.0f };
+            return new GameData { PlayerVolume = 1.0f };
         }
 
-        public static SaveSystem Instance
+        public float GetVolume() => currentData.PlayerVolume;
+        public void SetVolume(float volume) 
         {
-            get
-            {
-                if (_instance == null)
-                {
-                    Debug.LogError("SaveSystem instance is not initialized.");
-                }
-                return _instance;
-            }
+            currentData.PlayerVolume = volume; 
+            Save(currentData); 
         }
-        public int GetScore() => currentData._playerScore;
-        public void SetScore(int score) { currentData._playerScore = score; Save(currentData); }
-
-        public Vector2 GetPlayerPosition() => currentData._playerPosition;
-        public void SetPlayerPosition(Vector2 position) { currentData._playerPosition = position; Save(currentData); }
-
-        public float GetVolume() => currentData._playerVolume;
-        public void SetVolume(float volume) { currentData._playerVolume = volume; Save(currentData); }
     }
 }

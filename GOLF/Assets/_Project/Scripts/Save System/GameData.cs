@@ -1,12 +1,11 @@
 using UnityEngine;
+using System;
 
 namespace Golf
 {
-    [System.Serializable]
+    [Serializable]
     public class GameData
     {
-        public int _playerScore;
-        public Vector2 _playerPosition;
-        public float _playerVolume;
+        public float PlayerVolume;
     }
 }
