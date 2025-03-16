@@ -46,5 +46,10 @@ namespace Golf
             var angleInRadians = CurrentAngle * Mathf.Deg2Rad;
             return new Vector2(Mathf.Cos(angleInRadians), Mathf.Sin(angleInRadians)).normalized;
         }
+
+        private void OnDestroy()
+        {
+            OnLaunchBall = null;
+        }
     }
 }

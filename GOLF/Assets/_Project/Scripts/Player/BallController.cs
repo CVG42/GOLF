@@ -2,18 +2,17 @@ using UnityEngine;
 
 namespace Golf
 {
+    [RequireComponent(typeof(Rigidbody2D))]
     public partial class BallController : MonoBehaviour
     {
         private const float MINIMUM_VELOCITY = 0.01f;
-        
-        [Header("Components")]
-        [SerializeField] private Rigidbody2D _rigidbody;
         
         [Header("Physics parameters")]
         [SerializeField] private float _force = 3f;
         [SerializeField] private float _maxDistance = 5f;
         [SerializeField] private float _dragAmount = 1f;
 
+        private Rigidbody2D _rigidbody;
         private IInputSource _inputSource;
         
         private bool IsMoving => _rigidbody.velocity.magnitude > MINIMUM_VELOCITY;
@@ -25,12 +24,18 @@ namespace Golf
 
         private void Start()
         {
+            _rigidbody = GetComponent<Rigidbody2D>();           
             _inputSource.OnLaunchBall += LaunchBall;
         }
 
         private void Update()
         {
             ApplyDrag();
+        }
+
+        private void OnDestroy()
+        {
+            _inputSource.OnLaunchBall -= LaunchBall;
         }
 
         private void LaunchBall(Vector2 angleDirection)
