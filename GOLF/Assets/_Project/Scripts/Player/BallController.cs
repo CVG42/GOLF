@@ -20,11 +20,11 @@ namespace Golf
         private void Awake()
         {
             _inputSource = InputManager.Source;
+            _rigidbody = GetComponent<Rigidbody2D>();           
         }
 
         private void Start()
         {
-            _rigidbody = GetComponent<Rigidbody2D>();           
             _inputSource.OnLaunchBall += LaunchBall;
         }
 
