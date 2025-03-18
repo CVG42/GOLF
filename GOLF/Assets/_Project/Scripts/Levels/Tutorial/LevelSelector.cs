@@ -25,7 +25,10 @@ namespace Golf
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if(collision.CompareTag("Player")) LevelSelected();
+            if (collision.CompareTag("Player"))
+            { 
+                LevelSelected(); 
+            }
         }
 
         private void LevelSelected()
