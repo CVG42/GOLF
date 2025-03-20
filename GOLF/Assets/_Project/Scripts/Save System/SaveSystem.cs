@@ -7,12 +7,12 @@ namespace Golf
     public class SaveSystem : Singleton<ISaveSource>, ISaveSource
     {
         private string _savePath;
-        private GameData currentData;
+        private GameData _currentData;
 
         protected override void Awake()
         {
             _savePath = Application.persistentDataPath + "/save.json";
-            currentData = Load();
+            _currentData = Load();
         }
 
         private void Start()
@@ -20,19 +20,15 @@ namespace Golf
             GameData data = Load();
         }
 
-        public void Save(GameData data)
+        private void Save()
         {
-            currentData = data;
-            string json = JsonConvert.SerializeObject(data, Formatting.Indented);
+            string json = JsonConvert.SerializeObject(_currentData, Formatting.Indented);
             File.WriteAllText(_savePath, json);
         }
 
         private void SavePlayerData()
         {
-            GameData data = new GameData
-            {
-            };
-            Save(data);
+            Save();
         }
 
         private void OnGameQuit()
@@ -40,7 +36,7 @@ namespace Golf
             SavePlayerData();
         }
 
-        public GameData Load()
+        private GameData Load()
         {
             if (File.Exists(_savePath))
             {
@@ -50,11 +46,11 @@ namespace Golf
             return new GameData { PlayerVolume = 1.0f };
         }
 
-        public float GetVolume() => currentData.PlayerVolume;
+        public float GetVolume() => _currentData.PlayerVolume;
         public void SetVolume(float volume) 
         {
-            currentData.PlayerVolume = volume; 
-            Save(currentData); 
+            _currentData.PlayerVolume = volume; 
+            Save(); 
         }
     }
 }
