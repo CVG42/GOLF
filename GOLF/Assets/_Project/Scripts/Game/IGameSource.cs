@@ -1,10 +1,12 @@
-using UnityEngine;
+using System;
 
 namespace Golf
 {
     public interface IGameSource
     {
-        float CurrentHitsLeft { get; set; }
-        bool IsTutorialLevel();
+        event Action<int> OnHitsChanged;
+        event Action OnLose;
+        int CurrentHitsLeft { get; }
+        void ReduceHitsLeft();
     }
 }
