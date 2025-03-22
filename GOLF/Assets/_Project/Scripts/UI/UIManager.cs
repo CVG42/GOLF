@@ -8,11 +8,6 @@ namespace Golf
         [SerializeField] private TextMeshProUGUI _strokesText;
         [SerializeField] private GameObject _losePanel;
 
-        protected override void Awake()
-        {
-            // _strokesText.enabled = GameManager.Source.IsTutorialLevel();
-        }       
-
         private void Start()
         {
             _losePanel.SetActive(false);
