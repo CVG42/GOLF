@@ -7,6 +7,7 @@ namespace Golf
     {
         float CurrentAngle { get; }
         Action<Vector2> OnLaunchBall { get; set; }
+        Action OnConfirmButtonPressed { get; set; }
         Vector2 GetCurrentAngleDirection();
     }
 }
