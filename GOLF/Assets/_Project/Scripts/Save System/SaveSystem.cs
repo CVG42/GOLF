@@ -26,11 +26,6 @@ namespace Golf
             File.WriteAllText(_savePath, json);
         }
 
-        private void SavePlayerData()
-        {
-            Save();
-        }
-
         private void OnGameQuit()
         {
             SavePlayerData();
