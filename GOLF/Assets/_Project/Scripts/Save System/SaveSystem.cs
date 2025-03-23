@@ -28,7 +28,7 @@ namespace Golf
 
         private void OnGameQuit()
         {
-            SavePlayerData();
+            Save();
         }
 
         private GameData Load()
