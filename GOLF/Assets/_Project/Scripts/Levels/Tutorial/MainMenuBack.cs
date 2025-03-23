@@ -1,4 +1,3 @@
-using UnityEditor.SearchService;
 using UnityEngine;
 
 namespace Golf
@@ -23,7 +22,7 @@ namespace Golf
             LevelManager.Source.LoadScene("MainMenu");
         }
 
-        private void OnTriggerStay2D(Collider2D collision)
+        private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.CompareTag("Player") && _isOnTrigger == false)
             {
