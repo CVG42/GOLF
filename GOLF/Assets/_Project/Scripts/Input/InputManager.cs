@@ -6,32 +6,26 @@ namespace Golf
 {
     public class InputManager : Singleton<IInputSource>, IInputSource
     {
+        private const float INITIAL_ANGLE = 45f;
+        
         public event Action OnConfirmButtonPressed;
-        public event Action<ACTION_STATE> OnActionChange;
-        public ACTION_STATE CurrentAction => _actionState;
+        public event Action<ActionState> OnActionChange;
+        public event Action<float> OnDirectionChange;
+        public event Action<float, float> OnLaunch;
+        public ActionState CurrentAction => _actionState;
 
-        private ACTION_STATE _actionState;
+        private ActionState _actionState;
         private BallController _ballController;
         private ActionHandler _actionHandler;
         private bool _isEnabled = true;
+        private float _angle = INITIAL_ANGLE;
+        private float _force;
 
-        private void OnEnable()
+        private void Start()
         {
-            SceneManager.sceneLoaded += OnSceneLoaded;
-        }
-
-        private void OnDisable()
-        {
-            SceneManager.sceneLoaded -= OnSceneLoaded;
-        }
-
-        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-        {
-            _ballController = FindObjectOfType<BallController>();
-
-            _actionHandler = new DirectionHandler(_ballController)
+            _actionHandler = new DirectionHandler(ref _angle, OnDirectionChange)
                 .Chain(new ForceHandler(_ballController))
-                .Chain(new LaunchHandler(_ballController));
+                .Chain(new LaunchHandler(ref _angle, ref _force, OnLaunch));
         }
 
         private void Update()
@@ -42,11 +36,11 @@ namespace Golf
             CheckOnConfirmButtonPressed();
         }
         
-        public void ChangeAction(ACTION_STATE _newAction)
+        public void ChangeAction(ActionState newAction)
         {
-            if (CurrentAction == _newAction) return;
+            if (CurrentAction == newAction) return;
             
-            _actionState = _newAction;
+            _actionState = newAction;
             OnActionChange?.Invoke(_actionState);
         }
 
@@ -69,11 +63,10 @@ namespace Golf
         }
     }
 
-
-    public enum ACTION_STATE
+    public enum ActionState
     {
-        DIRECTION,
-        FORCE,
-        LAUNCH
+        Direction,
+        Force,
+        Launch
     }
 }

@@ -10,7 +10,7 @@ namespace Golf
 
         public override void DoAction()
         {
-            if (InputManager.Source.CurrentAction == ACTION_STATE.FORCE)
+            if (InputManager.Source.CurrentAction == ActionState.Force)
             {
                 ballController.SetStrokeForce();
 
