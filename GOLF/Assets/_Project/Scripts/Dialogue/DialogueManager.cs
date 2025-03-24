@@ -48,10 +48,12 @@ namespace Golf
 
         private async void TypeSentence(DialogueLine dialogueline)
         {
+            AudioManager.Source.PlayOneShot(dialogueline.Character.AudioName);
             _dialogueArea.text = "";
             foreach (char letter in dialogueline.Line.ToCharArray())
             {
                 _dialogueArea.text += letter;
+                AudioManager.Source.TypingSFX();
                 await UniTask.Delay(TimeSpan.FromSeconds(_typingSpeed), DelayType.DeltaTime);
             }
         }

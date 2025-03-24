@@ -33,14 +33,31 @@ namespace Golf
             else CurrentVolume = 0;
         }
 
-        public void BallHitSFX() => _sfxAudioSource.PlayOneShot(_audioDatabase.GetAudio("BallHitSFX"));
+        public void PlayOneShot(string audioName)
+        {
+            _sfxAudioSource.PlayOneShot(_audioDatabase.GetAudio(audioName));
+        }
 
-        public void PauseSFX() => _sfxAudioSource.PlayOneShot(_audioDatabase.GetAudio("PauseSFX"));
+        public void BallHitSFX() => PlayOneShot("BallHitSFX");
 
-        public void ButtonClickSFX() => _sfxAudioSource.PlayOneShot(_audioDatabase.GetAudio("ButtonClickSFX"));
+        public void PauseSFX() => PlayOneShot("PauseSFX");
 
-        public void ButtonSelectHoverSFX() => _sfxAudioSource.PlayOneShot(_audioDatabase.GetAudio("ButtonSelectHoverSFX"));
+        public void ButtonClickSFX() => PlayOneShot("ButtonClickSFX");
+
+        public void ButtonSelectHoverSFX() => PlayOneShot("ButtonSelectHoverSFX");
       
-        public void SetAngleSFX() => _sfxAudioSource.PlayOneShot(_audioDatabase.GetAudio("SetAngleSFX"));       
+        public void SetAngleSFX() => PlayOneShot("SetAngleSFX");
+
+        public void TypingSFX()
+        {
+            if (Random.value >= 0.5)
+            {
+                PlayOneShot("Blip");
+            }
+            else
+            {
+                PlayOneShot("Blop");
+            }    
+        }
     }
 }
