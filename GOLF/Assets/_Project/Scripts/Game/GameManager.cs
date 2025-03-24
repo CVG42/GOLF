@@ -25,11 +25,18 @@ namespace Golf
 
             _strokesNumber = Mathf.Max(0, _strokesNumber - 1);
             OnHitsChanged?.Invoke(_strokesNumber);
+        }
 
-            if (_strokesNumber == 0)
-            {
-                OnLose?.Invoke();
-            }
+        public void ResetHitsLeft()
+        {
+            _strokesNumber = 5;
+        }
+
+        public void TriggerLoseCondition()
+        {
+            if (!IsTutorialLevel()) return;
+
+            OnLose?.Invoke();
         }
     }
 }

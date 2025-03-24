@@ -5,9 +5,10 @@ namespace Golf
 {
     public interface IInputSource
     {
-        float CurrentAngle { get; }
-        Action<Vector2> OnLaunchBall { get; set; }
-        Action OnConfirmButtonPressed { get; set; }
-        Vector2 GetCurrentAngleDirection();
+        event Action OnConfirmButtonPressed { get; set; }
+        event Action<ACTION_STATE> OnActionChange { get; set; }
+        ACTION_STATE CurrentAction { get; }
+
+        void ChangeAction(ACTION_STATE action);
     }
 }

@@ -7,6 +7,7 @@ namespace Golf
     {
         [SerializeField] private TextMeshProUGUI _strokesText;
         [SerializeField] private GameObject _losePanel;
+        [SerializeField] private GameObject _victoryPanel;
 
         private void Start()
         {
@@ -34,6 +35,11 @@ namespace Golf
         public void ShowLosePanel()
         {
             _losePanel.SetActive(true);
+        }
+
+        public void HidePanels()
+        {
+            _losePanel.SetActive(false);
         }
     }
 }

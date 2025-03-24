@@ -6,5 +6,6 @@ namespace Golf
     {
         void UpdateHitsLeft(int hitsLeft);
         void ShowLosePanel();
+        void HidePanels();
     }
 }
