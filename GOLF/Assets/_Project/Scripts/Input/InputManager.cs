@@ -6,9 +6,9 @@ namespace Golf
 {
     public class InputManager : Singleton<IInputSource>, IInputSource
     {
+        public event Action OnConfirmButtonPressed;
         public event Action<ACTION_STATE> OnActionChange;
         public ACTION_STATE CurrentAction => _actionState;
-        public Action OnConfirmButtonPressed { get; set; } = null;
 
         private ACTION_STATE _actionState;
         private BallController _ballController;

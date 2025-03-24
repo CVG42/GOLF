@@ -7,7 +7,6 @@ namespace Golf
     {
         [SerializeField] private TextMeshProUGUI _strokesText;
         [SerializeField] private GameObject _losePanel;
-        [SerializeField] private GameObject _victoryPanel;
 
         private void Start()
         {
