@@ -1,58 +1,53 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Golf
 {
     public class InputManager : Singleton<IInputSource>, IInputSource
     {
-        [Header("Physics parameters")]
-        [SerializeField] private float _maxAngle = 180f;
-        [SerializeField] private float _angleChangeSpeed = 50f;
+        public event Action<ACTION_STATE> OnActionChange;
+        public ACTION_STATE CurrentAction => _actionState;
+        public Action OnConfirmButtonPressed { get; set; } = null;
 
+        private ACTION_STATE _actionState;
+        private BallController _ballController;
+        private ActionHandler _actionHandler;
         private bool _isEnabled = true;
 
-        public Action<Vector2> OnLaunchBall { get; set; } = null;
-        public Action OnConfirmButtonPressed { get; set; } = null;
-        public float CurrentAngle { get; private set; }
-        
+        private void OnEnable()
+        {
+            SceneManager.sceneLoaded += OnSceneLoaded;
+        }
+
+        private void OnDisable()
+        {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+        }
+
+        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            _ballController = FindObjectOfType<BallController>();
+
+            _actionHandler = new DirectionHandler(_ballController)
+                .Chain(new ForceHandler(_ballController))
+                .Chain(new LaunchHandler(_ballController));
+        }
 
         private void Update()
         {
             if (!_isEnabled) return;
-           
-            GetAngle();
-            CheckLaunchBall();
+
+            _actionHandler.DoAction();
             CheckOnConfirmButtonPressed();
         }
-
-
-        private void GetAngle()
-        {
-            if (Input.GetKey(KeyCode.LeftArrow))
-            {
-                CurrentAngle += _angleChangeSpeed * Time.deltaTime;
-            }
-
-            if (Input.GetKey(KeyCode.RightArrow))
-            {
-                CurrentAngle -= _angleChangeSpeed * Time.deltaTime;
-            }
-
-            CurrentAngle = Mathf.Clamp(CurrentAngle, 0f, _maxAngle);
-        }
-
-        private void CheckLaunchBall()
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                OnLaunchBall?.Invoke(GetCurrentAngleDirection());
-            }
-        }
         
-        public Vector2 GetCurrentAngleDirection()
+        public void ChangeAction(ACTION_STATE _newAction)
         {
-            var angleInRadians = CurrentAngle * Mathf.Deg2Rad;
-            return new Vector2(Mathf.Cos(angleInRadians), Mathf.Sin(angleInRadians)).normalized;
+            if (CurrentAction == _newAction) return;
+            
+            _actionState = _newAction;
+            OnActionChange?.Invoke(_actionState);
         }
 
         private void CheckOnConfirmButtonPressed()
@@ -62,13 +57,7 @@ namespace Golf
                 OnConfirmButtonPressed?.Invoke();
             }
         }
-
-        private void OnDestroy()
-        {
-            OnLaunchBall = null;
-            OnConfirmButtonPressed = null;
-        }
-
+        
         public void Enable()
         {
             _isEnabled = true;
@@ -78,5 +67,13 @@ namespace Golf
         {
             _isEnabled = false;
         }
+    }
+
+
+    public enum ACTION_STATE
+    {
+        DIRECTION,
+        FORCE,
+        LAUNCH
     }
 }

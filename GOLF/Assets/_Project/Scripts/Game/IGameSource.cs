@@ -8,5 +8,7 @@ namespace Golf
         event Action OnLose;
         int CurrentHitsLeft { get; }
         void ReduceHitsLeft();
+        void TriggerLoseCondition();
+        void ResetHitsLeft();
     }
 }
