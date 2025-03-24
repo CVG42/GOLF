@@ -6,14 +6,14 @@ namespace Golf
     {
         [SerializeField] private Dialogue _dialogue;
 
-        public void TriggerDialogue()
+        private void TriggerDialogue()
         {
             DialogueManager.Source.StartDialogue(_dialogue);
         }
 
-        private void OnTriggerEnter2D(Collider2D collision)
+        private void OnTriggerEnter2D(Collider2D collider)
         {
-            if (collision.CompareTag("Player"))
+            if (collider.CompareTag("Player"))
             {
                 TriggerDialogue();
             }

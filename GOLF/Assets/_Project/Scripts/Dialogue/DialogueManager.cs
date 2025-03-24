@@ -14,11 +14,14 @@ namespace Golf
         [SerializeField] private TextMeshProUGUI _dialogueArea;
         [SerializeField] private float _typingSpeed = 0.2f;
         [SerializeField] private GameObject _dialoguePrefab;
+        [SerializeField] private Action _onDialogueEnd; 
 
         private readonly Queue<DialogueLine> _lines = new Queue<DialogueLine>();
-        
-        public void StartDialogue(Dialogue dialogue)
+             
+        public void StartDialogue(Dialogue dialogue, Action onDialogueEnd)
         {
+            InputManager.Source.Disable();
+            _onDialogueEnd = onDialogueEnd;
             _dialoguePrefab.gameObject.SetActive(true);
             _lines.Clear();
 
@@ -59,6 +62,8 @@ namespace Golf
         private void EndDialogue()
         {
             _dialoguePrefab.gameObject.SetActive(false);
+            _onDialogueEnd?.Invoke();
+            InputManager.Source.Enable();
         }
     }
 }
