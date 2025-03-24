@@ -4,18 +4,13 @@ namespace Golf
 {
     public abstract class ActionHandler
     {
-        public ActionHandler(BallController _ballController)
-        {
-            ballController = _ballController;
-        }
         public ActionHandler nextHandler;
         
-        protected BallController ballController;
         protected bool hasNextHandler => nextHandler != null;
 
         public abstract void DoAction();
 
-        public ActionHandler Chain(ActionHandler _actionHandler)
+        public ActionHandler Chain(ActionHandler actionHandler)
         {
             ActionHandler handler = this;
 
@@ -24,7 +19,7 @@ namespace Golf
                 handler = handler.nextHandler;
             }
 
-            handler.nextHandler = _actionHandler;
+            handler.nextHandler = actionHandler;
             return this;
         }
     }

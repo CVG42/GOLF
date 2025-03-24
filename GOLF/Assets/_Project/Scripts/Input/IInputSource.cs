@@ -1,14 +1,16 @@
 using System;
-using UnityEngine;
 
 namespace Golf
 {
     public interface IInputSource
     {
         event Action OnConfirmButtonPressed;
-        event Action<ACTION_STATE> OnActionChange;
-        ACTION_STATE CurrentAction { get; }
+        event Action<ActionState> OnActionChange;
+        event Action<float> OnDirectionChange;
+        event Action<float> OnForceChange;
+        event Action<float, float> OnLaunch;
+        ActionState CurrentAction { get; }
 
-        void ChangeAction(ACTION_STATE action);
+        void ChangeAction(ActionState newAction);
     }
 }

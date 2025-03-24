@@ -12,13 +12,9 @@ namespace Golf
 
         [Header("Physics parameters")]
         [SerializeField] private float _force = 3f;
-        [SerializeField] private float _angle = 45f;
-        [SerializeField] private float _directionChangeSpeed = 90f;
         [SerializeField] private float _forceSliderSpeed = 8f;
         [SerializeField] private Slider _forceSlider;
-        [SerializeField] LineRenderer _lineRenderer;
 
-        private float _lineRendererLenght = 2f;
         private float _forceTimer = 0f;
         private float _stopTimer = 0f;
         private float _stopTimeRequired = 1f;
@@ -42,28 +38,14 @@ namespace Golf
             }
         }
 
-        public void AdjustThrowDirection(float _input)
+        private void Update()
         {
-            _angle -= _input * _directionChangeSpeed * Time.deltaTime;
-            _angle = Mathf.Clamp(_angle, 0f, 180f);
-        }
-
-        public void UpdateDirectionIndicator()
-        {
-            if (_lineRenderer != null)
-            {
-                _lineRenderer.enabled = true;
-                Vector3 startPosition = _rigidbody.transform.position;
-                float radians = _angle * Mathf.Deg2Rad;
-                Vector3 direction = new Vector3(Mathf.Cos(radians), Mathf.Sin(radians), 0f);
-                _lineRenderer.SetPosition(0, startPosition);
-                _lineRenderer.SetPosition(1, startPosition + direction * _lineRendererLenght);
-            }
+            StopBallCheck();
         }
 
         public void ChangeToForceSelection()
         {
-            _inputSource.ChangeAction(ACTION_STATE.FORCE);
+            _inputSource.ChangeAction(ActionState.Force);
             _forceTimer = 0f;
             if (_forceSlider != null)
             {
@@ -83,11 +65,7 @@ namespace Golf
 
         public void LaunchBall()
         {
-            _inputSource.ChangeAction(ACTION_STATE.LAUNCH);
-            if (_lineRenderer != null)
-            {
-                _lineRenderer.enabled = false;
-            }
+            _inputSource.ChangeAction(ActionState.Launch);
             if(_forceSlider != null)
             {
                 _forceSlider.gameObject.SetActive(false);
@@ -100,8 +78,10 @@ namespace Golf
             GameManager.Source.ReduceHitsLeft();
         }
 
-        public void StopBallCheck()
+        private void StopBallCheck()
         {
+            if (_inputSource.CurrentAction != ActionState.Launch) return;
+            
             if (_rigidbody.velocity.magnitude < MINIMUM_VELOCITY)
             {
                 _stopTimer += Time.deltaTime;
@@ -132,7 +112,7 @@ namespace Golf
                 _forceSlider.gameObject.SetActive(false);
             }
 
-            _inputSource.ChangeAction(ACTION_STATE.DIRECTION);
+            _inputSource.ChangeAction(ActionState.Direction);
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
