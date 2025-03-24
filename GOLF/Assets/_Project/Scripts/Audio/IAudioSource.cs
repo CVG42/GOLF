@@ -12,6 +12,7 @@ namespace Golf
         void SetSFXVolume(float volume);
         void SetMusicVolume(float volume);
         
+        void PlayOneShot(string audioName);
         void PlayLevelMusic(string audioName);
         void FadeOutMusic();
 
@@ -20,5 +21,6 @@ namespace Golf
         void ButtonSelectHoverSFX();
         void PauseSFX();
         void SetAngleSFX();
+        void TypingSFX();
     }
 }

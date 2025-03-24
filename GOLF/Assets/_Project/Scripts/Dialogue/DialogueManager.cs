@@ -63,6 +63,9 @@ namespace Golf
             isTyping = true;
             skipTyping = false;
             currentSentence = dialogueline.Line;
+            
+            AudioManager.Source.PlayOneShot(dialogueline.Character.AudioName);
+
             _dialogueArea.text = "";
             foreach (char letter in dialogueline.Line.ToCharArray())
             {
@@ -73,6 +76,7 @@ namespace Golf
                 }
 
                 _dialogueArea.text += letter;
+                AudioManager.Source.TypingSFX();
                 await UniTask.Delay(TimeSpan.FromSeconds(_typingSpeed), DelayType.DeltaTime);
             }
             isTyping = false;

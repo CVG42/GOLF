@@ -4,11 +4,18 @@ using System;
 
 namespace Golf
 {
-    [Serializable]
-    public class DialogueCharacter
+    [CreateAssetMenu(fileName = "NewDialogue", menuName = "Dialogue System/Dialogue")]
+    public class Dialogue : ScriptableObject
+    {
+        public List<DialogueLine> DialogueLines = new List<DialogueLine>();
+    }
+
+    [CreateAssetMenu(fileName = "DialogueCharacter", menuName = "Dialogue System/DialogueCharacter")]
+    public class DialogueCharacter : ScriptableObject
     {
         public string Name;
         public Sprite Icon;
+        public string AudioName;
     }
 
     [Serializable]
@@ -17,11 +24,5 @@ namespace Golf
         public DialogueCharacter Character;
         [TextArea(3, 10)]
         public string Line;
-    }
-
-    [Serializable]
-    public class Dialogue
-    {
-        public List<DialogueLine> DialogueLines = new List<DialogueLine>();
-    }
+    }   
 }
