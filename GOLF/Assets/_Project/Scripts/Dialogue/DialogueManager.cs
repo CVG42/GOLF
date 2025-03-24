@@ -17,14 +17,10 @@ namespace Golf
         [SerializeField] private Action _onDialogueEnd; 
 
         private readonly Queue<DialogueLine> _lines = new Queue<DialogueLine>();
-      
-        public void StartDialogue(Dialogue dialogue)
-        {
-            StartDialogue(dialogue, null); 
-        }
-
+             
         public void StartDialogue(Dialogue dialogue, Action onDialogueEnd)
         {
+            InputManager.Source.Disable();
             _onDialogueEnd = onDialogueEnd;
             _dialoguePrefab.gameObject.SetActive(true);
             _lines.Clear();
@@ -67,6 +63,7 @@ namespace Golf
         {
             _dialoguePrefab.gameObject.SetActive(false);
             _onDialogueEnd?.Invoke();
+            InputManager.Source.Enable();
         }
     }
 }

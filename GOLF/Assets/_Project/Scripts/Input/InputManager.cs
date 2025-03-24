@@ -9,6 +9,8 @@ namespace Golf
         [SerializeField] private float _maxAngle = 180f;
         [SerializeField] private float _angleChangeSpeed = 50f;
 
+        private bool _isEnabled = true;
+
         public Action<Vector2> OnLaunchBall { get; set; } = null;
         public Action OnConfirmButtonPressed { get; set; } = null;
         public float CurrentAngle { get; private set; }
@@ -16,11 +18,14 @@ namespace Golf
 
         private void Update()
         {
+            if (!_isEnabled) return;
+           
             GetAngle();
             CheckLaunchBall();
             CheckOnConfirmButtonPressed();
         }
-        
+
+
         private void GetAngle()
         {
             if (Input.GetKey(KeyCode.LeftArrow))
@@ -64,5 +69,14 @@ namespace Golf
             OnConfirmButtonPressed = null;
         }
 
+        public void Enable()
+        {
+            _isEnabled = true;
+        }
+
+        public void Disable()
+        {
+            _isEnabled = false;
+        }
     }
 }

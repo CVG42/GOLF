@@ -6,28 +6,16 @@ namespace Golf
     {
         [SerializeField] private Dialogue _dialogue;
 
-        private void TriggerDialogue(Collider2D player)
+        private void TriggerDialogue()
         {
-            InputManager inputManager = FindObjectOfType<InputManager>();
-            if (inputManager != null)
-            {
-                inputManager.enabled = false;
-            }
-
-            DialogueManager.Source.StartDialogue(_dialogue, () =>
-            {
-                if (inputManager != null)
-                {
-                    inputManager.enabled = true;
-                }
-            });
+            DialogueManager.Source.StartDialogue(_dialogue);
         }
 
-        private void OnTriggerEnter2D(Collider2D collision)
+        private void OnTriggerEnter2D(Collider2D collider)
         {
-            if (collision.CompareTag("Player"))
+            if (collider.CompareTag("Player"))
             {
-                TriggerDialogue(collision);
+                TriggerDialogue();
             }
         }
     }
