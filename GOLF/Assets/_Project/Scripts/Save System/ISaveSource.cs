@@ -4,7 +4,10 @@ namespace Golf
 {
     public interface ISaveSource
     {
-        float GetVolume();
-        void SetVolume(float volume);
+        float GetMusicVolume();
+        void SetMusicVolume(float volume);
+
+        float GetSFXVolume();
+        void SetSFXVolume(float volume);
     }
 }
