@@ -13,6 +13,11 @@ namespace Golf
         {
             _savePath = Application.persistentDataPath + "/save.json";
             _currentData = Load();
+
+            Screen.fullScreen = _currentData.IsFullScreen;
+
+            if (!_currentData.IsFullScreen)
+                Screen.SetResolution(_currentData.ScreenWidth, _currentData.ScreenHeight, false);
         }
 
         private void Start()
@@ -46,6 +51,28 @@ namespace Golf
         {
             _currentData.PlayerVolume = volume; 
             Save(); 
+        }
+
+        public bool GetFullScreenMode() => _currentData.IsFullScreen;
+
+        public void SetFullScreenMode(bool isFullScreen)
+        {
+            _currentData.IsFullScreen = isFullScreen;
+            Screen.fullScreen = isFullScreen;
+            Save();
+        }
+
+        public Vector2Int GetResolution() => new Vector2Int(_currentData.ScreenWidth, _currentData.ScreenHeight);
+
+        public void SetResolution(int width, int height)
+        {
+            _currentData.ScreenWidth = width;
+            _currentData.ScreenHeight = height;
+
+            if (!Screen.fullScreen)
+                Screen.SetResolution(width, height, false);
+
+            Save();
         }
     }
 }
