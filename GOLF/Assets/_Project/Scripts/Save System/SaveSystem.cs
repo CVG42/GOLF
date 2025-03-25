@@ -43,14 +43,21 @@ namespace Golf
                 string json = File.ReadAllText(_savePath);
                 return JsonConvert.DeserializeObject<GameData>(json);
             }
-            return new GameData { PlayerVolume = 1.0f };
+            return new GameData();
         }
 
-        public float GetVolume() => _currentData.PlayerVolume;
-        public void SetVolume(float volume) 
+        public float GetMusicVolume() => _currentData.MusicVolume;
+        public void SetMusicVolume(float volume)
         {
-            _currentData.PlayerVolume = volume; 
-            Save(); 
+            _currentData.MusicVolume = volume;
+            Save();
+        }
+
+        public float GetSFXVolume() => _currentData.SFXVolume;
+        public void SetSFXVolume(float volume)
+        {
+            _currentData.SFXVolume = volume;
+            Save();
         }
 
         public bool GetFullScreenMode() => _currentData.IsFullScreen;
