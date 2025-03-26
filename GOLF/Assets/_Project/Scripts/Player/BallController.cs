@@ -10,12 +10,6 @@ namespace Golf
 
         public bool isOnPole;
 
-        [Header("Physics parameters")]
-        [SerializeField] private float _force = 3f;
-        [SerializeField] private float _forceSliderSpeed = 8f;
-        [SerializeField] private Slider _forceSlider;
-
-        private float _forceTimer = 0f;
         private float _stopTimer = 0f;
         private float _stopTimeRequired = 1f;
         private Rigidbody2D _rigidbody;
@@ -27,15 +21,19 @@ namespace Golf
             _rigidbody = GetComponent<Rigidbody2D>();
         }
 
+        private void OnEnable()
+        {
+            InputManager.Source.OnLaunch += LaunchBall;
+        }
+
+        private void OnDisable()
+        {
+            InputManager.Source.OnLaunch -= LaunchBall;
+        }
+
         private void Start()
         {
             isOnPole = false;
-            _forceSlider.gameObject.SetActive(false);
-            if (_forceSlider != null)
-            {
-                _forceSlider.minValue = 1f;
-                _forceSlider.maxValue = 10f;
-            }
         }
 
         private void Update()
@@ -43,38 +41,11 @@ namespace Golf
             StopBallCheck();
         }
 
-        public void ChangeToForceSelection()
+        private void LaunchBall(float angle, float force)
         {
-            _inputSource.ChangeAction(ActionState.Force);
-            _forceTimer = 0f;
-            if (_forceSlider != null)
-            {
-                _forceSlider.gameObject.SetActive(true);
-            }
-        }
-
-        public void SetStrokeForce()
-        {
-            _forceTimer += Time.deltaTime;
-            _force = Mathf.PingPong(_forceTimer * _forceSliderSpeed, 9f) + 1f;
-            if (_forceSlider != null)
-            {
-                _forceSlider.value = _force;
-            }
-        }
-
-        public void LaunchBall()
-        {
-            _inputSource.ChangeAction(ActionState.Launch);
-            if(_forceSlider != null)
-            {
-                _forceSlider.gameObject.SetActive(false);
-            }
-
-            float radians = _angle * Mathf.Deg2Rad;
+            float radians = angle * Mathf.Deg2Rad;
             Vector2 launchDirection = new Vector2(Mathf.Cos(radians), Mathf.Sin(radians));
-
-            _rigidbody.AddForce(launchDirection * _force, ForceMode2D.Impulse);
+            _rigidbody.AddForce(launchDirection * force, ForceMode2D.Impulse);
             GameManager.Source.ReduceHitsLeft();
         }
 
@@ -104,13 +75,7 @@ namespace Golf
 
         private void ResetBall()
         {
-            _force = 1f;
             _stopTimer = 0f;
-
-            if (_forceSlider != null)
-            {
-                _forceSlider.gameObject.SetActive(false);
-            }
 
             _inputSource.ChangeAction(ActionState.Direction);
         }

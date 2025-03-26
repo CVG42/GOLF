@@ -586,6 +586,8 @@ GameObject:
   - component: {fileID: 6617235223804755056}
   - component: {fileID: 2869648027295985944}
   - component: {fileID: 3703202923466045264}
+  - component: {fileID: 3958708594040451435}
+  - component: {fileID: 2395663856432242423}
   m_Layer: 0
   m_Name: Ball
   m_TagString: Player
@@ -789,9 +791,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOnPole: 0
-  _force: 1
-  _angle: 45
-  _directionChangeSpeed: 90
-  _forceSliderSpeed: 8
-  _forceSlider: {fileID: 3832626851292303293}
+--- !u!114 &3958708594040451435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8229772491227193767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05041394005503543b8b6772e7979544, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   _lineRenderer: {fileID: 2869648027295985944}
+  _rigidbody: {fileID: 6617235223804755056}
+  _lineRendererLength: 2
+--- !u!114 &2395663856432242423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8229772491227193767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5eafbacb7f73044e80d6297759625ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _forceSlider: {fileID: 3832626851292303293}
