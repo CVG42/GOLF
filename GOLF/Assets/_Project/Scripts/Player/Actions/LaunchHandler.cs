@@ -4,23 +4,25 @@ namespace Golf
 {
     public class LaunchHandler : ActionHandler
     {
-        private Action<float, float> _onLaunch;
-        private readonly float _angle;
-        private readonly float _force;
-        
-        public LaunchHandler(ref float angle, ref float force, Action<float, float> onLaunch)
+        public Action<float, float> OnLaunch;
+
+        private Func<float> _directionGetter;
+        private Func<float> _forceGetter;
+
+        public LaunchHandler(Func<float> directionGetter, Func<float> forceGetter)
         {
-            _angle = angle;
-            _force = force;
+            _directionGetter = directionGetter;
+            _forceGetter = forceGetter;
         }
         
         public override void DoAction()
         {
-            if (InputManager.Source.CurrentAction == ActionState.Launch) return;
+            if (InputManager.Source.CurrentAction != ActionState.Launch) return;
 
-            _onLaunch?.Invoke(_angle, _force);
-            
-            if (hasNextHandler)
+            OnLaunch?.Invoke(_directionGetter(), _forceGetter());
+            InputManager.Source.ChangeAction(ActionState.Moving);
+
+            if (hasNextHandler && InputManager.Source.CurrentAction != ActionState.Moving)
             {
                 nextHandler.DoAction();
             }

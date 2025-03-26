@@ -5,7 +5,7 @@ namespace Golf
     public class BallDirectionIndicator : MonoBehaviour
     {
         [SerializeField] LineRenderer _lineRenderer;
-        [SerializeField] private Rigidbody2D _rigidbody;
+        [SerializeField] private Transform _ballTransform;
         [SerializeField] private float _lineRendererLength = 2f;
 
         private void Start()
@@ -16,7 +16,7 @@ namespace Golf
         
         private void OnDestroy()
         {
-            InputManager.Source.OnActionChange += OnActionChange;
+            InputManager.Source.OnActionChange -= OnActionChange;
             InputManager.Source.OnDirectionChange -= UpdateDirectionIndicator;
         }
 
@@ -36,7 +36,7 @@ namespace Golf
 
         private void UpdateDirectionIndicator(float angle)
         {
-            Vector3 startPosition = _rigidbody.transform.position;
+            Vector3 startPosition = _ballTransform.position;
             float radians = angle * Mathf.Deg2Rad;
             Vector3 direction = new Vector3(Mathf.Cos(radians), Mathf.Sin(radians), 0f);
             _lineRenderer.SetPosition(0, startPosition);

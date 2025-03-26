@@ -1,31 +1,58 @@
 using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Golf
 {
     public class InputManager : Singleton<IInputSource>, IInputSource
-    {
-        private const float INITIAL_ANGLE = 45f;
-        
+    { 
         public event Action OnConfirmButtonPressed;
         public event Action<ActionState> OnActionChange;
-        public event Action<float> OnDirectionChange;
-        public event Action<float, float> OnLaunch;
+
         public ActionState CurrentAction => _actionState;
 
+        public event Action<float> OnDirectionChange
+        {
+            add { _directionHandler.OnDirectionChange += value; }
+            remove { _directionHandler.OnDirectionChange -= value; }
+        }
+
+        public event Action<float> OnForceChange
+        {
+            add { _forceHandler.OnForceChange += value; }
+            remove { _forceHandler.OnForceChange -= value; }
+        }
+
+        public event Action<float, float> OnLaunch
+        {
+            add { _launchHandler.OnLaunch += value; }
+            remove { _launchHandler.OnLaunch -= value; }
+        }
+
         private ActionState _actionState;
-        private BallController _ballController;
         private ActionHandler _actionHandler;
         private bool _isEnabled = true;
-        private float _angle = INITIAL_ANGLE;
-        private float _force;
+
+        private DirectionHandler _directionHandler;
+        private ForceHandler _forceHandler;
+        private LaunchHandler _launchHandler;
+
+        protected override void Awake()
+        {
+            base.Awake();
+            _directionHandler = new DirectionHandler();
+            _forceHandler = new ForceHandler();
+            _launchHandler = new LaunchHandler(_directionHandler.Angle, _forceHandler.Force);
+
+            _directionHandler
+                .Chain(_forceHandler)
+                .Chain(_launchHandler);
+
+            _actionHandler = _directionHandler;
+        }
 
         private void Start()
         {
-            _actionHandler = new DirectionHandler(ref _angle, OnDirectionChange)
-                .Chain(new ForceHandler(_ballController))
-                .Chain(new LaunchHandler(ref _angle, ref _force, OnLaunch));
+            ChangeAction(ActionState.Direction);
         }
 
         private void Update()
@@ -33,9 +60,9 @@ namespace Golf
             if (!_isEnabled) return;
 
             _actionHandler.DoAction();
-            CheckOnConfirmButtonPressed();
+            CheckOnConfirmButtonPressed(); 
         }
-        
+
         public void ChangeAction(ActionState newAction)
         {
             if (CurrentAction == newAction) return;
@@ -67,6 +94,7 @@ namespace Golf
     {
         Direction,
         Force,
-        Launch
+        Launch,
+        Moving
     }
 }
