@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Golf
 {
@@ -51,7 +50,7 @@ namespace Golf
 
         private void StopBallCheck()
         {
-            if (_inputSource.CurrentAction != ActionState.Launch) return;
+            if (_inputSource.CurrentActionState != ActionState.Moving) return;
             
             if (_rigidbody.velocity.magnitude < MINIMUM_VELOCITY)
             {
