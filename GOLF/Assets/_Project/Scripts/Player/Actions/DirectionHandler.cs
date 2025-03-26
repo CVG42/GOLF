@@ -12,22 +12,16 @@ namespace Golf
 
         private float _angle = INITIAL_ANGLE;
 
+        public override ActionState ActionState => ActionState.Direction;
         public float Angle() => _angle;
 
         public override void DoAction()
         {
-            if (InputManager.Source.CurrentAction == ActionState.Direction)
-            {
-                AdjustAngleBasedOnInput(Input.GetAxis("Horizontal"));
+            AdjustAngleBasedOnInput(Input.GetAxis("Horizontal"));
 
-                if (Input.GetButtonDown("Jump"))
-                {
-                    InputManager.Source.ChangeAction(ActionState.Force);
-                }
-            }
-            else if (hasNextHandler)
+            if (Input.GetButtonDown("Jump"))
             {
-                nextHandler.DoAction();
+                InputManager.Source.ChangeAction(ActionState.Force);
             }
         }
 

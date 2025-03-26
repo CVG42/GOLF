@@ -9,7 +9,7 @@ namespace Golf
         event Action<float> OnDirectionChange;
         event Action<float> OnForceChange;
         event Action<float, float> OnLaunch;
-        ActionState CurrentAction { get; }
+        ActionState CurrentActionState { get; }
         void ChangeAction(ActionState newAction);
     }
 }

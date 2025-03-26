@@ -6,48 +6,31 @@ namespace Golf
     public class ForceHandler : ActionHandler
     {
         private const float INITIAL_FORCE = 0f;
+        private const float FORCE_SLIDER_SPEED = 8f;
 
         public Action<float> OnForceChange;
 
         private float _forceTimer = 0;
-        private readonly float _forceSliderSpeed = 8f;
-        private bool _isButtonReady = false;
         private float _force = INITIAL_FORCE;
 
+        public override ActionState ActionState => ActionState.Force;
         public float Force() => _force;
 
         public override void DoAction()
         {
-            if (InputManager.Source.CurrentAction == ActionState.Force)
-            {
-                SetUpForceFromSlider();
-                OnForceChange?.Invoke(_force);
+            SetUpForceFromSlider();
 
-                if (!_isButtonReady) 
-                {
-                    if (Input.GetButtonUp("Jump"))
-                    {
-                        _isButtonReady = true;
-                    }
-                }
-
-                if (Input.GetButtonDown("Jump"))
-                {
-                    InputManager.Source.ChangeAction(ActionState.Launch);
-                  
-                    _isButtonReady = false;
-                }
-            }
-            else if (hasNextHandler)
+            if (Input.GetButtonDown("Jump"))
             {
-                nextHandler.DoAction();
+                InputManager.Source.ChangeAction(ActionState.Launch);
             }
         }
 
         private void SetUpForceFromSlider()
         {
             _forceTimer += Time.deltaTime;
-            _force = Mathf.PingPong(_forceTimer * _forceSliderSpeed, 9f) + 1;
+            _force = Mathf.PingPong(_forceTimer * FORCE_SLIDER_SPEED, 9f) + 1;
+            OnForceChange?.Invoke(_force);
         }
     }
 }
