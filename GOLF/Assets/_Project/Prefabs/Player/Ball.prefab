@@ -804,7 +804,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lineRenderer: {fileID: 2869648027295985944}
-  _rigidbody: {fileID: 6617235223804755056}
+  _ballTransform: {fileID: 787755613902124604}
   _lineRendererLength: 2
 --- !u!114 &2395663856432242423
 MonoBehaviour:
