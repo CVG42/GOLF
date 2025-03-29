@@ -28,6 +28,7 @@ namespace Golf
         private void AdjustAngleBasedOnInput(float input)
         {
             _angle -= input * DIRECTION_CHANGE_SPEED * Time.deltaTime;
+            _angle = Mathf.Clamp(_angle, 0f, 180f);
             OnDirectionChange?.Invoke(_angle);
         }
     }
