@@ -23,6 +23,7 @@ namespace Golf
             if (Input.GetButtonDown("Jump"))
             {
                 InputManager.Source.ChangeAction(ActionState.Launch);
+                _forceTimer = 0;
             }
         }
 
