@@ -14,8 +14,11 @@ namespace Golf
         [SerializeField] private TextMeshProUGUI _dialogueArea;
         [SerializeField] private float _typingSpeed = 0.2f;
         [SerializeField] private GameObject _dialoguePrefab;
-        [SerializeField] private Action _onDialogueEnd; 
+        [SerializeField] private Action _onDialogueEnd;
 
+        private bool isTyping = false;
+        private bool skipTyping = false;
+        private string currentSentence = "";
         private readonly Queue<DialogueLine> _lines = new Queue<DialogueLine>();
              
         public void StartDialogue(Dialogue dialogue, Action onDialogueEnd)
@@ -35,6 +38,12 @@ namespace Golf
 
         public void DisplayNextDialogueLine()
         {
+            if (isTyping)
+            {
+                skipTyping = true;
+                return;
+            }
+
             if (_lines.Count == 0)
             {
                 EndDialogue();
@@ -51,12 +60,22 @@ namespace Golf
 
         private async void TypeSentence(DialogueLine dialogueline)
         {
+            isTyping = true;
+            skipTyping = false;
+            currentSentence = dialogueline.Line;
             _dialogueArea.text = "";
             foreach (char letter in dialogueline.Line.ToCharArray())
             {
+                if (skipTyping)
+                {
+                    _dialogueArea.text = dialogueline.Line;
+                    break;
+                }
+
                 _dialogueArea.text += letter;
                 await UniTask.Delay(TimeSpan.FromSeconds(_typingSpeed), DelayType.DeltaTime);
             }
+            isTyping = false;
         }
 
         private void EndDialogue()
