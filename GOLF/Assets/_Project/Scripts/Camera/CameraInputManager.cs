@@ -7,9 +7,11 @@ namespace Golf
     {
         [SerializeField] private ACTUAL_SCENE _Scene;
         [SerializeField] private Transform _player;
+        [SerializeField] private GameObject _movementFrame;
+        [SerializeField] private Camera _camera;
         
         private float _xOffset_Positive, _xOffset_Negative, _yOffset_Positive, _yOffset_Negative, _smoothTime = 0.1f;
-        public bool _isLocking = true;
+        private bool _isLocking = true;
         private Vector3 _velocityCamera = Vector3.zero;
 
         private void Start()
@@ -22,10 +24,10 @@ namespace Golf
                     _yOffset_Positive = 2.8f;
                 break;
                 case ACTUAL_SCENE.Level1:
-                    _xOffset_Negative = -20.5f;
-                    _xOffset_Positive = 20.5f;
-                    _yOffset_Negative = -0.5f;
-                    _yOffset_Positive = 70f;
+                    _xOffset_Negative = -15f;
+                    _xOffset_Positive = 15f;
+                    _yOffset_Negative = 2f;
+                    _yOffset_Positive = 67f;
                 break;
                 case ACTUAL_SCENE.Level2:
                     _xOffset_Negative = -20.5f;
@@ -77,7 +79,7 @@ namespace Golf
 
         private void CenterToPlayer()
         {
-            Vector3 _playerPosition = new Vector3((int)_player.position.x, (int)_player.position.y, 0) + new Vector3(0, 3f, -10);
+            Vector3 _playerPosition = new Vector3((int)_player.position.x, (int)_player.position.y, 0) + new Vector3(0, 1f, -10);
 
             _playerPosition.x = Mathf.Clamp(_playerPosition.x, _xOffset_Negative, _xOffset_Positive);
             _playerPosition.y = Mathf.Clamp(_playerPosition.y, _yOffset_Negative, _yOffset_Positive);
@@ -86,16 +88,20 @@ namespace Golf
 
             _isLocking = true;
            
+            _movementFrame.SetActive(false);
         }
 
         private void FollowPlayer()
         {
-            Vector3 _playerPosition = _player.position + new Vector3(0f, 3f, -10f);
+            Vector3 _playerPosition = _player.position + new Vector3(0f, 1f, -10f);
 
             _playerPosition.x = Mathf.Clamp(_playerPosition.x, _xOffset_Negative, _xOffset_Positive);
             _playerPosition.y = Mathf.Clamp(_playerPosition.y, _yOffset_Negative, _yOffset_Positive);
 
             transform.position = Vector3.SmoothDamp(transform.position, _playerPosition, ref _velocityCamera, _smoothTime);
+
+
+            _movementFrame.SetActive(false);
         }
 
         private void MoveCamera()
@@ -111,6 +117,7 @@ namespace Golf
             transform.position = _Threshold;
 
             _isLocking = false;
+            _movementFrame.SetActive(true);
         }
     }
 
