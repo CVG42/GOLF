@@ -79,7 +79,7 @@ namespace Golf
 
         private void CenterToPlayer()
         {
-            Vector3 _playerPosition = new Vector3((int)_player.position.x, (int)_player.position.y, 0) + new Vector3(0, 1f, -10);
+            Vector3 _playerPosition = new Vector3((int)_player.position.x, (int)_player.position.y, 0) + new Vector3(0, 3f, -10);
 
             _playerPosition.x = Mathf.Clamp(_playerPosition.x, _xOffset_Negative, _xOffset_Positive);
             _playerPosition.y = Mathf.Clamp(_playerPosition.y, _yOffset_Negative, _yOffset_Positive);
@@ -87,7 +87,7 @@ namespace Golf
             transform.position = _playerPosition;
 
             _isLocking = true;
-           
+           ZoomIn();
             _movementFrame.SetActive(false);
         }
 
@@ -100,24 +100,35 @@ namespace Golf
 
             transform.position = Vector3.SmoothDamp(transform.position, _playerPosition, ref _velocityCamera, _smoothTime);
 
-
+            ZoomIn();
             _movementFrame.SetActive(false);
         }
 
         private void MoveCamera()
         {
-            float _horizontalInput = Input.GetAxis("Horizontal") * 20f * Time.deltaTime;
-            float _verticalInput = Input.GetAxis("Vertical") * 20f * Time.deltaTime;
+            float _horizontalInput = Input.GetAxis("Horizontal") * 25f * Time.deltaTime;
+            float _verticalInput = Input.GetAxis("Vertical") * 25f * Time.deltaTime;
 
             Vector3 _Threshold = transform.position + new Vector3(_horizontalInput, _verticalInput, 0);
 
             _Threshold.x = Mathf.Clamp(_Threshold.x, _xOffset_Negative, _xOffset_Positive);
             _Threshold.y = Mathf.Clamp(_Threshold.y, _yOffset_Negative, _yOffset_Positive);
-
             transform.position = _Threshold;
 
+            ZoomOut();
             _isLocking = false;
             _movementFrame.SetActive(true);
+        }
+
+        private void ZoomIn() {
+
+            _camera.orthographicSize = Mathf.Lerp(_camera.orthographicSize, 7f, 2f * Time.deltaTime);
+        }
+
+        private void ZoomOut()
+        {
+
+            _camera.orthographicSize = Mathf.Lerp(_camera.orthographicSize, 8f, 2f * Time.deltaTime);
         }
     }
 
