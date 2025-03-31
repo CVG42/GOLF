@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using UnityEngine;
 
@@ -11,6 +12,7 @@ namespace Golf
         [SerializeField] private Camera _camera;
         
         private float _xOffset_Positive, _xOffset_Negative, _yOffset_Positive, _yOffset_Negative, _smoothTime = 0.1f;
+        private float _zXOffset_Positive, _zXOffset_Negative, _zYOffset_Positive, _zYOffset_Negative;
         private bool _isLocking = true;
         private Vector3 _velocityCamera = Vector3.zero;
 
@@ -22,36 +24,60 @@ namespace Golf
                     _xOffset_Positive = 1f;
                     _yOffset_Negative = 2.5f;
                     _yOffset_Positive = 2.8f;
-                break;
+                    _zXOffset_Negative = -11f;
+                    _zXOffset_Positive = 11f;
+                    _zYOffset_Negative = 4f;
+                    _zYOffset_Positive = 65f;
+                    break;
                 case ACTUAL_SCENE.Level1:
-                    _xOffset_Negative = -15f;
-                    _xOffset_Positive = 15f;
-                    _yOffset_Negative = 2f;
-                    _yOffset_Positive = 67f;
-                break;
+                    _xOffset_Negative = -16f;
+                    _xOffset_Positive = 16f;
+                    _yOffset_Negative = 1f;
+                    _yOffset_Positive = 68f;
+                    _zXOffset_Negative = -11f;
+                    _zXOffset_Positive = 11f;
+                    _zYOffset_Negative = 4f;
+                    _zYOffset_Positive = 65f;
+                    break;
                 case ACTUAL_SCENE.Level2:
                     _xOffset_Negative = -20.5f;
                     _xOffset_Positive = 20.5f;
                     _yOffset_Negative = -0.5f;
                     _yOffset_Positive = 70f;
+                    _zXOffset_Negative = -11f;
+                    _zXOffset_Positive = 11f;
+                    _zYOffset_Negative = 4f;
+                    _zYOffset_Positive = 65f;
                     break;
                 case ACTUAL_SCENE.Level3:
                     _xOffset_Negative = -20.5f;
                     _xOffset_Positive = 20.5f;
                     _yOffset_Negative = -0.5f;
                     _yOffset_Positive = 70f;
+                    _zXOffset_Negative = -11f;
+                    _zXOffset_Positive = 11f;
+                    _zYOffset_Negative = 4f;
+                    _zYOffset_Positive = 65f;
                     break;
                 case ACTUAL_SCENE.Level4:
                     _xOffset_Negative = -20.5f;
                     _xOffset_Positive = 20.5f;
                     _yOffset_Negative = -0.5f;
                     _yOffset_Positive = 70f;
+                    _zXOffset_Negative = -11f;
+                    _zXOffset_Positive = 11f;
+                    _zYOffset_Negative = 4f;
+                    _zYOffset_Positive = 65f;
                     break;
                 case ACTUAL_SCENE.Level5:
                     _xOffset_Negative = -20.5f;
                     _xOffset_Positive = 20.5f;
                     _yOffset_Negative = -0.5f;
                     _yOffset_Positive = 70f;
+                    _zXOffset_Negative = -11f;
+                    _zXOffset_Positive = 11f;
+                    _zYOffset_Negative = 4f;
+                    _zYOffset_Positive = 65f;
                     break;
             }
         }
@@ -61,6 +87,7 @@ namespace Golf
             if (_isLocking)
             {
                 FollowPlayer();
+
             }
         }
 
@@ -75,11 +102,13 @@ namespace Golf
             {
                 MoveCamera();
             }
+
+
         }
 
         private void CenterToPlayer()
         {
-            Vector3 _playerPosition = new Vector3((int)_player.position.x, (int)_player.position.y, 0) + new Vector3(0, 3f, -10);
+            Vector3 _playerPosition = new Vector3((int)_player.position.x, (int)_player.position.y, 0) + new Vector3(0, 1f, -10);
 
             _playerPosition.x = Mathf.Clamp(_playerPosition.x, _xOffset_Negative, _xOffset_Positive);
             _playerPosition.y = Mathf.Clamp(_playerPosition.y, _yOffset_Negative, _yOffset_Positive);
@@ -111,25 +140,27 @@ namespace Golf
 
             Vector3 _Threshold = transform.position + new Vector3(_horizontalInput, _verticalInput, 0);
 
-            _Threshold.x = Mathf.Clamp(_Threshold.x, _xOffset_Negative, _xOffset_Positive);
-            _Threshold.y = Mathf.Clamp(_Threshold.y, _yOffset_Negative, _yOffset_Positive);
+            _Threshold.x = Mathf.Clamp(_Threshold.x, _zXOffset_Negative, _zXOffset_Positive);
+            _Threshold.y = Mathf.Clamp(_Threshold.y, _zYOffset_Negative, _zYOffset_Positive);
             transform.position = _Threshold;
 
-            ZoomOut();
+            
             _isLocking = false;
             _movementFrame.SetActive(true);
+            ZoomOut();
         }
 
         private void ZoomIn() {
 
-            _camera.orthographicSize = Mathf.Lerp(_camera.orthographicSize, 7f, 2f * Time.deltaTime);
+            _camera.DOOrthoSize(7, 0.3f).SetEase(Ease.OutQuad);
         }
 
         private void ZoomOut()
         {
-
-            _camera.orthographicSize = Mathf.Lerp(_camera.orthographicSize, 8f, 2f * Time.deltaTime);
+            _camera.DOOrthoSize(10,1f).SetEase(Ease.OutQuad);
         }
+
+
     }
 
 }
