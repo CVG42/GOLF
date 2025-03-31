@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -402,6 +401,63 @@ Transform:
   m_Children: []
   m_Father: {fileID: 921884486}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &897348767
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6349880645914650424, guid: 049eb6fb3d3f2df4eb1ee21348025d27, type: 3}
+      propertyPath: m_Name
+      value: AudioManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 9156902567068502760, guid: 049eb6fb3d3f2df4eb1ee21348025d27, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9156902567068502760, guid: 049eb6fb3d3f2df4eb1ee21348025d27, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9156902567068502760, guid: 049eb6fb3d3f2df4eb1ee21348025d27, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9156902567068502760, guid: 049eb6fb3d3f2df4eb1ee21348025d27, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9156902567068502760, guid: 049eb6fb3d3f2df4eb1ee21348025d27, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9156902567068502760, guid: 049eb6fb3d3f2df4eb1ee21348025d27, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9156902567068502760, guid: 049eb6fb3d3f2df4eb1ee21348025d27, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9156902567068502760, guid: 049eb6fb3d3f2df4eb1ee21348025d27, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9156902567068502760, guid: 049eb6fb3d3f2df4eb1ee21348025d27, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9156902567068502760, guid: 049eb6fb3d3f2df4eb1ee21348025d27, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 049eb6fb3d3f2df4eb1ee21348025d27, type: 3}
 --- !u!1 &921884485
 GameObject:
   m_ObjectHideFlags: 0
@@ -639,7 +695,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31d9d764107f21444bfb65896b9d7243, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rigidbody: {fileID: 1664757565}
   _force: 3
   _maxDistance: 5
   _dragAmount: 1
@@ -803,20 +858,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4caa8869554f34f4b84438c604e86920, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dialogue:
-    DialogueLines:
-    - Character:
-        Name: Vera
-        Icon: {fileID: 0}
-      Line: Hola
-    - Character:
-        Name: Ivan
-        Icon: {fileID: 0}
-      Line: como
-    - Character:
-        Name: Eric
-        Icon: {fileID: 0}
-      Line: Estas
+  _dialogue: {fileID: 11400000, guid: 2982f8c517d702845b6e623114f0ce9c, type: 2}
 --- !u!61 &1770047206
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1292,5 +1334,6 @@ SceneRoots:
   - {fileID: 1629440802}
   - {fileID: 1171055759}
   - {fileID: 1556298746089253798}
+  - {fileID: 897348767}
   - {fileID: 921884486}
   - {fileID: 1770047208}
