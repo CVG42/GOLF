@@ -6,9 +6,10 @@ namespace Golf
 {
     public class SettingsMenu : MonoBehaviour
     {
-        [SerializeField] private Toggle fullScreenToggle;
-        [SerializeField] private Dropdown resolutionDropdown;
-        private SaveSystem saveSystem;
+        [SerializeField] private Toggle _fullScreenToggle;
+        [SerializeField] private Dropdown _resolutionDropdown;
+
+        private ISaveSource saveSystem;
 
         private readonly List<Vector2Int> resolutions = new List<Vector2Int>
         {
@@ -18,12 +19,17 @@ namespace Golf
             new Vector2Int(3840, 2160)
         };
 
+        private void Awake()
+        {
+            saveSystem = SaveSystem.Source;
+        }
+
         private void Start()
         {
             if (saveSystem != null)
             {
-                fullScreenToggle.isOn = saveSystem.GetFullScreenMode();
-                fullScreenToggle.onValueChanged.AddListener(SetFullScreenMode);
+                _fullScreenToggle.isOn = saveSystem.GetFullScreenMode();
+                _fullScreenToggle.onValueChanged.AddListener(SetFullScreenMode);
 
                 SetupResolutionDropdown();
             }
@@ -31,7 +37,7 @@ namespace Golf
 
         private void SetupResolutionDropdown()
         {
-            resolutionDropdown.ClearOptions();
+            _resolutionDropdown.ClearOptions();
             List<string> options = new List<string>();
 
             Vector2Int currentResolution = saveSystem.GetResolution();
@@ -46,22 +52,22 @@ namespace Golf
                     currentIndex = i;
             }
 
-            resolutionDropdown.AddOptions(options);
-            resolutionDropdown.value = currentIndex;
-            resolutionDropdown.onValueChanged.AddListener(SetResolution);
-            resolutionDropdown.interactable = !saveSystem.GetFullScreenMode();
+            _resolutionDropdown.AddOptions(options);
+            _resolutionDropdown.value = currentIndex;
+            _resolutionDropdown.onValueChanged.AddListener(SetResolution);
+            _resolutionDropdown.interactable = !saveSystem.GetFullScreenMode();
         }
 
         public void SetFullScreenMode(bool isFullScreen)
         {
             saveSystem.SetFullScreenMode(isFullScreen);
-            resolutionDropdown.interactable = !isFullScreen;
+            _resolutionDropdown.interactable = !isFullScreen;
         }
 
         public void SetResolution(int index)
         {
-            Vector2Int selectedRes = resolutions[index];
-            saveSystem.SetResolution(selectedRes.x, selectedRes.y);
+            Vector2Int selectedResolution = resolutions[index];
+            saveSystem.SetResolution(selectedResolution.x, selectedResolution.y);
         }
     }
 }
