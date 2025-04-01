@@ -5,29 +5,24 @@ namespace Golf
 {
     public class AudioSettingsMenu : MonoBehaviour
     {
-        [SerializeField] private Slider sfxSlider;
-
-        private void Awake()
-        {
-            sfxSlider = GetComponent<Slider>();
-        }
+        [SerializeField] private Slider _sfxSlider;
+        [SerializeField] private Slider _musicSlider;
+        
         private void Start()
         {
-            AudioManager.Source.OnSfxChange += SetSFXVolume;
-            sfxSlider.value = AudioManager.Source.CurrentVolume;
-
-            sfxSlider.onValueChanged.AddListener(SetSFXVolume);
+            _sfxSlider.onValueChanged.AddListener(AudioManager.Source.SetSFXVolume);
+            _musicSlider.onValueChanged.AddListener(AudioManager.Source.SetMusicVolume);
         }
 
-        private void OnDestroy()
+        private void OnEnable()
         {
-            AudioManager.Source.OnSfxChange -= SetSFXVolume;
+            LoadVolumeValues();
         }
 
-        public void SetSFXVolume(float volume)
+        private void LoadVolumeValues()
         {
-            // codigo para actualizar slider 
-            sfxSlider.value = volume;
+            _sfxSlider.value = AudioManager.Source.CurrentSFXVolume;
+            _musicSlider.value = AudioManager.Source.CurrentSFXVolume;
         }
     }
 }

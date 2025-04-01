@@ -1,21 +1,22 @@
 using System;
-using UnityEngine;
 
 namespace Golf
 {
     public interface IAudioSource
     {
-        event Action<float> OnSfxChange;       
+        event Action<float> OnSFXVolumeChange;       
+        event Action<float> OnMusicVolumeChange;       
 
-        float CurrentVolume { get; }
+        float CurrentSFXVolume { get; }
         float CurrentMusicVolume { get; }
-        void SetSFXVolume(bool setVolumeUp, float volumeValue);
+        void SetSFXVolume(float volume);
+        void SetMusicVolume(float volume);
+        
         void BallHitSFX();
         void ButtonClickSFX();
         void ButtonSelectHoverSFX();
         void PauseSFX();
         void SetAngleSFX();
         void LoadAudioSettings();
-        void SetMusicVolume(float volume);
     }
 }
