@@ -4,55 +4,72 @@ using UnityEngine;
 namespace Golf
 {
     public class InputManager : Singleton<IInputSource>, IInputSource
-    {
-        [Header("Physics parameters")]
-        [SerializeField] private float _maxAngle = 180f;
-        [SerializeField] private float _angleChangeSpeed = 50f;
+    { 
+        public event Action OnConfirmButtonPressed;
+        public event Action<ActionState> OnActionChange;
+
+        public ActionState CurrentActionState => _currentAction.ActionState;
+
+        public event Action<float> OnDirectionChange
+        {
+            add => _directionHandler.OnDirectionChange += value;
+            remove => _directionHandler.OnDirectionChange -= value;
+        }
+
+        public event Action<float> OnForceChange
+        {
+            add => _forceHandler.OnForceChange += value;
+            remove => _forceHandler.OnForceChange -= value;
+        }
+
+        public event Action<float, float> OnLaunch
+        {
+            add => _launchHandler.OnLaunch += value;
+            remove => _launchHandler.OnLaunch -= value;
+        }
 
         private bool _isEnabled = true;
-
-        public Action<Vector2> OnLaunchBall { get; set; } = null;
-        public Action OnConfirmButtonPressed { get; set; } = null;
-        public float CurrentAngle { get; private set; }
+        private ActionHandler _currentAction;
         
+        private DirectionHandler _directionHandler;
+        private ForceHandler _forceHandler;
+        private LaunchHandler _launchHandler;
+        private MovingHandler _movingHandler;
+
+        protected override void Awake()
+        {
+            base.Awake();
+            
+            _directionHandler = new DirectionHandler();
+            _forceHandler = new ForceHandler();
+            _launchHandler = new LaunchHandler(_directionHandler.Angle, _forceHandler.Force);
+            _movingHandler = new MovingHandler();
+
+            _currentAction = _directionHandler;
+        }
 
         private void Update()
         {
             if (!_isEnabled) return;
-           
-            GetAngle();
-            CheckLaunchBall();
+
+            _currentAction.DoAction();
             CheckOnConfirmButtonPressed();
         }
 
-
-        private void GetAngle()
+        public void ChangeAction(ActionState newAction)
         {
-            if (Input.GetKey(KeyCode.LeftArrow))
-            {
-                CurrentAngle += _angleChangeSpeed * Time.deltaTime;
-            }
+            if (CurrentActionState == newAction) return;
 
-            if (Input.GetKey(KeyCode.RightArrow))
+            _currentAction = newAction switch
             {
-                CurrentAngle -= _angleChangeSpeed * Time.deltaTime;
-            }
+                ActionState.Direction => _directionHandler,
+                ActionState.Force => _forceHandler,
+                ActionState.Launch => _launchHandler,
+                ActionState.Moving => _movingHandler,
+                _ => _currentAction
+            };
 
-            CurrentAngle = Mathf.Clamp(CurrentAngle, 0f, _maxAngle);
-        }
-
-        private void CheckLaunchBall()
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                OnLaunchBall?.Invoke(GetCurrentAngleDirection());
-            }
-        }
-        
-        public Vector2 GetCurrentAngleDirection()
-        {
-            var angleInRadians = CurrentAngle * Mathf.Deg2Rad;
-            return new Vector2(Mathf.Cos(angleInRadians), Mathf.Sin(angleInRadians)).normalized;
+            OnActionChange?.Invoke(CurrentActionState);
         }
 
         private void CheckOnConfirmButtonPressed()
@@ -62,13 +79,7 @@ namespace Golf
                 OnConfirmButtonPressed?.Invoke();
             }
         }
-
-        private void OnDestroy()
-        {
-            OnLaunchBall = null;
-            OnConfirmButtonPressed = null;
-        }
-
+        
         public void Enable()
         {
             _isEnabled = true;
@@ -78,5 +89,13 @@ namespace Golf
         {
             _isEnabled = false;
         }
+    }
+
+    public enum ActionState
+    {
+        Direction,
+        Force,
+        Launch,
+        Moving
     }
 }

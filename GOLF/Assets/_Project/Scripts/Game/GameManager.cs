@@ -14,20 +14,29 @@ namespace Golf
 
         private readonly string _tutorialLevelScene = "Tutorial";
 
-        public bool IsTutorialLevel()
+        private bool IsTutorialLevel()
         {
             return SceneManager.GetActiveScene().name != _tutorialLevelScene;
         }
 
         public void ReduceHitsLeft()
         {
+            if (!IsTutorialLevel()) return;
+
             _strokesNumber = Mathf.Max(0, _strokesNumber - 1);
             OnHitsChanged?.Invoke(_strokesNumber);
+        }
 
-            if (_strokesNumber == 0)
-            {
-                OnLose?.Invoke();
-            }
+        public void ResetHitsLeft()
+        {
+            _strokesNumber = 5;
+        }
+
+        public void TriggerLoseCondition()
+        {
+            if (!IsTutorialLevel()) return;
+
+            OnLose?.Invoke();
         }
     }
 }

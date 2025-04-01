@@ -5,75 +5,86 @@ namespace Golf
     [RequireComponent(typeof(Rigidbody2D))]
     public partial class BallController : MonoBehaviour
     {
-        private const float MINIMUM_VELOCITY = 0.01f;
-        
-        [Header("Physics parameters")]
-        [SerializeField] private float _force = 3f;
-        [SerializeField] private float _maxDistance = 5f;
-        [SerializeField] private float _dragAmount = 1f;
+        private const float MINIMUM_VELOCITY = 0.1f;
 
+        public bool isOnPole;
+
+        private float _stopTimer = 0f;
+        private float _stopTimeRequired = 1f;
         private Rigidbody2D _rigidbody;
         private IInputSource _inputSource;
-        
-        private bool IsMoving => _rigidbody.velocity.magnitude > MINIMUM_VELOCITY;
 
         private void Awake()
         {
             _inputSource = InputManager.Source;
-            _rigidbody = GetComponent<Rigidbody2D>();           
+            _rigidbody = GetComponent<Rigidbody2D>();
+        }
+
+        private void OnEnable()
+        {
+            InputManager.Source.OnLaunch += LaunchBall;
+        }
+
+        private void OnDisable()
+        {
+            InputManager.Source.OnLaunch -= LaunchBall;
         }
 
         private void Start()
         {
-            _inputSource.OnLaunchBall += LaunchBall;
+            isOnPole = false;
         }
 
         private void Update()
         {
-            ApplyDrag();
+            StopBallCheck();
         }
 
-        private void OnDestroy()
+        private void LaunchBall(float angle, float force)
         {
-            _inputSource.OnLaunchBall -= LaunchBall;
+            float radians = angle * Mathf.Deg2Rad;
+            Vector2 launchDirection = new Vector2(Mathf.Cos(radians), Mathf.Sin(radians));
+            _rigidbody.AddForce(launchDirection * force, ForceMode2D.Impulse);
+            GameManager.Source.ReduceHitsLeft();
         }
 
-        private void LaunchBall(Vector2 angleDirection)
+        private void StopBallCheck()
         {
-            if (IsMoving) return;
+            if (_inputSource.CurrentActionState != ActionState.Moving) return;
             
-            var throwForce = Mathf.Clamp(Vector2.Distance(transform.position, Vector2.zero), 0, _maxDistance) * _force;
-
-            _rigidbody.AddForce(angleDirection * throwForce, ForceMode2D.Impulse);
-        }
-
-        private void ApplyDrag()
-        {
-            if (_rigidbody.velocity.magnitude > 0)
-            {
-                _rigidbody.velocity *= (1f - _dragAmount * Time.deltaTime);
-            }
-
             if (_rigidbody.velocity.magnitude < MINIMUM_VELOCITY)
             {
-                _rigidbody.velocity = Vector2.zero;
+                _stopTimer += Time.deltaTime;
+
+                if (_stopTimer >= _stopTimeRequired)
+                {
+                    if (!isOnPole && GameManager.Source.CurrentHitsLeft == 0)
+                    {
+                        GameManager.Source.TriggerLoseCondition();
+                    }
+
+                    ResetBall();
+                }
+            }
+            else
+            {
+                _stopTimer = 0f;
+            }
+        }
+
+        private void ResetBall()
+        {
+            _stopTimer = 0f;
+
+            _inputSource.ChangeAction(ActionState.Direction);
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.CompareTag("Hole"))
+            {
+                isOnPole = true;
             }
         }
     }
-
-#if UNITY_EDITOR
-    public partial class BallController
-    {
-        private void OnDrawGizmos()
-        {
-            if (_inputSource == null) return;
-            
-            var trajectoryLength = _maxDistance;
-            var position = transform.position;
-            
-            Gizmos.color = Color.blue;
-            Gizmos.DrawLine(position, (Vector2)position + _inputSource.GetCurrentAngleDirection() * trajectoryLength);
-        }
-    }
-#endif
 }
