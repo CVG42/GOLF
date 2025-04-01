@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Golf
 {
-    public class SettingsMenu : MonoBehaviour
+    public class ResolutionSettingsMenu : MonoBehaviour
     {
         [SerializeField] private Toggle _fullScreenToggle;
         [SerializeField] private Dropdown _resolutionDropdown;
