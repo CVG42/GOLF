@@ -10,6 +10,9 @@ namespace Golf
 
         public event Action<int> OnHitsChanged;
         public event Action OnLose;
+        public event Action OnPause;
+        public event Action OnResume;
+        public event Action OnRestart;
         public int CurrentHitsLeft => _strokesNumber;
 
         private readonly string _tutorialLevelScene = "Tutorial";
@@ -28,6 +31,22 @@ namespace Golf
             {
                 OnLose?.Invoke();
             }
+        }
+
+        public void PauseGame()
+        {
+            OnPause?.Invoke();
+        }
+
+        public void ResumeGame()
+        {
+            OnResume?.Invoke();
+        }
+
+        public void RestartGame()
+        {
+            OnRestart?.Invoke();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 }

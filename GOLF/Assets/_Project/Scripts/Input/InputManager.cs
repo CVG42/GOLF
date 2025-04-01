@@ -13,6 +13,7 @@ namespace Golf
 
         public Action<Vector2> OnLaunchBall { get; set; } = null;
         public Action OnConfirmButtonPressed { get; set; } = null;
+        public Action OnPauseButtonPressed { get; set; } = null;
         public float CurrentAngle { get; private set; }
         
 
@@ -23,6 +24,7 @@ namespace Golf
             GetAngle();
             CheckLaunchBall();
             CheckOnConfirmButtonPressed();
+            CheckPauseButtonPressed();
         }
 
 
@@ -63,10 +65,19 @@ namespace Golf
             }
         }
 
+        private void CheckPauseButtonPressed()
+        {
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                OnPauseButtonPressed?.Invoke();
+            }
+        }
+
         private void OnDestroy()
         {
             OnLaunchBall = null;
             OnConfirmButtonPressed = null;
+            OnPauseButtonPressed = null;
         }
 
         public void Enable()
