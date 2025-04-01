@@ -13,23 +13,12 @@ namespace Golf
         [SerializeField] private AudioSource _sfxAudioSource;
         [SerializeField] private AudioSource _bgmAudioSource;
 
-        public float CurrentVolume { get; private set; }
+        public float CurrentSFXVolume { get; private set; }
 
-        public float CurrentMusicVolume => throw new NotImplementedException();
+        public float CurrentMusicVolume { get; private set; }
 
-        private event Action<float> _onSfxChange; 
-        public event Action<float> OnSfxChange
-        {
-            add
-            {
-                _onSfxChange += value;
-            }
-
-            remove
-            {
-                _onSfxChange -= value;
-            }
-        }
+        public event Action<float> OnSFXVolumeChange;
+        public event Action<float> OnMusicVolumeChange;
 
         private void Start()
         {
@@ -38,20 +27,34 @@ namespace Golf
 
         private void LoadAudioSettings()
         {
-            float sfxVolume = SaveSystem.Source.GetSFXVolume();
-            float musicVolume = SaveSystem.Source.GetMusicVolume();
+            CurrentSFXVolume = SaveSystem.Source.GetSFXVolume();
+            CurrentMusicVolume = SaveSystem.Source.GetMusicVolume();
 
-            _sfxMixer.SetFloat("sfx_vol", sfxVolume);
-            _musicMixer.SetFloat("music_vol", musicVolume);
+            var sfxVolumeMixerValue = Mathf.Lerp(-80f, 0, CurrentSFXVolume);
+            var musicVolumeMixerValue = Mathf.Lerp(-80f, 0, CurrentMusicVolume);
+            
+            _sfxMixer.SetFloat("sfx_vol", sfxVolumeMixerValue);
+            _musicMixer.SetFloat("music_vol", musicVolumeMixerValue);
         }
 
-        public void SetSFXVolume(bool setVolumeUp, float volumeValue)
+        public void SetSFXVolume(float volume)
         {
-            CurrentVolume = volumeValue;
-            volumeValue = setVolumeUp ? Mathf.Max(-80, volumeValue - 20) : Mathf.Min(0, volumeValue + 20);
-            _sfxMixer.SetFloat("sfx_vol", volumeValue);
-            SaveSystem.Source.SetSFXVolume(volumeValue);
-            _onSfxChange?.Invoke(volumeValue);
+            var volumeMixerValue = Mathf.Lerp(-80f, 0, volume);
+            _sfxMixer.SetFloat("sfx_vol", volumeMixerValue);
+            
+            CurrentSFXVolume = volume;
+            SaveSystem.Source.SetSFXVolume(volume);
+            OnSFXVolumeChange?.Invoke(volume);
+        }
+
+        public void SetMusicVolume(float volume)
+        {
+            var volumeMixerValue = Mathf.Lerp(-80f, 0, volume);
+            _musicMixer.SetFloat("sfx_vol", volumeMixerValue);
+            
+            CurrentMusicVolume = volume;
+            SaveSystem.Source.SetMusicVolume(volume);
+            OnMusicVolumeChange?.Invoke(volume);
         }
 
         public void PlayLevelMusic(string audioName)
@@ -91,10 +94,5 @@ namespace Golf
         public void ButtonClickSFX() => _sfxAudioSource.PlayOneShot(_audioDatabase.GetAudio("ButtonClickSFX"));
         public void ButtonSelectHoverSFX() => _sfxAudioSource.PlayOneShot(_audioDatabase.GetAudio("ButtonSelectHoverSFX"));
         public void SetAngleSFX() => _sfxAudioSource.PlayOneShot(_audioDatabase.GetAudio("SetAngleSFX"));
-
-        public void SetMusicVolume(float volume)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

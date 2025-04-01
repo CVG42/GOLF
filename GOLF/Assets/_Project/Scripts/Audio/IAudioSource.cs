@@ -1,13 +1,13 @@
 using System;
-using UnityEngine;
 
 namespace Golf
 {
     public interface IAudioSource
     {
-        event Action<float> OnSfxChange;       
+        event Action<float> OnSFXVolumeChange;       
+        event Action<float> OnMusicVolumeChange;       
 
-        float CurrentVolume { get; }
+        float CurrentSFXVolume { get; }
         float CurrentMusicVolume { get; }
 
         void SetSFXVolume(bool setVolumeUp);
