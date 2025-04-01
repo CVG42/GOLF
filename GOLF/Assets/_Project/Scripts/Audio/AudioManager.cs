@@ -1,9 +1,10 @@
+using System;
 using UnityEngine;
 using UnityEngine.Audio;
 
 namespace Golf
 {
-    public class AudioManager : Singleton<AudioManager>, IAudioSource
+    public class AudioManager : Singleton<IAudioSource>, IAudioSource
     {
         [SerializeField] private AudioDatabase _audioDatabase;
         [SerializeField] private AudioMixer _sfxMixer;
@@ -11,6 +12,22 @@ namespace Golf
         [SerializeField] private AudioSource _sfxAudioSource;
 
         public float CurrentVolume { get; private set; }
+
+        public float CurrentMusicVolume => throw new NotImplementedException();
+
+        private event Action<float> _onSfxChange; 
+        public event Action<float> OnSfxChange
+        {
+            add
+            {
+                _onSfxChange += value;
+            }
+
+            remove
+            {
+                _onSfxChange -= value;
+            }
+        }
 
         private void Start()
         {
@@ -26,11 +43,13 @@ namespace Golf
             _musicMixer.SetFloat("music_vol", musicVolume);
         }
 
-        public void SetSFXVolume(bool setVolumeUp)
+        public void SetSFXVolume(bool setVolumeUp, float volumeValue)
         {
-            CurrentVolume = setVolumeUp ? Mathf.Max(-80, CurrentVolume - 20) : Mathf.Min(0, CurrentVolume + 20);
-            _sfxMixer.SetFloat("sfx_vol", CurrentVolume);
-            SaveSystem.Source.SetSFXVolume(CurrentVolume);
+            CurrentVolume = volumeValue;
+            volumeValue = setVolumeUp ? Mathf.Max(-80, volumeValue - 20) : Mathf.Min(0, volumeValue + 20);
+            _sfxMixer.SetFloat("sfx_vol", volumeValue);
+            SaveSystem.Source.SetSFXVolume(volumeValue);
+            _onSfxChange?.Invoke(volumeValue);
         }
 
         public void BallHitSFX() => _sfxAudioSource.PlayOneShot(_audioDatabase.GetAudio("BallHitSFX"));
@@ -38,5 +57,10 @@ namespace Golf
         public void ButtonClickSFX() => _sfxAudioSource.PlayOneShot(_audioDatabase.GetAudio("ButtonClickSFX"));
         public void ButtonSelectHoverSFX() => _sfxAudioSource.PlayOneShot(_audioDatabase.GetAudio("ButtonSelectHoverSFX"));
         public void SetAngleSFX() => _sfxAudioSource.PlayOneShot(_audioDatabase.GetAudio("SetAngleSFX"));
+
+        public void SetMusicVolume(float volume)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
