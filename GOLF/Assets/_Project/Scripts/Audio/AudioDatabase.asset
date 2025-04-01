@@ -23,3 +23,7 @@ MonoBehaviour:
     audioName: ButtonClickSFX
   - audio: {fileID: 8300000, guid: 130e9052e497db945893802bc21f985a, type: 3}
     audioName: SetAngleSFX
+  - audio: {fileID: 8300000, guid: e43b8f5ddd399c54f9d9682fc39bd526, type: 3}
+    audioName: Tutorial
+  - audio: {fileID: 8300000, guid: c30c0d9fcdbf69e4688753a3e686a04f, type: 3}
+    audioName: Level1
