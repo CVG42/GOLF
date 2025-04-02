@@ -1,85 +1,29 @@
 using DG.Tweening;
-using System;
 using UnityEngine;
 
 namespace Golf
 {
     public class CameraInputManager : MonoBehaviour
     {
-        [SerializeField] private ACTUAL_SCENE _Scene;
         [SerializeField] private Transform _player;
         [SerializeField] private GameObject _movementFrame;
         [SerializeField] private Camera _camera;
+        [SerializeField] private CameraInputConfigurations _cameraInputConfigurations;
         
-        private float _xOffset_Positive, _xOffset_Negative, _yOffset_Positive, _yOffset_Negative, _smoothTime = 0.1f;
-        private float _zXOffset_Positive, _zXOffset_Negative, _zYOffset_Positive, _zYOffset_Negative;
+        private const float _smoothTime = 0.1f;
         private bool _isLocking = true;
+        private Vector2 _moveDirection = Vector2.zero;
         private Vector3 _velocityCamera = Vector3.zero;
 
-        private void Start()
+        private void OnEnable()
         {
-            switch (_Scene) { 
-                case ACTUAL_SCENE.Tutorial:
-                    _xOffset_Negative = -2.5f;
-                    _xOffset_Positive = 1f;
-                    _yOffset_Negative = 2.5f;
-                    _yOffset_Positive = 2.8f;
-                    _zXOffset_Negative = -11f;
-                    _zXOffset_Positive = 11f;
-                    _zYOffset_Negative = 4f;
-                    _zYOffset_Positive = 65f;
-                    break;
-                case ACTUAL_SCENE.Level1:
-                    _xOffset_Negative = -16f;
-                    _xOffset_Positive = 16f;
-                    _yOffset_Negative = 1f;
-                    _yOffset_Positive = 68f;
-                    _zXOffset_Negative = -11f;
-                    _zXOffset_Positive = 11f;
-                    _zYOffset_Negative = 4f;
-                    _zYOffset_Positive = 65f;
-                    break;
-                case ACTUAL_SCENE.Level2:
-                    _xOffset_Negative = -20.5f;
-                    _xOffset_Positive = 20.5f;
-                    _yOffset_Negative = -0.5f;
-                    _yOffset_Positive = 70f;
-                    _zXOffset_Negative = -11f;
-                    _zXOffset_Positive = 11f;
-                    _zYOffset_Negative = 4f;
-                    _zYOffset_Positive = 65f;
-                    break;
-                case ACTUAL_SCENE.Level3:
-                    _xOffset_Negative = -20.5f;
-                    _xOffset_Positive = 20.5f;
-                    _yOffset_Negative = -0.5f;
-                    _yOffset_Positive = 70f;
-                    _zXOffset_Negative = -11f;
-                    _zXOffset_Positive = 11f;
-                    _zYOffset_Negative = 4f;
-                    _zYOffset_Positive = 65f;
-                    break;
-                case ACTUAL_SCENE.Level4:
-                    _xOffset_Negative = -20.5f;
-                    _xOffset_Positive = 20.5f;
-                    _yOffset_Negative = -0.5f;
-                    _yOffset_Positive = 70f;
-                    _zXOffset_Negative = -11f;
-                    _zXOffset_Positive = 11f;
-                    _zYOffset_Negative = 4f;
-                    _zYOffset_Positive = 65f;
-                    break;
-                case ACTUAL_SCENE.Level5:
-                    _xOffset_Negative = -20.5f;
-                    _xOffset_Positive = 20.5f;
-                    _yOffset_Negative = -0.5f;
-                    _yOffset_Positive = 70f;
-                    _zXOffset_Negative = -11f;
-                    _zXOffset_Positive = 11f;
-                    _zYOffset_Negative = 4f;
-                    _zYOffset_Positive = 65f;
-                    break;
-            }
+            InputManager.Source.OnToggleCameraMode += LockCamera;
+        }
+
+        private void OnDisable()
+        {
+            InputManager.Source.OnToggleCameraMode -= LockCamera;
+            InputManager.Source.OnMoveCamera -= CameraDirection;
         }
 
         private void FixedUpdate()
@@ -87,90 +31,72 @@ namespace Golf
             if (_isLocking)
             {
                 FollowPlayer();
-
             }
         }
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Y))
-            {
-                CenterToPlayer();
-            }
-
-            if (Input.GetKey(KeyCode.A)|| Input.GetKey(KeyCode.W)|| Input.GetKey(KeyCode.D)|| Input.GetKey(KeyCode.S))
+            if (!_isLocking) 
             {
                 MoveCamera();
             }
-
-
-        }
-
-        private void CenterToPlayer()
-        {
-            Vector3 _playerPosition = new Vector3((int)_player.position.x, (int)_player.position.y, 0) + new Vector3(0, 1f, -10);
-
-            _playerPosition.x = Mathf.Clamp(_playerPosition.x, _xOffset_Negative, _xOffset_Positive);
-            _playerPosition.y = Mathf.Clamp(_playerPosition.y, _yOffset_Negative, _yOffset_Positive);
-
-            transform.position = _playerPosition;
-
-            _isLocking = true;
-           ZoomIn();
-            _movementFrame.SetActive(false);
         }
 
         private void FollowPlayer()
         {
             Vector3 _playerPosition = _player.position + new Vector3(0f, 1f, -10f);
 
-            _playerPosition.x = Mathf.Clamp(_playerPosition.x, _xOffset_Negative, _xOffset_Positive);
-            _playerPosition.y = Mathf.Clamp(_playerPosition.y, _yOffset_Negative, _yOffset_Positive);
+            _playerPosition.x = Mathf.Clamp(_playerPosition.x, _cameraInputConfigurations._xOffset_Negative, _cameraInputConfigurations._xOffset_Positive);
+            _playerPosition.y = Mathf.Clamp(_playerPosition.y, _cameraInputConfigurations._yOffset_Negative, _cameraInputConfigurations._yOffset_Positive);
 
             transform.position = Vector3.SmoothDamp(transform.position, _playerPosition, ref _velocityCamera, _smoothTime);
 
             ZoomIn();
-            _movementFrame.SetActive(false);
         }
 
         private void MoveCamera()
         {
-            float _horizontalInput = Input.GetAxis("Horizontal") * 25f * Time.deltaTime;
-            float _verticalInput = Input.GetAxis("Vertical") * 25f * Time.deltaTime;
+            Vector3 _move = 20f * Time.deltaTime * (Vector3)_moveDirection;
+            transform.position += _move;
 
-            Vector3 _Threshold = transform.position + new Vector3(_horizontalInput, _verticalInput, 0);
+            Vector3 _Threshold = transform.position + new Vector3(_move.x, _move.y, 0);
 
-            _Threshold.x = Mathf.Clamp(_Threshold.x, _zXOffset_Negative, _zXOffset_Positive);
-            _Threshold.y = Mathf.Clamp(_Threshold.y, _zYOffset_Negative, _zYOffset_Positive);
+            _Threshold.x = Mathf.Clamp(_Threshold.x, _cameraInputConfigurations._zXOffset_Negative, _cameraInputConfigurations._zXOffset_Positive);
+            _Threshold.y = Mathf.Clamp(_Threshold.y, _cameraInputConfigurations._zYOffset_Negative, _cameraInputConfigurations._zYOffset_Positive);
             transform.position = _Threshold;
 
-            
-            _isLocking = false;
-            _movementFrame.SetActive(true);
             ZoomOut();
         }
 
-        private void ZoomIn() {
-
+        private void ZoomIn() 
+        {
+            _movementFrame.SetActive(false);
             _camera.DOOrthoSize(7, 0.3f).SetEase(Ease.OutQuad);
         }
 
         private void ZoomOut()
         {
+            _movementFrame.SetActive(true);
             _camera.DOOrthoSize(10,1f).SetEase(Ease.OutQuad);
         }
 
+        private void LockCamera(bool state)
+        {
+            _isLocking = state;
+            if (!_isLocking)
+            {
+                InputManager.Source.OnMoveCamera += CameraDirection;
+            }
+            else
+            {
+                InputManager.Source.OnMoveCamera -= CameraDirection;
+            }
+        }
 
+        private void CameraDirection(Vector2 direction)
+        {
+            _moveDirection = direction;
+        }
     }
 
-}
-
-public enum ACTUAL_SCENE
-{
-    Tutorial,
-    Level1,
-    Level2,
-    Level3,
-    Level4,
-    Level5
 }
