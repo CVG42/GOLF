@@ -8,6 +8,7 @@ namespace Golf
         private const float MINIMUM_VELOCITY = 0.1f;
 
         public bool isOnPole;
+        public Vector2 _currentLastPosition;
 
         private float _stopTimer = 0f;
         private float _stopTimeRequired = 1f;
@@ -18,11 +19,12 @@ namespace Golf
         {
             _inputSource = InputManager.Source;
             _rigidbody = GetComponent<Rigidbody2D>();
+            _currentLastPosition = transform.position;           
         }
 
         private void OnEnable()
         {
-            InputManager.Source.OnLaunch += LaunchBall;
+            InputManager.Source.OnLaunch += LaunchBall;        
         }
 
         private void OnDisable()
@@ -33,6 +35,7 @@ namespace Golf
         private void Start()
         {
             isOnPole = false;
+            
         }
 
         private void Update()
@@ -75,8 +78,15 @@ namespace Golf
         private void ResetBall()
         {
             _stopTimer = 0f;
-
+            _currentLastPosition = transform.position;
             _inputSource.ChangeAction(ActionState.Direction);
+        }
+
+        public void RespawnBall()
+        {
+            transform.position = _currentLastPosition;
+            _rigidbody.velocity = Vector3.zero;
+            GameManager.Source.OnBallRespawn -= RespawnBall;
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
@@ -84,6 +94,10 @@ namespace Golf
             if (collision.CompareTag("Hole"))
             {
                 isOnPole = true;
+            }
+            if (collision.CompareTag("Water"))
+            {
+                GameManager.Source.OnBallRespawn += RespawnBall;
             }
         }
     }

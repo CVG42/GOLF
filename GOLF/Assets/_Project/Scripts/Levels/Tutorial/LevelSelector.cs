@@ -22,7 +22,7 @@ namespace Golf
             _levelID = int.Parse(gameObject.name) - 1;
             _isUnlocked = PlayerPrefs.GetInt($"Lv{_levelID}") > 0;
             _levelLayout.SetActive(!_isUnlocked);
-            _previouLevelLock.SetActive(_isUnlocked);
+            //_previouLevelLock.SetActive(_isUnlocked);
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
