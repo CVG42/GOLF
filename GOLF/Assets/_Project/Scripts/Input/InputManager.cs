@@ -56,8 +56,7 @@ namespace Golf
             if (!_isEnabled) return;
 
             _currentAction.DoAction();
-            CheckOnConfirmButtonPressed();
-            OnMoveCamera?.Invoke(CameraDirection());
+            CheckButtonInput();
         }
 
         public void ChangeAction(ActionState newAction)
@@ -76,7 +75,7 @@ namespace Golf
             OnActionChange?.Invoke(CurrentActionState);
         }
 
-        private void CheckOnConfirmButtonPressed()
+        private void CheckButtonInput()
         {
             if (Input.GetKeyDown(KeyCode.Z))
             {
@@ -89,17 +88,16 @@ namespace Golf
                 OnToggleCameraMode?.Invoke(_isCameraLocking);
             }
 
-            if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.S))
+            if (!_isCameraLocking)
             {
-                CameraDirection();        
+                var horizontalInput = Input.GetAxis("Horizontal-Camera");
+                var verticalInput = Input.GetAxis("Vertical-Camera");
+            
+                if (horizontalInput != 0 || verticalInput != 0)
+                {
+                    OnMoveCamera?.Invoke(new Vector2(horizontalInput, verticalInput));  
+                }
             }
-        }
-
-        private Vector2 CameraDirection() {
-            float _horizontalInput = Input.GetAxis("Horizontal");
-            float _verticalInput = Input.GetAxis("Vertical");
-
-            return new Vector2(_horizontalInput, _verticalInput);
         }
         
         public void Enable()

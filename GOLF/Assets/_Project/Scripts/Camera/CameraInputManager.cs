@@ -9,94 +9,105 @@ namespace Golf
         [SerializeField] private GameObject _movementFrame;
         [SerializeField] private Camera _camera;
         [SerializeField] private CameraInputConfigurations _cameraInputConfigurations;
+        [SerializeField] private float _followSmoothTime = 0.1f;
+        [SerializeField] private float _zoomTime = 0.4f;
         
-        private const float _smoothTime = 0.1f;
-        private bool _isLocking = true;
-        private Vector2 _moveDirection = Vector2.zero;
+        private bool _isLocked = true;
+        private bool _enableFollow = true;
         private Vector3 _velocityCamera = Vector3.zero;
+        private Sequence _currentTweenSequence;
 
-        private void OnEnable()
+        private void Start()
         {
-            InputManager.Source.OnToggleCameraMode += LockCamera;
+            InputManager.Source.OnToggleCameraMode += ToggleLockCamera;
         }
 
-        private void OnDisable()
+        private void OnDestroy()
         {
-            InputManager.Source.OnToggleCameraMode -= LockCamera;
-            InputManager.Source.OnMoveCamera -= CameraDirection;
+            InputManager.Source.OnToggleCameraMode -= ToggleLockCamera;
+            InputManager.Source.OnMoveCamera -= MoveCamera;
         }
 
         private void FixedUpdate()
         {
-            if (_isLocking)
+            if (_enableFollow)
             {
                 FollowPlayer();
             }
         }
 
-        private void Update()
+        private void ToggleLockCamera(bool state)
         {
-            if (!_isLocking) 
+            _isLocked = state;
+            if (!_isLocked)
             {
-                MoveCamera();
+                ZoomOutToCameraMode();
+            }
+            else
+            {
+                ZoomInToFollowPlayer();
             }
         }
 
         private void FollowPlayer()
         {
-            Vector3 _playerPosition = _player.position + new Vector3(0f, 1f, -10f);
-
-            _playerPosition.x = Mathf.Clamp(_playerPosition.x, _cameraInputConfigurations._xOffset_Negative, _cameraInputConfigurations._xOffset_Positive);
-            _playerPosition.y = Mathf.Clamp(_playerPosition.y, _cameraInputConfigurations._yOffset_Negative, _cameraInputConfigurations._yOffset_Positive);
-
-            transform.position = Vector3.SmoothDamp(transform.position, _playerPosition, ref _velocityCamera, _smoothTime);
-
-            ZoomIn();
+            transform.position = Vector3.SmoothDamp(transform.position, GetFollowPlayerPosition(), ref _velocityCamera, _followSmoothTime);
+            transform.position = GetClampedPlayerModePosition(transform.position);
+        }
+        
+        private Vector3 GetFollowPlayerPosition()
+        {
+            return _player.position + new Vector3(0f, 1f, -10f);;
         }
 
-        private void MoveCamera()
+        private Vector3 GetClampedPlayerModePosition(Vector3 position)
         {
-            Vector3 _move = 20f * Time.deltaTime * (Vector3)_moveDirection;
-            transform.position += _move;
-
-            Vector3 _Threshold = transform.position + new Vector3(_move.x, _move.y, 0);
-
-            _Threshold.x = Mathf.Clamp(_Threshold.x, _cameraInputConfigurations._zXOffset_Negative, _cameraInputConfigurations._zXOffset_Positive);
-            _Threshold.y = Mathf.Clamp(_Threshold.y, _cameraInputConfigurations._zYOffset_Negative, _cameraInputConfigurations._zYOffset_Positive);
-            transform.position = _Threshold;
-
-            ZoomOut();
+            var clampedPosition = position;
+            clampedPosition.x = Mathf.Clamp(clampedPosition.x, _cameraInputConfigurations.XOffsetNegative, _cameraInputConfigurations.XOffsetPositive);
+            clampedPosition.y = Mathf.Clamp(clampedPosition.y, _cameraInputConfigurations.YOffsetNegative, _cameraInputConfigurations.YOffsetPositive);
+            
+            return clampedPosition;
         }
 
-        private void ZoomIn() 
+        private void MoveCamera(Vector2 moveDirection)
         {
+            Vector3 move = 20f * Time.deltaTime * (Vector3)moveDirection;
+            transform.position += move;
+            transform.position = GetClampedCameraModePosition(transform.position);
+        }
+
+        private Vector3 GetClampedCameraModePosition(Vector3 position)
+        {
+            var clampedPosition = position;
+            clampedPosition.x = Mathf.Clamp(clampedPosition.x, _cameraInputConfigurations.ZXOffsetNegative, _cameraInputConfigurations.ZXOffsetPositive);
+            clampedPosition.y = Mathf.Clamp(clampedPosition.y, _cameraInputConfigurations.ZYOffsetNegative, _cameraInputConfigurations.ZYOffsetositive);
+            
+            return clampedPosition;
+        }
+
+        private void ZoomInToFollowPlayer() 
+        {
+            InputManager.Source.OnMoveCamera -= MoveCamera;
+            
             _movementFrame.SetActive(false);
-            _camera.DOOrthoSize(7, 0.3f).SetEase(Ease.OutQuad);
+            _currentTweenSequence?.Kill();
+
+            _currentTweenSequence = DOTween.Sequence();
+            _currentTweenSequence.Append(_camera.DOOrthoSize(7, _zoomTime).SetEase(Ease.OutQuad));
+            _currentTweenSequence.Join(transform.DOMove(GetClampedPlayerModePosition(GetFollowPlayerPosition()), _zoomTime).SetEase(Ease.OutQuad));
+            _currentTweenSequence.AppendCallback(() => _enableFollow = true);
         }
 
-        private void ZoomOut()
+        private void ZoomOutToCameraMode()
         {
+            _enableFollow = false;
             _movementFrame.SetActive(true);
-            _camera.DOOrthoSize(10,1f).SetEase(Ease.OutQuad);
-        }
-
-        private void LockCamera(bool state)
-        {
-            _isLocking = state;
-            if (!_isLocking)
-            {
-                InputManager.Source.OnMoveCamera += CameraDirection;
-            }
-            else
-            {
-                InputManager.Source.OnMoveCamera -= CameraDirection;
-            }
-        }
-
-        private void CameraDirection(Vector2 direction)
-        {
-            _moveDirection = direction;
+            _currentTweenSequence?.Kill();
+            
+            _currentTweenSequence = DOTween.Sequence();
+            _currentTweenSequence.Append(_camera.DOOrthoSize(10, _zoomTime).SetEase(Ease.OutQuad));
+            _currentTweenSequence.Join(transform.DOMove(GetClampedCameraModePosition(GetFollowPlayerPosition()), _zoomTime).SetEase(Ease.OutQuad));
+            _currentTweenSequence.AppendCallback(() => InputManager.Source.OnMoveCamera += MoveCamera);
         }
     }
-
 }
