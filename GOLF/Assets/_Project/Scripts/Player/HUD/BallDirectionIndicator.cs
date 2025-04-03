@@ -12,6 +12,7 @@ namespace Golf
         {
             InputManager.Source.OnActionChange += OnActionChange;
             InputManager.Source.OnDirectionChange += UpdateDirectionIndicator;
+            OnActionChange(InputManager.Source.CurrentActionState);
         }
         
         private void OnDestroy()
