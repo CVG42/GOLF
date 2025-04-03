@@ -1,10 +1,13 @@
 using UnityEngine;
+using DG.Tweening;
 
 namespace Golf
 {
     [RequireComponent(typeof(Rigidbody2D))]
     public partial class BallController : MonoBehaviour
     {
+        [SerializeField] private Transform _transition;
+
         private const float MINIMUM_VELOCITY = 0.1f;
 
         public bool isOnPole;
@@ -14,6 +17,7 @@ namespace Golf
         private float _stopTimeRequired = 1f;
         private Rigidbody2D _rigidbody;
         private IInputSource _inputSource;
+        private Sequence _currentTweenSequence;
 
         private void Awake()
         {
@@ -35,7 +39,7 @@ namespace Golf
         private void Start()
         {
             isOnPole = false;
-            
+            GameManager.Source.OnBallRespawn += RespawnBall;
         }
 
         private void Update()
@@ -84,8 +88,13 @@ namespace Golf
 
         public void RespawnBall()
         {
-            transform.position = _currentLastPosition;
+            _currentTweenSequence?.Kill();
+            _currentTweenSequence = DOTween.Sequence();
+            _currentTweenSequence.Append(_transition.DOLocalMoveX(0, 1f, true));
+            _currentTweenSequence.AppendCallback(() => transform.position = _currentLastPosition);
             _rigidbody.velocity = Vector3.zero;
+            _currentTweenSequence.Append(_transition.DOLocalMoveX(1920, 1f));
+            _currentTweenSequence.AppendCallback(() => _transition.transform.position = new Vector2(-960, _transition.transform.position.y));
             GameManager.Source.OnBallRespawn -= RespawnBall;
         }
 

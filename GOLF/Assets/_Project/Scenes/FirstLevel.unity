@@ -39940,7 +39940,7 @@ PrefabInstance:
       objectReference: {fileID: 6200000, guid: b6f06267ab751ee499097af97e101e12, type: 2}
     - target: {fileID: 6617235223804755056, guid: 676ceef797fef3544aae722377effb8d, type: 3}
       propertyPath: m_Interpolate
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6617235223804755056, guid: 676ceef797fef3544aae722377effb8d, type: 3}
       propertyPath: m_CollisionDetection
