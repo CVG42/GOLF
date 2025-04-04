@@ -12,7 +12,7 @@ namespace Golf
 
         private Sequence _currentTweenSequence;
 
-        private void OnEnable()
+        private void Start()
         {
             GameManager.Source.OnBallRespawn += TriggerSpawnTransition;
         }
@@ -40,8 +40,8 @@ namespace Golf
         {
             _currentTweenSequence?.Kill();
             _currentTweenSequence = DOTween.Sequence()
-                .Append(_transition.DOLocalMoveX(0, 0.8f, true))
-                .Append(_transition.DOLocalMoveX(1920, 0.8f))
+                .Append(_transition.DOLocalMoveX(0, 1f, true))
+                .Append(_transition.DOLocalMoveX(1920, 1f))
                 .AppendCallback(ResetTransitionPosition);
         }
 
