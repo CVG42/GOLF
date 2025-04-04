@@ -89,13 +89,22 @@ namespace Golf
         public void RespawnBall()
         {
             _currentTweenSequence?.Kill();
-            _currentTweenSequence = DOTween.Sequence();
-            _currentTweenSequence.Append(_transition.DOLocalMoveX(0, 1f, true));
-            _currentTweenSequence.AppendCallback(() => transform.position = _currentLastPosition);
+            _currentTweenSequence = DOTween.Sequence()
+                .Append(_transition.DOLocalMoveX(0, 1f, true))
+                .AppendCallback(ResetBallPosition)
+                .Append(_transition.DOLocalMoveX(1920, 1f))
+                .AppendCallback(ResetTransitionPosition);
+        }
+
+        private void ResetBallPosition()
+        {
+            transform.position = _currentLastPosition;
             _rigidbody.velocity = Vector3.zero;
-            _currentTweenSequence.Append(_transition.DOLocalMoveX(1920, 1f));
-            _currentTweenSequence.AppendCallback(() => _transition.transform.position = new Vector2(-960, _transition.transform.position.y));
-            GameManager.Source.OnBallRespawn -= RespawnBall;
+        }
+
+        private void ResetTransitionPosition()
+        {
+            _transition.transform.position = new Vector2(-960, _transition.transform.position.y);
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
@@ -103,10 +112,6 @@ namespace Golf
             if (collision.CompareTag("Hole"))
             {
                 isOnPole = true;
-            }
-            if (collision.CompareTag("Water"))
-            {
-                GameManager.Source.OnBallRespawn += RespawnBall;
             }
         }
     }

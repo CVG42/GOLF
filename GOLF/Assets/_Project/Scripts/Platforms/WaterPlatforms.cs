@@ -11,6 +11,5 @@ namespace Golf
                 GameManager.Source.RespawnLastPosition();
             }
         }
-
     }
 }

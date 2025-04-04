@@ -6016,6 +6016,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c34b40eb13e7f847939476bf51a5b0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _velocityReduction: 6
 --- !u!1 &376327686
 GameObject:
   m_ObjectHideFlags: 0
@@ -7310,8 +7311,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -314.6, y: 197.8}
-  m_SizeDelta: {x: 699.99994, y: 349.99997}
+  m_AnchoredPosition: {x: -315, y: 197.8}
+  m_SizeDelta: {x: 700, y: 349.99997}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &426005801
 MonoBehaviour:
@@ -8471,8 +8472,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -314.6, y: 197.8}
-  m_SizeDelta: {x: 699.99994, y: 349.99997}
+  m_AnchoredPosition: {x: -315, y: 197.8}
+  m_SizeDelta: {x: 700, y: 349.99997}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &510303451
 MonoBehaviour:
@@ -11715,6 +11716,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c34b40eb13e7f847939476bf51a5b0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _velocityReduction: 6
 --- !u!1 &687790373
 GameObject:
   m_ObjectHideFlags: 0
@@ -31429,8 +31431,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -314.6, y: 197.8}
-  m_SizeDelta: {x: 699.99994, y: 349.99997}
+  m_AnchoredPosition: {x: -315, y: 197.8}
+  m_SizeDelta: {x: 700, y: 349.99997}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1394576741
 MonoBehaviour:
@@ -32568,6 +32570,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c34b40eb13e7f847939476bf51a5b0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _velocityReduction: 6
 --- !u!1 &1464305197
 GameObject:
   m_ObjectHideFlags: 0
@@ -36705,8 +36708,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -314.6, y: 197.8}
-  m_SizeDelta: {x: 699.99994, y: 349.99997}
+  m_AnchoredPosition: {x: -315, y: 197.8}
+  m_SizeDelta: {x: 700, y: 349.99997}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1642323599
 MonoBehaviour:
@@ -37393,7 +37396,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 023fe0385db301d4eaf876b5216c4022, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -37788,7 +37791,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 023fe0385db301d4eaf876b5216c4022, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
