@@ -8,7 +8,7 @@ namespace Golf
         {
             if (collision.CompareTag("Player"))
             {                
-                GameManager.Source.RespawnLastPosition();
+                LevelManager.Source.TriggerSpawnTransition();
             }
         }
     }

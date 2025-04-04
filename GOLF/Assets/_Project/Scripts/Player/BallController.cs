@@ -1,5 +1,4 @@
 using UnityEngine;
-using Cysharp.Threading.Tasks;
 
 namespace Golf
 {
@@ -83,9 +82,8 @@ namespace Golf
             _inputSource.ChangeAction(ActionState.Direction);
         }
 
-        private async void ResetBallLastPosition()
+        private void ResetBallLastPosition()
         {
-            await UniTask.Delay(500);
             transform.position = _currentLastPosition;
             _rigidbody.velocity = Vector3.zero;
         }

@@ -12,16 +12,6 @@ namespace Golf
 
         private Sequence _currentTweenSequence;
 
-        private void Start()
-        {
-            GameManager.Source.OnBallRespawn += TriggerSpawnTransition;
-        }
-
-        private void OnDisable()
-        {
-            GameManager.Source.OnBallRespawn -= TriggerSpawnTransition;
-        }
-
         private async UniTask LoadSceneAsync(string sceneName)
         {
             _canvasGroup.gameObject.SetActive(true);
@@ -41,6 +31,7 @@ namespace Golf
             _currentTweenSequence?.Kill();
             _currentTweenSequence = DOTween.Sequence()
                 .Append(_transition.DOLocalMoveX(0, 1f, true))
+                .AppendCallback(GameManager.Source.RespawnLastPosition)
                 .Append(_transition.DOLocalMoveX(1920, 1f))
                 .AppendCallback(ResetTransitionPosition);
         }
