@@ -36,7 +36,7 @@ namespace Golf
         private void Start()
         {
             isOnPole = false;
-            GameManager.Source.OnBallRespawn += RespawnBall;
+            GameManager.Source.OnBallRespawn += ResetBallLastPosition;
         }
 
         private void Update()
@@ -83,12 +83,7 @@ namespace Golf
             _inputSource.ChangeAction(ActionState.Direction);
         }
 
-        public void RespawnBall()
-        {
-            LevelManager.Source.TriggerSpawnTransition();
-        }
-
-        public void ResetBallPosition()
+        public void ResetBallLastPosition()
         {
             transform.position = _currentLastPosition;
             _rigidbody.velocity = Vector3.zero;
