@@ -8,6 +8,9 @@ namespace Golf
     public class LevelManager : Singleton<ILevelSource>, ILevelSource
     {
         [SerializeField] private CanvasGroup _canvasGroup;
+        [SerializeField] private Transform _transition;
+
+        private Sequence _currentTweenSequence;
 
         private async UniTask LoadSceneAsync(string sceneName)
         {
@@ -21,6 +24,21 @@ namespace Golf
         public void LoadScene(string sceneName) 
         {
             LoadSceneAsync(sceneName).Forget();
+        }
+
+        public void TriggerSpawnTransition()
+        {
+            _currentTweenSequence?.Kill();
+            _currentTweenSequence = DOTween.Sequence()
+                .Append(_transition.DOLocalMoveX(0, 1f, true))
+                .AppendCallback(GameManager.Source.RespawnLastPosition)
+                .Append(_transition.DOLocalMoveX(1920, 1f))
+                .AppendCallback(ResetTransitionPosition);
+        }
+
+        private void ResetTransitionPosition()
+        {
+            _transition.transform.position = new Vector2(-960, _transition.transform.position.y);
         }
     }
 }

@@ -10,6 +10,7 @@ namespace Golf
 
         public event Action<int> OnHitsChanged;
         public event Action OnLose;
+        public event Action OnBallRespawn;
         public int CurrentHitsLeft => _strokesNumber;
 
         private readonly string _tutorialLevelScene = "Tutorial";
@@ -37,6 +38,11 @@ namespace Golf
             if (!IsTutorialLevel()) return;
 
             OnLose?.Invoke();
+        }
+
+        public void RespawnLastPosition()
+        {
+            OnBallRespawn?.Invoke();
         }
     }
 }
