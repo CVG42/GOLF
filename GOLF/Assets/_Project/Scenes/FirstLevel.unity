@@ -21800,7 +21800,7 @@ GameObject:
   - component: {fileID: 833307082}
   - component: {fileID: 833307081}
   m_Layer: 5
-  m_Name: Fade
+  m_Name: Transition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26926,7 +26926,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 71da1b7965065464081ca3d1c7d05589, type: 3}
   m_Color: {r: 0.690566, g: 0.6814453, b: 0.6814453, a: 1}
   m_FlipX: 0
@@ -28324,6 +28324,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3387577686560106297, guid: 8b803fb99868f124a8117aea4e3134a9, type: 3}
+      propertyPath: _transition
+      value: 
+      objectReference: {fileID: 833307080}
+    - target: {fileID: 3387577686560106297, guid: 8b803fb99868f124a8117aea4e3134a9, type: 3}
+      propertyPath: _ballController
+      value: 
+      objectReference: {fileID: 1903565254}
     - target: {fileID: 7053627561815057313, guid: 8b803fb99868f124a8117aea4e3134a9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -41450,6 +41458,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 787755613902124604, guid: 676ceef797fef3544aae722377effb8d, type: 3}
   m_PrefabInstance: {fileID: 1820127848}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1903565254 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3703202923466045264, guid: 676ceef797fef3544aae722377effb8d, type: 3}
+  m_PrefabInstance: {fileID: 1820127848}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31d9d764107f21444bfb65896b9d7243, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1914355872
 GameObject:
   m_ObjectHideFlags: 0

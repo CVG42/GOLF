@@ -6,8 +6,6 @@ namespace Golf
     [RequireComponent(typeof(Rigidbody2D))]
     public partial class BallController : MonoBehaviour
     {
-        [SerializeField] private Transform _transition;
-
         private const float MINIMUM_VELOCITY = 0.1f;
 
         public bool isOnPole;
@@ -17,7 +15,6 @@ namespace Golf
         private float _stopTimeRequired = 1f;
         private Rigidbody2D _rigidbody;
         private IInputSource _inputSource;
-        private Sequence _currentTweenSequence;
 
         private void Awake()
         {
@@ -88,23 +85,13 @@ namespace Golf
 
         public void RespawnBall()
         {
-            _currentTweenSequence?.Kill();
-            _currentTweenSequence = DOTween.Sequence()
-                .Append(_transition.DOLocalMoveX(0, 1f, true))
-                .AppendCallback(ResetBallPosition)
-                .Append(_transition.DOLocalMoveX(1920, 1f))
-                .AppendCallback(ResetTransitionPosition);
+            LevelManager.Source.TriggerSpawnTransition();
         }
 
-        private void ResetBallPosition()
+        public void ResetBallPosition()
         {
             transform.position = _currentLastPosition;
             _rigidbody.velocity = Vector3.zero;
-        }
-
-        private void ResetTransitionPosition()
-        {
-            _transition.transform.position = new Vector2(-960, _transition.transform.position.y);
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
