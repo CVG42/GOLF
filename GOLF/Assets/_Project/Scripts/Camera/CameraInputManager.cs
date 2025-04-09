@@ -21,14 +21,12 @@ namespace Golf
         private void Start()
         {
             InputManager.Source.OnToggleCameraMode += ToggleLockCamera;
-            GameManager.Source.OnBallRespawn += RepositionToPlayerAfterOneFrame;
         }
 
         private void OnDestroy()
         {
             InputManager.Source.OnToggleCameraMode -= ToggleLockCamera;
             InputManager.Source.OnMoveCamera -= MoveCamera;
-            GameManager.Source.OnBallRespawn -= RepositionToPlayerAfterOneFrame;
         }
 
         private void FixedUpdate()
@@ -52,17 +50,6 @@ namespace Golf
             }
         }
 
-        private void RepositionToPlayerAfterOneFrame()
-        {
-            Reposition();
-            
-            async void Reposition()
-            {
-                await UniTask.DelayFrame(1);
-                transform.position = GetClampedPlayerModePosition(GetFollowPlayerPosition());
-            }
-        }
-
         private void FollowPlayer()
         {
             transform.position = Vector3.SmoothDamp(transform.position, GetFollowPlayerPosition(), ref _velocityCamera, _followSmoothTime);
@@ -71,7 +58,7 @@ namespace Golf
         
         private Vector3 GetFollowPlayerPosition()
         {
-            return _player.position + new Vector3(0f, 1f, -10f);;
+            return _player.position + new Vector3(0f, 1f, -10f);
         }
 
         private Vector3 GetClampedPlayerModePosition(Vector3 position)
