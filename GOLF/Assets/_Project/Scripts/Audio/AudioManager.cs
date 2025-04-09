@@ -108,14 +108,7 @@ namespace Golf
 
         public void TypingSFX()
         {
-            if (Random.value >= 0.5)
-            {
-                PlayOneShot("Blip");
-            }
-            else
-            {
-                PlayOneShot("Blop");
-            }    
+            PlayOneShot(UnityEngine.Random.value >= 0.5 ? "Blip" : "Blop");
         }
     }
 }
