@@ -1,4 +1,5 @@
 using DG.Tweening;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace Golf
@@ -20,12 +21,14 @@ namespace Golf
         private void Start()
         {
             InputManager.Source.OnToggleCameraMode += ToggleLockCamera;
+            GameManager.Source.OnBallRespawn += RepositionToPlayerAfterOneFrame;
         }
 
         private void OnDestroy()
         {
             InputManager.Source.OnToggleCameraMode -= ToggleLockCamera;
             InputManager.Source.OnMoveCamera -= MoveCamera;
+            GameManager.Source.OnBallRespawn -= RepositionToPlayerAfterOneFrame;
         }
 
         private void FixedUpdate()
@@ -46,6 +49,17 @@ namespace Golf
             else
             {
                 ZoomInToFollowPlayer();
+            }
+        }
+
+        private void RepositionToPlayerAfterOneFrame()
+        {
+            Reposition();
+            
+            async void Reposition()
+            {
+                await UniTask.DelayFrame(1);
+                transform.position = GetClampedPlayerModePosition(GetFollowPlayerPosition());
             }
         }
 

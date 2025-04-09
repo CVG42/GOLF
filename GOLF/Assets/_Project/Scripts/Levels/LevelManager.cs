@@ -33,8 +33,8 @@ namespace Golf
             _currentTweenSequence = DOTween.Sequence()
                 .Append(_spawnTransitionCanvasGroup.transform.DOLocalMoveX(0, 1f, true))
                 .AppendCallback(GameManager.Source.RespawnLastPosition)
-                .AppendCallback(ResetTransitionPosition)
                 .Append(_spawnTransitionCanvasGroup.transform.DOLocalMoveX(1920, 1f))
+                .AppendCallback(ResetTransitionPosition)
                 .AppendCallback(() => _spawnTransitionCanvasGroup.gameObject.SetActive(false));
         }
 
