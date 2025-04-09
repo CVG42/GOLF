@@ -10,11 +10,12 @@ namespace Golf
         
         event Action OnConfirmButtonPressed;
         event Action<ActionState> OnActionChange;
-        event Action<bool> OnToggleCameraMode;
         event Action<Vector2> OnMoveCamera;
         event Action<float> OnDirectionChange;
         event Action<float> OnForceChange;
         event Action<float, float> OnLaunch;
+
+        bool IsLocking { get; set; }
         ActionState CurrentActionState { get; }
         void ChangeAction(ActionState newAction);
     }
