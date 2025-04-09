@@ -9,9 +9,5 @@ namespace Golf
         public float XOffsetNegative;
         public float YOffsetPositive;
         public float YOffsetNegative;
-        public float ZXOffsetPositive;
-        public float ZXOffsetNegative;
-        public float ZYOffsetositive;
-        public float ZYOffsetNegative;
     }
 }
