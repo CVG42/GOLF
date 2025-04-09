@@ -179,9 +179,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28b72b6dc5dcc3c4ba61f5ad8e79b3d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isPersistent: 0
   _strokesText: {fileID: 1325333295222892001}
   _losePanel: {fileID: 6522886916616095373}
-  _victoryPanel: {fileID: 0}
 --- !u!1 &3418858218496832212
 GameObject:
   m_ObjectHideFlags: 0

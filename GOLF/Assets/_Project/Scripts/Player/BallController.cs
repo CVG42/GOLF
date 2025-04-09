@@ -22,22 +22,19 @@ namespace Golf
             _currentLastPosition = transform.position;           
         }
 
-        private void OnEnable()
-        {
-            InputManager.Source.OnLaunch += LaunchBall;        
-        }
-
-        private void OnDisable()
-        {
-            InputManager.Source.OnLaunch -= LaunchBall;
-        }
-
         private void Start()
         {
             isOnPole = false;
             GameManager.Source.OnBallRespawn += ResetBallLastPosition;
+            InputManager.Source.OnLaunch += LaunchBall;        
         }
 
+        private void OnDestroy()
+        {
+            GameManager.Source.OnBallRespawn -= ResetBallLastPosition;
+            InputManager.Source.OnLaunch -= LaunchBall;
+        }
+        
         private void Update()
         {
             StopBallCheck();
