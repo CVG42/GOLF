@@ -7,6 +7,9 @@ namespace Golf
 {
     public class AudioManager : Singleton<IAudioSource>, IAudioSource
     {
+        private const float MINIMUM_MIXER_VOLUME_VALUE = -80f;
+        private const float MAXIMUM_MIXER_VOLUME_VALUE = 0f;
+
         [SerializeField] private AudioDatabase _audioDatabase;
         [SerializeField] private AudioMixer _sfxMixer;
         [SerializeField] private AudioMixer _musicMixer;
@@ -30,8 +33,8 @@ namespace Golf
             CurrentSFXVolume = SaveSystem.Source.GetSFXVolume();
             CurrentMusicVolume = SaveSystem.Source.GetMusicVolume();
 
-            var sfxVolumeMixerValue = Mathf.Lerp(-80f, 0, CurrentSFXVolume);
-            var musicVolumeMixerValue = Mathf.Lerp(-80f, 0, CurrentMusicVolume);
+            var sfxVolumeMixerValue = Mathf.Lerp(MINIMUM_MIXER_VOLUME_VALUE, MAXIMUM_MIXER_VOLUME_VALUE, CurrentSFXVolume);
+            var musicVolumeMixerValue = Mathf.Lerp(MINIMUM_MIXER_VOLUME_VALUE, MAXIMUM_MIXER_VOLUME_VALUE, CurrentMusicVolume);
             
             _sfxMixer.SetFloat("sfx_vol", sfxVolumeMixerValue);
             _musicMixer.SetFloat("music_vol", musicVolumeMixerValue);
@@ -39,7 +42,7 @@ namespace Golf
 
         public void SetSFXVolume(float volume)
         {
-            var volumeMixerValue = Mathf.Lerp(-80f, 0, volume);
+            var volumeMixerValue = Mathf.Lerp(MINIMUM_MIXER_VOLUME_VALUE, MAXIMUM_MIXER_VOLUME_VALUE, volume);
             _sfxMixer.SetFloat("sfx_vol", volumeMixerValue);
             
             CurrentSFXVolume = volume;
@@ -49,7 +52,7 @@ namespace Golf
 
         public void SetMusicVolume(float volume)
         {
-            var volumeMixerValue = Mathf.Lerp(-80f, 0, volume);
+            var volumeMixerValue = Mathf.Lerp(MINIMUM_MIXER_VOLUME_VALUE, MAXIMUM_MIXER_VOLUME_VALUE, volume);
             _musicMixer.SetFloat("sfx_vol", volumeMixerValue);
             
             CurrentMusicVolume = volume;
@@ -62,7 +65,7 @@ namespace Golf
             _bgmAudioSource.clip = _audioDatabase.GetAudio(audioName);
             _bgmAudioSource.Play();
 
-            _musicMixer.SetFloat("bgm_vol", -80f);
+            _musicMixer.SetFloat("bgm_vol", MINIMUM_MIXER_VOLUME_VALUE);
 
             DOTween.To(
                 () => {
@@ -70,10 +73,9 @@ namespace Golf
                     return currentVol;
                 },
                 x => _musicMixer.SetFloat("bgm_vol", x),
-                0,
+                MAXIMUM_MIXER_VOLUME_VALUE,
                 1
             );
-
         }
 
         public void FadeOutMusic()
@@ -84,7 +86,7 @@ namespace Golf
                     return currentVol; 
                 },
                 x => _musicMixer.SetFloat("bgm_vol", x), 
-                -80, 
+                MINIMUM_MIXER_VOLUME_VALUE, 
                 1
             );
         }

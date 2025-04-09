@@ -9,9 +9,10 @@ namespace Golf
 
         float CurrentSFXVolume { get; }
         float CurrentMusicVolume { get; }
-
-        void SetSFXVolume(bool setVolumeUp);
+        void SetSFXVolume(float volume);
         void SetMusicVolume(float volume);
+        
+        void PlayLevelMusic(string audioName);
         void FadeOutMusic();
 
         void BallHitSFX();
@@ -19,6 +20,5 @@ namespace Golf
         void ButtonSelectHoverSFX();
         void PauseSFX();
         void SetAngleSFX();
-        void PlayLevelMusic(string audioName);
     }
 }
