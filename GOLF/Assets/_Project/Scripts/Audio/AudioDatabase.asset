@@ -27,3 +27,9 @@ MonoBehaviour:
     audioName: Tutorial
   - audio: {fileID: 8300000, guid: c30c0d9fcdbf69e4688753a3e686a04f, type: 3}
     audioName: Level1
+  - audio: {fileID: 8300000, guid: 110023859228b7542abf2fe891d088b9, type: 3}
+    audioName: Blip
+  - audio: {fileID: 8300000, guid: 0c8047cc0b615ce478a5ef0aa7dcbf7b, type: 3}
+    audioName: Blop
+  - audio: {fileID: 8300000, guid: 169267bc0b2ed0e48920eec415bb081a, type: 3}
+    audioName: Villain laugh
