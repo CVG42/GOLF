@@ -11,6 +11,8 @@ namespace Golf
 
         protected override void Awake()
         {
+            base.Awake();
+
             _savePath = Application.persistentDataPath + "/save.json";
             _currentData = Load();
 
