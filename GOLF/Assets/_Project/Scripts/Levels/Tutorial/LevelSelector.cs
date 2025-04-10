@@ -22,7 +22,6 @@ namespace Golf
             if (_isFirstLevel) return;
             
             _levelID = int.Parse(gameObject.name) - 1;
-            // _isUnlocked = PlayerPrefs.GetInt($"Lv{_levelID}") > 0;
             _isUnlocked = SaveSystem.Source.IsLevelUnlocked(_levelID);
             _levelLayout.SetActive(!_isUnlocked);
             //_previouLevelLock.SetActive(_isUnlocked);
