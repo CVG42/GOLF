@@ -1,4 +1,5 @@
 using DG.Tweening;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace Golf
@@ -57,7 +58,7 @@ namespace Golf
         
         private Vector3 GetFollowPlayerPosition()
         {
-            return _player.position + new Vector3(0f, 1f, -10f);;
+            return _player.position + new Vector3(0f, 1f, -10f);
         }
 
         private Vector3 GetClampedPlayerModePosition(Vector3 position)

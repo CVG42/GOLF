@@ -7,17 +7,23 @@ namespace UnityEngine
     public class Singleton<I> : MonoBehaviour where I : class
     {
         public static I Source { get; private set; }
+
+        [SerializeField] private bool _isPersistent = false;
         
         protected virtual void Awake()
         {
-            if (Source != null)
+            if (_isPersistent && Source != null)
             {
                 DestroyImmediate(gameObject);
                 return;
             }
             
             Source = this as I;
-            DontDestroyOnLoad(gameObject);
+
+            if (_isPersistent)
+            {
+                DontDestroyOnLoad(gameObject);
+            }
         }
     }
 }

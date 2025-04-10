@@ -7,8 +7,8 @@ namespace Golf
     {
         private const float MINIMUM_VELOCITY = 0.1f;
 
-        public bool isOnPole;
-        public Vector2 _currentLastPosition;
+        private bool _isOnPole;
+        private Vector2 _currentLastPosition;
 
         private float _stopTimer = 0f;
         private float _stopTimeRequired = 1f;
@@ -22,22 +22,19 @@ namespace Golf
             _currentLastPosition = transform.position;           
         }
 
-        private void OnEnable()
+        private void Start()
         {
+            _isOnPole = false;
+            GameManager.Source.OnBallRespawn += ResetBallLastPosition;
             InputManager.Source.OnLaunch += LaunchBall;        
         }
 
-        private void OnDisable()
+        private void OnDestroy()
         {
+            GameManager.Source.OnBallRespawn -= ResetBallLastPosition;
             InputManager.Source.OnLaunch -= LaunchBall;
         }
-
-        private void Start()
-        {
-            isOnPole = false;
-            GameManager.Source.OnBallRespawn += ResetBallLastPosition;
-        }
-
+        
         private void Update()
         {
             StopBallCheck();
@@ -61,7 +58,7 @@ namespace Golf
 
                 if (_stopTimer >= _stopTimeRequired)
                 {
-                    if (!isOnPole && GameManager.Source.CurrentHitsLeft == 0)
+                    if (!_isOnPole && GameManager.Source.CurrentHitsLeft == 0)
                     {
                         GameManager.Source.TriggerLoseCondition();
                     }
@@ -92,7 +89,7 @@ namespace Golf
         {
             if (collision.CompareTag("Hole"))
             {
-                isOnPole = true;
+                _isOnPole = true;
             }
         }
     }

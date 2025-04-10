@@ -12,15 +12,12 @@ namespace Golf
         {
             _losePanel.SetActive(false);
             UpdateHitsLeft(GameManager.Source.CurrentHitsLeft);
-        }
-
-        private void OnEnable()
-        {
+            
             GameManager.Source.OnHitsChanged += UpdateHitsLeft;
             GameManager.Source.OnLose += ShowLosePanel;
         }
 
-        private void OnDisable()
+        private void OnDestroy()
         {
             GameManager.Source.OnHitsChanged -= UpdateHitsLeft;
             GameManager.Source.OnLose -= ShowLosePanel;
