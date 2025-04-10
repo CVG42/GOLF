@@ -81,5 +81,19 @@ namespace Golf
 
             Save();
         }
+
+        public bool IsLevelUnlocked(int levelID)
+        {
+            return _currentData.LastLevelCompleted >= levelID;
+        }
+
+        public void SetLevelCleared(int levelID)
+        {
+            if (levelID > _currentData.LastLevelCompleted)
+            {
+                _currentData.LastLevelCompleted = levelID;
+                Save();
+            }
+        }
     }
 }

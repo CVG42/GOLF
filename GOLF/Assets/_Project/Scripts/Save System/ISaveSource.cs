@@ -13,5 +13,8 @@ namespace Golf
         void SetMusicVolume(float volume);
         float GetSFXVolume();
         void SetSFXVolume(float volume);
+
+        bool IsLevelUnlocked(int levelID);
+        void SetLevelCleared(int levelID);
     }
 }
