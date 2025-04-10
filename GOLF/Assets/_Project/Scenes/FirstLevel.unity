@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -39994,6 +39993,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1916887396}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -19.146}
+--- !u!1 &1853023886 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7679883184443129797, guid: 27c6cf8323874fa409372d3b4305b09f, type: 3}
+  m_PrefabInstance: {fileID: 4920848295541391367}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1857196390
 GameObject:
   m_ObjectHideFlags: 0
@@ -55309,13 +55313,21 @@ PrefabInstance:
       propertyPath: _player
       value: 
       objectReference: {fileID: 1903565251}
+    - target: {fileID: 3848718382898269624, guid: 27c6cf8323874fa409372d3b4305b09f, type: 3}
+      propertyPath: _movementCameraFrame
+      value: 
+      objectReference: {fileID: 1853023886}
+    - target: {fileID: 6554821521012939611, guid: 27c6cf8323874fa409372d3b4305b09f, type: 3}
+      propertyPath: orthographic size
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 7316803372588282280, guid: 27c6cf8323874fa409372d3b4305b09f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7316803372588282280, guid: 27c6cf8323874fa409372d3b4305b09f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.1
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7316803372588282280, guid: 27c6cf8323874fa409372d3b4305b09f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -55347,6 +55359,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7316803372588282280, guid: 27c6cf8323874fa409372d3b4305b09f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7679883184443129797, guid: 27c6cf8323874fa409372d3b4305b09f, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
