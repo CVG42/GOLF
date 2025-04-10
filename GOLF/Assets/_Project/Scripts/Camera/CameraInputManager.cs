@@ -8,6 +8,7 @@ namespace Golf
     {
         [SerializeField] private Transform _player;
         [SerializeField] private Camera _camera;
+        [SerializeField] private GameObject _movementCameraFrame;
         [SerializeField] private CameraInputConfigurations _cameraInputConfigurations;
         [SerializeField] private float _followSmoothTime = 0.1f;
 
@@ -35,10 +36,12 @@ namespace Golf
             if (CheckBallAction(InputManager.Source.CurrentActionState))
             {
                 InputManager.Source.IsLocking = true;
+                _movementCameraFrame.SetActive(false);
             }
             else
             {
                 InputManager.Source.IsLocking = false;
+                _movementCameraFrame.SetActive(true);
             }
         }
 
@@ -63,8 +66,8 @@ namespace Golf
         private Vector3 GetClampedCameraPosition(Vector3 position)
         {
             var clampedPosition = position;
-            clampedPosition.x = Mathf.Clamp(clampedPosition.x, _cameraInputConfigurations.XOffsetNegative, _cameraInputConfigurations.XOffsetPositive);
-            clampedPosition.y = Mathf.Clamp(clampedPosition.y, _cameraInputConfigurations.YOffsetNegative, _cameraInputConfigurations.YOffsetPositive);
+            clampedPosition.x = Mathf.Clamp(clampedPosition.x, _cameraInputConfigurations.LeftThresholdMap, _cameraInputConfigurations.RightThresholdMap);
+            clampedPosition.y = Mathf.Clamp(clampedPosition.y, _cameraInputConfigurations.DownThresholdMap, _cameraInputConfigurations.UpThresholdMap);
             return clampedPosition;
         }
 
