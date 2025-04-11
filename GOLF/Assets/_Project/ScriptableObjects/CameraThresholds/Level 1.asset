@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b850ad4353d327b4a977a47853d92577, type: 3}
   m_Name: Level 1
   m_EditorClassIdentifier: 
-  XOffsetPositive: 16
-  XOffsetNegative: -16
-  YOffsetPositive: 68
-  YOffsetNegative: 1
+  XOffsetPositive: 10
+  XOffsetNegative: -10
+  YOffsetPositive: 38
+  YOffsetNegative: 4
   ZXOffsetPositive: 11
   ZXOffsetNegative: -11
   ZYOffsetositive: 65
