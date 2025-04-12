@@ -7,9 +7,9 @@ namespace Golf
     { 
         public event Action OnConfirmButtonPressed;
         public event Action<ActionState> OnActionChange;
-        public event Action<bool> OnToggleCameraMode;
         public event Action<Vector2> OnMoveCamera;
 
+        public bool IsLocking { get; set; } = false;
         public ActionState CurrentActionState => _currentAction.ActionState;
 
         public event Action<float> OnDirectionChange
@@ -31,7 +31,6 @@ namespace Golf
         }
 
         private bool _isEnabled = true;
-        private bool _isCameraLocking = true;
         private ActionHandler _currentAction;
         
         private DirectionHandler _directionHandler;
@@ -82,20 +81,14 @@ namespace Golf
                 OnConfirmButtonPressed?.Invoke();
             }
 
-            if (Input.GetKeyDown(KeyCode.Tab)) 
-            {
-                _isCameraLocking = !_isCameraLocking;
-                OnToggleCameraMode?.Invoke(_isCameraLocking);
-            }
-
-            if (!_isCameraLocking)
+            if (IsLocking == false)
             {
                 var horizontalInput = Input.GetAxis("Horizontal-Camera");
                 var verticalInput = Input.GetAxis("Vertical-Camera");
-            
+
                 if (horizontalInput != 0 || verticalInput != 0)
                 {
-                    OnMoveCamera?.Invoke(new Vector2(horizontalInput, verticalInput));  
+                    OnMoveCamera?.Invoke(new Vector2(horizontalInput, verticalInput));
                 }
             }
         }
