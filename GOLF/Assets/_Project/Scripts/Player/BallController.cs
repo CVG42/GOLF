@@ -46,6 +46,7 @@ namespace Golf
             Vector2 launchDirection = new Vector2(Mathf.Cos(radians), Mathf.Sin(radians));
             _rigidbody.AddForce(launchDirection * force, ForceMode2D.Impulse);
             GameManager.Source.ReduceHitsLeft();
+            AudioManager.Source.PlayOneShot("BallHitSFX");
         }
 
         private void StopBallCheck()
