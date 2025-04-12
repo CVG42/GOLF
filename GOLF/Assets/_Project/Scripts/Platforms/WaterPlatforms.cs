@@ -9,6 +9,7 @@ namespace Golf
             if (collision.CompareTag("Player"))
             {                
                 LevelManager.Source.TriggerSpawnTransition();
+                AudioManager.Source.PlayOneShot("WaterPlatfomSFX");
             }
         }
     }
