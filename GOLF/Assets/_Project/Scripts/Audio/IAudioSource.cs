@@ -20,7 +20,7 @@ namespace Golf
         void ButtonClickSFX();
         void ButtonSelectHoverSFX();
         void PauseSFX();
-        void SetAngleSFX();
+        void WaterPlatformBallSFX();
         void TypingSFX();
     }
 }
