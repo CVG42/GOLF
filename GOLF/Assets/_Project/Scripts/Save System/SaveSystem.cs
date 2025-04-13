@@ -1,6 +1,7 @@
 using System.IO;
 using UnityEngine;
 using Newtonsoft.Json;
+using UnityEngine.SceneManagement;
 
 namespace Golf
 {
@@ -58,8 +59,8 @@ namespace Golf
 
         public void LoadGame(int gameIndex)
         {
-            _saveGamePath = Application.persistentDataPath + string.Format(SAVE_FILE_NAME_FORMAT, gameIndex);
-            if (File.Exists(_saveGamePath))
+            _saveGamePath = GetFilePath(gameIndex);
+            if (DoesFileExists(gameIndex))
             {
                 string json = File.ReadAllText(_saveGamePath);
                 _currentGameData = JsonConvert.DeserializeObject<GameData>(json);
@@ -71,13 +72,32 @@ namespace Golf
             }
         }
 
-        public void DeleteGameFile(int gameIndex)
+        public bool DoesFileExists(int gameIndex)
         {
-            string path = Application.persistentDataPath + string.Format(SAVE_FILE_NAME_FORMAT, gameIndex);
+           return File.Exists(GetFilePath(gameIndex));
+        }
 
+        private string GetFilePath(int gameIndex)
+        {
+            return Application.persistentDataPath + string.Format(SAVE_FILE_NAME_FORMAT, gameIndex);
+        }
+
+        public GameData GetGameFileData(int gameIndex)
+        {
+            string path = GetFilePath(gameIndex);
             if (File.Exists(path))
             {
-                File.Delete(path);
+                string json = File.ReadAllText(path);
+                return JsonConvert.DeserializeObject<GameData>(json);
+            }
+            return null;
+        }
+
+        public void DeleteGameFile(int gameIndex)
+        {
+            if (DoesFileExists(gameIndex))
+            {
+                File.Delete(GetFilePath(gameIndex));
             }
         }
 
@@ -86,7 +106,7 @@ namespace Golf
             return _currentGameData.LastLevelCompleted >= levelID;
         }
 
-        public int GetLevelCleared() => _currentGameData.LastLevelCompleted;
+        public int GetHighestLevelCleared() => _currentGameData.LastLevelCompleted;
 
         public void SetLevelCleared(int levelID)
         {
@@ -131,6 +151,6 @@ namespace Golf
                 Screen.SetResolution(width, height, false);
 
             SaveSettings();
-        }        
+        }
     }
 }

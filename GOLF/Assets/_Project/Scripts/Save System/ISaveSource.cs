@@ -6,6 +6,8 @@ namespace Golf
     {
         void LoadGame(int gameIndex);
         void DeleteGameFile(int gameIndex);
+        bool DoesFileExists(int gameIndex);
+        GameData GetGameFileData(int gameIndex);
 
         bool GetFullScreenMode();
         void SetFullScreenMode(bool isFullScreen);
@@ -19,6 +21,6 @@ namespace Golf
 
         bool IsLevelUnlocked(int levelID);
         void SetLevelCleared(int levelID);
-        int GetLevelCleared();
+        int GetHighestLevelCleared();
     }
 }
