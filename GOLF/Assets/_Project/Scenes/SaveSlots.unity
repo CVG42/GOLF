@@ -635,6 +635,8 @@ MonoBehaviour:
   _slotButton: {fileID: 1472202143}
   _deleteButton: {fileID: 1653355924}
   _deleteConfirmationPanel: {fileID: 1500699300}
+  _activeButton: {fileID: -1722572105, guid: 2ab818258d48e7348a1dc1f7961814b2, type: 3}
+  _inactiveButton: {fileID: 21300000, guid: f2601862093db2b44b51b16784e5e2f0, type: 3}
 --- !u!1 &460140381
 GameObject:
   m_ObjectHideFlags: 0
@@ -843,6 +845,8 @@ MonoBehaviour:
   _slotButton: {fileID: 1603130669}
   _deleteButton: {fileID: 1605152287}
   _deleteConfirmationPanel: {fileID: 1500699300}
+  _activeButton: {fileID: -1722572105, guid: 2ab818258d48e7348a1dc1f7961814b2, type: 3}
+  _inactiveButton: {fileID: 21300000, guid: f2601862093db2b44b51b16784e5e2f0, type: 3}
 --- !u!1 &631736341
 GameObject:
   m_ObjectHideFlags: 0
@@ -1379,6 +1383,8 @@ MonoBehaviour:
   _slotButton: {fileID: 1869613324}
   _deleteButton: {fileID: 1993210628}
   _deleteConfirmationPanel: {fileID: 1500699300}
+  _activeButton: {fileID: -1722572105, guid: 2ab818258d48e7348a1dc1f7961814b2, type: 3}
+  _inactiveButton: {fileID: 21300000, guid: f2601862093db2b44b51b16784e5e2f0, type: 3}
 --- !u!1 &895345784
 GameObject:
   m_ObjectHideFlags: 0
@@ -1807,7 +1813,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -2189,6 +2195,7 @@ MonoBehaviour:
   _confirmationText: {fileID: 1491200097}
   _confirmButton: {fileID: 129841167}
   _cancelButton: {fileID: 460140383}
+  _panelText: Are you sure you want to delete the slot?
 --- !u!114 &1500699301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2547,7 +2554,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -2668,7 +2675,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -3045,7 +3052,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
