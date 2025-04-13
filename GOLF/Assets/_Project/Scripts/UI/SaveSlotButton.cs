@@ -15,7 +15,16 @@ namespace Golf
         [SerializeField] private TextMeshProUGUI _slotDescription;
         [SerializeField] private Button _slotButton;
         [SerializeField] private Button _deleteButton;
-        [SerializeField] private DeleteConfirmationPanel _deleteConfirmationPanel;
+        [SerializeField] private ConfirmationPanel _deleteConfirmationPanel;
+        [SerializeField] private Sprite _activeButton;
+        [SerializeField] private Sprite _inactiveButton;
+
+        private ISaveSource _saveSystem;
+
+        private void Awake()
+        {
+            _saveSystem = SaveSystem.Source;
+        }
 
         private void Start()
         {
@@ -26,41 +35,41 @@ namespace Golf
 
         private void LoadGameData()
         {
-            SaveSystem.Source.LoadGame(_slotIndex);
+            _saveSystem.LoadGame(_slotIndex);
             LevelManager.Source.LoadScene(DEFAULT_SCENE);
         }
 
         private void DisplaySlotData()
         {
-            string path = Application.persistentDataPath + $"/save{_slotIndex}.json";
-
-            if (File.Exists(path))
+            if (_saveSystem.DoesFileExists(_slotIndex))
             {
-                string json = File.ReadAllText(path);
-                GameData data = JsonConvert.DeserializeObject<GameData>(json);
+                GameData data = _saveSystem.GetGameFileData(_slotIndex);
 
                 int displayCurrentLevel = data.LastLevelCompleted + 1;
 
+                _deleteButton.interactable = true;
+                _deleteButton.image.sprite = _activeButton;
                 _slotName.text = $"Slot {_slotIndex}";
                 _slotDescription.text = $"Current Level: {displayCurrentLevel}";
             }
             else
             {
-                _slotName.text = $"Empty Slot";
-                _slotDescription.text = $"Current Level: --";
+                _deleteButton.interactable = false;
+                _deleteButton.image.sprite = _inactiveButton;
+                _slotName.text = "Empty Slot";
+                _slotDescription.text = "Current Level: --";
             }
         }
 
         private void DeleteGameFile()
         {
-            _deleteConfirmationPanel.ShowConfirmationPanel(
-                $"Are you sure you want to delete Slot {_slotIndex}?",
-                () =>
-                {
-                    SaveSystem.Source.DeleteGameFile(_slotIndex);
-                    DisplaySlotData();
-                }
-            );
+            _deleteConfirmationPanel.ShowConfirmationPanel(OnConfirmationCallback);
+        }
+
+        private void OnConfirmationCallback()
+        {
+            _saveSystem.DeleteGameFile(_slotIndex);
+            DisplaySlotData();
         }
     }
 }
