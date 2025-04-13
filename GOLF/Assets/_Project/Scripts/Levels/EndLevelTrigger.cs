@@ -12,7 +12,7 @@ namespace Golf
             if (collision.CompareTag("Player"))
             {
                 SaveSystem.Source.SetLevelCleared(_levelID);
-                // AudioManager.Source.FadeOutMusic();
+                AudioManager.Source.FadeOutMusic();
                 LevelManager.Source.LoadScene(_sceneName);
             }
         }
