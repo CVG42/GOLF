@@ -11,7 +11,7 @@ namespace Golf
         {
             if (collision.CompareTag("Player"))
             {
-                PlayerPrefs.SetInt("Lv" + _levelID, 1);
+                SaveSystem.Source.SetLevelCleared(_levelID);
                 AudioManager.Source.FadeOutMusic();
                 LevelManager.Source.LoadScene(_sceneName);
             }

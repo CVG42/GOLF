@@ -1,85 +1,156 @@
 using System.IO;
 using UnityEngine;
 using Newtonsoft.Json;
+using UnityEngine.SceneManagement;
 
 namespace Golf
 {
     public class SaveSystem : Singleton<ISaveSource>, ISaveSource
     {
-        private string _savePath;
-        private GameData _currentData;
+        private const string SAVE_FILE_NAME_FORMAT = "/save{0}.json";
+        private const string SAVE_SETTINGS_NAME = "/settings.json";
+
+        private string _saveSettingsPath;
+        private string _saveGamePath;
+
+        private GameSettingsData _currentSettingsData;
+        private GameData _currentGameData;
 
         protected override void Awake()
         {
-            _savePath = Application.persistentDataPath + "/save.json";
-            _currentData = Load();
+            base.Awake();
 
-            Screen.fullScreen = _currentData.IsFullScreen;
-
-            if (!_currentData.IsFullScreen)
-                Screen.SetResolution(_currentData.ScreenWidth, _currentData.ScreenHeight, false);
-        }
-
-        private void Start()
-        {
-            GameData data = Load();
-        }
-
-        private void Save()
-        {
-            string json = JsonConvert.SerializeObject(_currentData, Formatting.Indented);
-            File.WriteAllText(_savePath, json);
+            LoadSettings();
         }
 
         private void OnGameQuit()
         {
-            Save();
+            SaveSettings();
+            SaveGame();
         }
 
-        private GameData Load()
+        private void SaveSettings()
         {
-            if (File.Exists(_savePath))
+            string json = JsonConvert.SerializeObject(_currentSettingsData, Formatting.Indented);
+            File.WriteAllText(_saveSettingsPath, json);
+        }
+
+        private void LoadSettings()
+        {
+            _saveSettingsPath = Application.persistentDataPath + SAVE_SETTINGS_NAME;
+            if (File.Exists(_saveSettingsPath))
             {
-                string json = File.ReadAllText(_savePath);
+                string json = File.ReadAllText(_saveSettingsPath);
+                _currentSettingsData = JsonConvert.DeserializeObject<GameSettingsData>(json);
+            }
+            _currentSettingsData = new GameSettingsData();
+
+            Screen.fullScreen = _currentSettingsData.IsFullScreen;
+
+            if (!_currentSettingsData.IsFullScreen)
+                Screen.SetResolution(_currentSettingsData.ScreenWidth, _currentSettingsData.ScreenHeight, false);
+        }
+
+        private void SaveGame()
+        {
+            string json = JsonConvert.SerializeObject(_currentGameData, Formatting.Indented);
+            File.WriteAllText(_saveGamePath, json);
+        }
+
+        public void LoadGame(int gameIndex)
+        {
+            _saveGamePath = GetFilePath(gameIndex);
+            if (DoesFileExists(gameIndex))
+            {
+                string json = File.ReadAllText(_saveGamePath);
+                _currentGameData = JsonConvert.DeserializeObject<GameData>(json);
+            }
+            else
+            {
+                _currentGameData = new GameData();
+                SaveGame();
+            }
+        }
+
+        public bool DoesFileExists(int gameIndex)
+        {
+           return File.Exists(GetFilePath(gameIndex));
+        }
+
+        private string GetFilePath(int gameIndex)
+        {
+            return Application.persistentDataPath + string.Format(SAVE_FILE_NAME_FORMAT, gameIndex);
+        }
+
+        public GameData GetGameFileData(int gameIndex)
+        {
+            string path = GetFilePath(gameIndex);
+            if (File.Exists(path))
+            {
+                string json = File.ReadAllText(path);
                 return JsonConvert.DeserializeObject<GameData>(json);
             }
-            return new GameData();
+            return null;
         }
 
-        public float GetMusicVolume() => _currentData.MusicVolume;
+        public void DeleteGameFile(int gameIndex)
+        {
+            if (DoesFileExists(gameIndex))
+            {
+                File.Delete(GetFilePath(gameIndex));
+            }
+        }
+
+        public bool IsLevelUnlocked(int levelID)
+        {
+            return _currentGameData.LastLevelCompleted >= levelID;
+        }
+
+        public int GetHighestLevelCleared() => _currentGameData.LastLevelCompleted;
+
+        public void SetLevelCleared(int levelID)
+        {
+            if (levelID > _currentGameData.LastLevelCompleted)
+            {
+                _currentGameData.LastLevelCompleted = levelID;
+                SaveGame();
+            }
+        }
+
+        public float GetMusicVolume() => _currentSettingsData.MusicVolume;
         public void SetMusicVolume(float volume)
         {
-            _currentData.MusicVolume = volume;
-            Save();
+            _currentSettingsData.MusicVolume = volume;
+            SaveSettings();
         }
 
-        public float GetSFXVolume() => _currentData.SFXVolume;
+        public float GetSFXVolume() => _currentSettingsData.SFXVolume;
         public void SetSFXVolume(float volume)
         {
-            _currentData.SFXVolume = volume;
-            Save();
+            _currentSettingsData.SFXVolume = volume;
+            SaveSettings();
         }
 
-        public bool GetFullScreenMode() => _currentData.IsFullScreen;
+        public bool GetFullScreenMode() => _currentSettingsData.IsFullScreen;
 
         public void SetFullScreenMode(bool isFullScreen)
         {
-            _currentData.IsFullScreen = isFullScreen;
+            _currentSettingsData.IsFullScreen = isFullScreen;
             Screen.fullScreen = isFullScreen;
-            Save();
+            SaveSettings();
         }
 
-        public Vector2Int GetResolution() => new Vector2Int(_currentData.ScreenWidth, _currentData.ScreenHeight);
+        public Vector2Int GetResolution() => new Vector2Int(_currentSettingsData.ScreenWidth, _currentSettingsData.ScreenHeight);
 
         public void SetResolution(int width, int height)
         {
-            _currentData.ScreenWidth = width;
-            _currentData.ScreenHeight = height;
+            _currentSettingsData.ScreenWidth = width;
+            _currentSettingsData.ScreenHeight = height;
 
             if (!Screen.fullScreen)
                 Screen.SetResolution(width, height, false);
 
-            Save();
+            SaveSettings();
         }
     }
 }

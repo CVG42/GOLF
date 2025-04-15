@@ -4,6 +4,11 @@ namespace Golf
 {
     public interface ISaveSource
     {
+        void LoadGame(int gameIndex);
+        void DeleteGameFile(int gameIndex);
+        bool DoesFileExists(int gameIndex);
+        GameData GetGameFileData(int gameIndex);
+
         bool GetFullScreenMode();
         void SetFullScreenMode(bool isFullScreen);
         Vector2Int GetResolution();
@@ -13,5 +18,9 @@ namespace Golf
         void SetMusicVolume(float volume);
         float GetSFXVolume();
         void SetSFXVolume(float volume);
+
+        bool IsLevelUnlocked(int levelID);
+        void SetLevelCleared(int levelID);
+        int GetHighestLevelCleared();
     }
 }
