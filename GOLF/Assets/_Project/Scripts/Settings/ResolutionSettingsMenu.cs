@@ -27,13 +27,10 @@ namespace Golf
 
         private void Start()
         {
-            if (saveSystem != null)
-            {
-                _fullScreenToggle.isOn = saveSystem.GetFullScreenMode();
-                _fullScreenToggle.onValueChanged.AddListener(SetFullScreenMode);
+            _fullScreenToggle.isOn = saveSystem.GetFullScreenMode();
+            _fullScreenToggle.onValueChanged.AddListener(SetFullScreenMode);
 
-                SetupResolutionDropdown();
-            }
+            SetupResolutionDropdown();
         }
 
         private void SetupResolutionDropdown()

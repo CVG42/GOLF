@@ -1,7 +1,6 @@
 using System.IO;
 using UnityEngine;
 using Newtonsoft.Json;
-using UnityEngine.SceneManagement;
 
 namespace Golf
 {
@@ -20,6 +19,8 @@ namespace Golf
         {
             base.Awake();
 
+            if (_hasBeenDestroyed) return;
+            
             LoadSettings();
         }
 
@@ -43,7 +44,10 @@ namespace Golf
                 string json = File.ReadAllText(_saveSettingsPath);
                 _currentSettingsData = JsonConvert.DeserializeObject<GameSettingsData>(json);
             }
-            _currentSettingsData = new GameSettingsData();
+            else
+            {
+                _currentSettingsData = new GameSettingsData();
+            }
 
             Screen.fullScreen = _currentSettingsData.IsFullScreen;
 
