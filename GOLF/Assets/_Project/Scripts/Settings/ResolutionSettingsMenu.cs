@@ -1,13 +1,14 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using TMPro;
 
 namespace Golf
 {
     public class ResolutionSettingsMenu : MonoBehaviour
     {
         [SerializeField] private Toggle _fullScreenToggle;
-        [SerializeField] private Dropdown _resolutionDropdown;
+        [SerializeField] private TMP_Dropdown _resolutionDropdown;
 
         private ISaveSource saveSystem;
 
