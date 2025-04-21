@@ -17,6 +17,7 @@ namespace Golf
         event Action<float> OnDirectionChange;
         event Action<float> OnForceChange;
         event Action<float, float> OnLaunch;
+        event Action OnPause;
 
         bool IsLocking { get; set; }
         ActionState CurrentActionState { get; }

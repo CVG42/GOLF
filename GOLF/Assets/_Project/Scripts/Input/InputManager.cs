@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using static Golf.GameStateManager;
 
 namespace Golf
 {
@@ -10,6 +11,7 @@ namespace Golf
         public event Action<Vector2> OnMoveCamera;
         public event Action OnPreviousButtonPresssed;
         public event Action OnNextButtonPresssed;
+        public event Action OnPause;
 
         public bool IsLocking { get; set; } = false;
         public ActionState CurrentActionState => _currentAction.ActionState;
@@ -54,6 +56,7 @@ namespace Golf
 
         private void Update()
         {
+            PauseButton();
             _currentAction.DoAction();
             CheckButtonInput();
         }
@@ -61,6 +64,7 @@ namespace Golf
         public void ChangeAction(ActionState newAction)
         {
             if (!_isEnabled) return;
+            if (GameStateManager.Source.CurrentGameState != GameStateManager.GameState.OnPlay) return;
             if (CurrentActionState == newAction) return;
 
             _currentAction = newAction switch
@@ -69,9 +73,9 @@ namespace Golf
                 ActionState.Force => _forceHandler,
                 ActionState.Launch => _launchHandler,
                 ActionState.Moving => _movingHandler,
-                _ => _currentAction
+                _ => _currentAction,
             };
-
+            
             OnActionChange?.Invoke(CurrentActionState);
         }
 
@@ -103,6 +107,24 @@ namespace Golf
                 }
             }
         }
+
+        private void PauseButton()
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                switch (GameStateManager.Source.CurrentGameState)
+                {
+                    case GameState.OnPlay:
+                        GameStateManager.Source.OnGameStateChanged.Invoke(GameStateManager.GameState.OnPause);
+                        break;
+                    case GameState.OnPause:
+                        GameStateManager.Source.OnGameStateChanged.Invoke(GameStateManager.GameState.OnPlay);
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
+        }
         
         public void Enable()
         {
@@ -120,6 +142,7 @@ namespace Golf
         Direction,
         Force,
         Launch,
-        Moving
+        Moving,
+        Pause
     }
 }
