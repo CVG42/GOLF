@@ -346,51 +346,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 0
---- !u!1 &416005122
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 416005124}
-  - component: {fileID: 416005123}
-  m_Layer: 0
-  m_Name: Background Music Level
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &416005123
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 416005122}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9658c91b1bb87e24d821d6f0448f0db0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _musicName: Level1
---- !u!4 &416005124
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 416005122}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &428977551
 GameObject:
   m_ObjectHideFlags: 0
@@ -1215,7 +1170,7 @@ PrefabInstance:
       objectReference: {fileID: 24100000, guid: 704b159625322994ca74f38d52dd2c67, type: 2}
     - target: {fileID: 1328556617890950973, guid: e8d3daca13153494f92565c1fa03b0ff, type: 3}
       propertyPath: _isPersistent
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6459413774828257316, guid: e8d3daca13153494f92565c1fa03b0ff, type: 3}
       propertyPath: m_Name
@@ -3841,7 +3796,6 @@ SceneRoots:
   - {fileID: 1959474021}
   - {fileID: 1880155594}
   - {fileID: 2044407527}
-  - {fileID: 416005124}
   - {fileID: 1871222834}
   - {fileID: 1437922710}
   - {fileID: 1068728169}
