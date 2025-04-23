@@ -42,10 +42,14 @@ namespace Golf
             _currentPowerUpIndex += selectionDirection;
 
             if (_currentPowerUpIndex >= _availablePowerUps.Count)
+            {
                 _currentPowerUpIndex = 0;
+            }
 
             if (_currentPowerUpIndex < 0)
+            {
                 _currentPowerUpIndex = _availablePowerUps.Count - 1;
+            }
 
             UpdateUI();
 
