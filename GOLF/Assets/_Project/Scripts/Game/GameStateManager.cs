@@ -12,23 +12,19 @@ namespace Golf
             OnPause,
         }
 
-        public Action<GameState> OnGameStateChanged;
+        public event Action<GameState> OnGameStateChanged;
         public GameState CurrentGameState { get; private set; }
 
-        protected override void Awake()
+        public void ChangeState(GameState state)
         {
-            base.Awake();
-            OnGameStateChanged += ChangeState;
-        }
-
-        private void ChangeState(GameState state)
-        {
+            if (CurrentGameState == state) return; 
             CurrentGameState = state;
+            OnGameStateChanged?.Invoke(CurrentGameState);
         }
 
         private void OnDestroy()
         {
-            OnGameStateChanged -= ChangeState;
+            OnGameStateChanged = null;
         }
     }
 }

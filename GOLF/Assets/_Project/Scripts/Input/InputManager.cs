@@ -115,13 +115,11 @@ namespace Golf
                 switch (GameStateManager.Source.CurrentGameState)
                 {
                     case GameState.OnPlay:
-                        GameStateManager.Source.OnGameStateChanged.Invoke(GameStateManager.GameState.OnPause);
+                        GameStateManager.Source.ChangeState(GameStateManager.GameState.OnPause);
                         break;
                     case GameState.OnPause:
-                        GameStateManager.Source.OnGameStateChanged.Invoke(GameStateManager.GameState.OnPlay);
+                        GameStateManager.Source.ChangeState(GameStateManager.GameState.OnPlay);
                         break;
-                    default:
-                        throw new ArgumentOutOfRangeException();
                 }
             }
         }
