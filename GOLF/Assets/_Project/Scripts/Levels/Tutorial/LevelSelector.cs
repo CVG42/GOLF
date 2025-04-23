@@ -5,6 +5,7 @@ namespace Golf
     public class LevelSelector : MonoBehaviour
     {
         [SerializeField] private GameObject _levelBlocker;
+        [SerializeField] private GameObject _previousLevelBlock;
         [SerializeField] private string _sceneName;
         [SerializeField] private bool _isUnlocked;
         [SerializeField] private bool _isFirstLevel = false;
@@ -23,6 +24,7 @@ namespace Golf
             _levelID = int.Parse(gameObject.name) - 1;
             _isUnlocked = SaveSystem.Source.IsLevelUnlocked(_levelID);
             _levelBlocker.SetActive(!_isUnlocked);
+            _previousLevelBlock.SetActive(_isUnlocked);
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
