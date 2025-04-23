@@ -37,7 +37,7 @@ namespace Golf
             var musicVolumeMixerValue = Mathf.Lerp(MINIMUM_MIXER_VOLUME_VALUE, MAXIMUM_MIXER_VOLUME_VALUE, CurrentMusicVolume);
             
             _sfxMixer.SetFloat("sfx_vol", sfxVolumeMixerValue);
-            _musicMixer.SetFloat("music_vol", musicVolumeMixerValue);
+            _musicMixer.SetFloat("bgm_vol", musicVolumeMixerValue);
         }
 
         public void SetSFXVolume(float volume)
@@ -53,7 +53,7 @@ namespace Golf
         public void SetMusicVolume(float volume)
         {
             var volumeMixerValue = Mathf.Lerp(MINIMUM_MIXER_VOLUME_VALUE, MAXIMUM_MIXER_VOLUME_VALUE, volume);
-            _musicMixer.SetFloat("sfx_vol", volumeMixerValue);
+            _musicMixer.SetFloat("bgm_vol", volumeMixerValue);
             
             CurrentMusicVolume = volume;
             SaveSystem.Source.SetMusicVolume(volume);
@@ -67,28 +67,33 @@ namespace Golf
 
             _musicMixer.SetFloat("bgm_vol", MINIMUM_MIXER_VOLUME_VALUE);
 
-            DOTween.To(
-                () => {
-                    _musicMixer.GetFloat("bgm_vol", out float currentVol);
-                    return currentVol;
-                },
-                x => _musicMixer.SetFloat("bgm_vol", x),
-                MAXIMUM_MIXER_VOLUME_VALUE,
-                1
-            );
+            if(CurrentMusicVolume > 0)
+            {
+                DOTween.To(
+                    () => {
+                        _musicMixer.GetFloat("bgm_vol", out float currentVol);
+                        return currentVol;
+                    },
+                    x => _musicMixer.SetFloat("bgm_vol", x),
+                    MAXIMUM_MIXER_VOLUME_VALUE,
+                    1
+                );
+            }
         }
 
         public void FadeOutMusic()
         {
-            DOTween.To(
-                () => { 
-                    _musicMixer.GetFloat("bgm_vol", out float currentVol); 
-                    return currentVol; 
-                },
-                x => _musicMixer.SetFloat("bgm_vol", x), 
-                MINIMUM_MIXER_VOLUME_VALUE, 
-                1
-            );
+            if (CurrentMusicVolume > 0) { 
+                DOTween.To(
+                    () => { 
+                        _musicMixer.GetFloat("bgm_vol", out float currentVol); 
+                        return currentVol; 
+                    },
+                    x => _musicMixer.SetFloat("bgm_vol", x), 
+                    MINIMUM_MIXER_VOLUME_VALUE, 
+                    1
+                );
+            }
         }
 
         public void PlayOneShot(string audioName)
@@ -104,7 +109,7 @@ namespace Golf
 
         public void ButtonSelectHoverSFX() => PlayOneShot("ButtonSelectHoverSFX");
       
-        public void SetAngleSFX() => PlayOneShot("SetAngleSFX");
+        public void WaterPlatformBallSFX() => PlayOneShot("WaterPlatfomSFX");
 
         public void TypingSFX()
         {

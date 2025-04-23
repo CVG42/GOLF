@@ -1,13 +1,14 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using TMPro;
 
 namespace Golf
 {
     public class ResolutionSettingsMenu : MonoBehaviour
     {
         [SerializeField] private Toggle _fullScreenToggle;
-        [SerializeField] private Dropdown _resolutionDropdown;
+        [SerializeField] private TMP_Dropdown _resolutionDropdown;
 
         private ISaveSource saveSystem;
 
@@ -26,13 +27,10 @@ namespace Golf
 
         private void Start()
         {
-            if (saveSystem != null)
-            {
-                _fullScreenToggle.isOn = saveSystem.GetFullScreenMode();
-                _fullScreenToggle.onValueChanged.AddListener(SetFullScreenMode);
+            _fullScreenToggle.isOn = saveSystem.GetFullScreenMode();
+            _fullScreenToggle.onValueChanged.AddListener(SetFullScreenMode);
 
-                SetupResolutionDropdown();
-            }
+            SetupResolutionDropdown();
         }
 
         private void SetupResolutionDropdown()

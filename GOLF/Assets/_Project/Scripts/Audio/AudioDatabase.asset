@@ -21,8 +21,8 @@ MonoBehaviour:
     audioName: ButtonSelectHoverSFX
   - audio: {fileID: 8300000, guid: af5dc21f7b991c842ba92baa8ca92325, type: 3}
     audioName: ButtonClickSFX
-  - audio: {fileID: 8300000, guid: 130e9052e497db945893802bc21f985a, type: 3}
-    audioName: SetAngleSFX
+  - audio: {fileID: 8300000, guid: 4d543cb4f7068cd4cbf05ef3d8e9b8cf, type: 3}
+    audioName: WaterPlatfomSFX
   - audio: {fileID: 8300000, guid: e43b8f5ddd399c54f9d9682fc39bd526, type: 3}
     audioName: Tutorial
   - audio: {fileID: 8300000, guid: c30c0d9fcdbf69e4688753a3e686a04f, type: 3}

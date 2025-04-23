@@ -12,17 +12,13 @@ namespace Golf
         {
             _sfxSlider.onValueChanged.AddListener(AudioManager.Source.SetSFXVolume);
             _musicSlider.onValueChanged.AddListener(AudioManager.Source.SetMusicVolume);
-        }
-
-        private void OnEnable()
-        {
             LoadVolumeValues();
         }
 
         private void LoadVolumeValues()
         {
             _sfxSlider.value = AudioManager.Source.CurrentSFXVolume;
-            _musicSlider.value = AudioManager.Source.CurrentSFXVolume;
+            _musicSlider.value = AudioManager.Source.CurrentMusicVolume;
         }
     }
 }
