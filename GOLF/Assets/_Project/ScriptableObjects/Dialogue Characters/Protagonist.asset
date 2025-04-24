@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: Cat
+  m_Name: Protagonist
   m_EditorClassIdentifier: Assembly-CSharp:Golf:DialogueCharacter
   Name: Cat
   Icon: {fileID: 21300000, guid: 83e229114036cd14ca83cf4f607dd5b5, type: 3}
-  AudioName: Blip
+  AudioName: 
