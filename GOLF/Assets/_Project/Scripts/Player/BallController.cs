@@ -7,6 +7,10 @@ namespace Golf
     {
         private const float MINIMUM_VELOCITY = 0.1f;
 
+        [SerializeField] private float _angularVelocity;
+        [SerializeField] private float _angularDrag;
+        [SerializeField] private LayerMask _groundLayer;
+
         private bool _isOnPole;
         private Vector2 _currentLastPosition;
 
@@ -38,6 +42,7 @@ namespace Golf
         private void Update()
         {
             StopBallCheck();
+            AddAngularDrag();
         }
 
         private void LaunchBall(float angle, float force)
@@ -45,8 +50,31 @@ namespace Golf
             float radians = angle * Mathf.Deg2Rad;
             Vector2 launchDirection = new Vector2(Mathf.Cos(radians), Mathf.Sin(radians));
             _rigidbody.AddForce(launchDirection * force, ForceMode2D.Impulse);
+            AddTorque(launchDirection.x);
             GameManager.Source.ReduceHitsLeft();
             AudioManager.Source.PlayOneShot("BallHitSFX");
+        }
+
+        private void AddTorque(float x)
+        { 
+            _rigidbody.AddTorque(-x * _angularVelocity);
+        }
+
+        private void AddAngularDrag()
+        {
+            if (IsGrounded())
+            {
+                _rigidbody.angularDrag = _angularDrag;
+            }
+            else
+            {
+                _rigidbody.angularDrag = 0;
+            }
+        }
+
+        private bool IsGrounded()
+        {
+            return Physics2D.Raycast(_rigidbody.position, Vector2.down, 1f, _groundLayer);
         }
 
         private void StopBallCheck()
