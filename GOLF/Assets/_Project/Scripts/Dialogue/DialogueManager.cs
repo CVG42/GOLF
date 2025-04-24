@@ -12,20 +12,26 @@ namespace Golf
         [SerializeField] private Image _characterImage;
         [SerializeField] private TextMeshProUGUI _characterName;
         [SerializeField] private TextMeshProUGUI _dialogueArea;
+        [SerializeField] private Button _dialogueButton;
         [SerializeField] private float _typingSpeed = 0.2f;
-        [SerializeField] private GameObject _dialoguePrefab;
+        [SerializeField] private Canvas _dialogueFormat;
         [SerializeField] private Action _onDialogueEnd;
-
+        
         private bool _isTyping = false;
         private bool _skipTyping = false;
         private string _currentSentence = "";
         private readonly Queue<DialogueLine> _lines = new Queue<DialogueLine>();
-             
+
+        private void Start()
+        {
+            InputManager.Source.OnConfirmButtonPressed += NextDialogue;
+        }
+
         public void StartDialogue(Dialogue dialogue, Action onDialogueEnd)
         {
             InputManager.Source.Disable();
             _onDialogueEnd = onDialogueEnd;
-            _dialoguePrefab.SetActive(true);
+            _dialogueFormat.enabled = true;
             _lines.Clear();
 
             foreach (DialogueLine dialogueline in dialogue.DialogueLines)
@@ -63,8 +69,6 @@ namespace Golf
             _isTyping = true;
             _skipTyping = false;
             _currentSentence = dialogueline.Line;
-            
-            AudioManager.Source.PlayOneShot(dialogueline.Character.AudioName);
 
             _dialogueArea.text = "";
             foreach (char letter in dialogueline.Line.ToCharArray())
@@ -84,9 +88,14 @@ namespace Golf
 
         private void EndDialogue()
         {
-            _dialoguePrefab.SetActive(false);
+            _dialogueFormat.enabled = false;
             _onDialogueEnd?.Invoke();
             InputManager.Source.Enable();
+        }
+
+        private void NextDialogue()
+        {
+            _dialogueButton.onClick.Invoke();
         }
     }
 }

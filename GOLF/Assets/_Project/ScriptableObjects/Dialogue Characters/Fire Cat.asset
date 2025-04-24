@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp:Golf:DialogueCharacter
   Name: Chateux Cat
   Icon: {fileID: 21300000, guid: b3a42a30320da914084bc8795fb99b07, type: 3}
-  AudioName: 
+  AudioName: Blip

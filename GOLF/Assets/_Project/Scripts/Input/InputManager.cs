@@ -52,14 +52,13 @@ namespace Golf
 
         private void Update()
         {
-            if (!_isEnabled) return;
-
             _currentAction.DoAction();
             CheckButtonInput();
         }
 
         public void ChangeAction(ActionState newAction)
         {
+            if (!_isEnabled) return;
             if (CurrentActionState == newAction) return;
 
             _currentAction = newAction switch

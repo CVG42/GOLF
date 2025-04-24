@@ -558,6 +558,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3755963990913954208, guid: a6ab81db7a0356c4aaf5bb1ee3b2ce86, type: 3}
   m_PrefabInstance: {fileID: 1195779462}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1005710218 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 749245596329678449, guid: a6ab81db7a0356c4aaf5bb1ee3b2ce86, type: 3}
+  m_PrefabInstance: {fileID: 1195779462}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1195779462
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -680,7 +691,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5556393740841120634, guid: a6ab81db7a0356c4aaf5bb1ee3b2ce86, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -773,7 +784,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1200469346}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -2774,6 +2785,14 @@ PrefabInstance:
       propertyPath: _characterImage
       value: 
       objectReference: {fileID: 1291402781}
+    - target: {fileID: 3401784355461521770, guid: 49e6697ea4bd9404eb5a28b946842151, type: 3}
+      propertyPath: _dialogueButton
+      value: 
+      objectReference: {fileID: 1005710218}
+    - target: {fileID: 3401784355461521770, guid: 49e6697ea4bd9404eb5a28b946842151, type: 3}
+      propertyPath: _dialogueFormat
+      value: 
+      objectReference: {fileID: 1200469350}
     - target: {fileID: 3401784355461521770, guid: 49e6697ea4bd9404eb5a28b946842151, type: 3}
       propertyPath: _dialoguePrefab
       value: 
