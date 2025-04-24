@@ -5,6 +5,7 @@ namespace Golf
     public class Wall : MonoBehaviour
     {
         [SerializeField] private Collider2D _wallCollider;
+        [SerializeField] private int _wallHardness;
 
         private void Start()
         {
@@ -18,7 +19,7 @@ namespace Golf
 
         private void SetColliderType(PowerUpData powerUpData)
         {
-            _wallCollider.isTrigger = powerUpData.canDestroyWalls;
+            _wallCollider.isTrigger = powerUpData.Hardness > _wallHardness;
         }
 
         private void OnTriggerEnter2D(Collider2D collision)

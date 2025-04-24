@@ -8,11 +8,11 @@ namespace Golf
         [SerializeField] private float _ballMass;
         [SerializeField] private float _ballAngularDrag;
         [SerializeField] private Sprite _ballSprite;
-        [SerializeField] private bool _canDestroyWalls;
+        [SerializeField] private int _hardness;
 
         public float BallMass => _ballMass;
         public float BallAngularDrag => _ballAngularDrag;
         public Sprite BallSprite => _ballSprite;
-        public bool CanDestroyWalls => _canDestroyWalls;
+        public int Hardness => _hardness;
     }
 }
