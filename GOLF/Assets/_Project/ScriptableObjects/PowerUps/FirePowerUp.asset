@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b112847a445174b48b80ba0241c4afc6, type: 3}
   m_Name: FirePowerUp
   m_EditorClassIdentifier: 
-  ballMass: 0.3
-  ballAngularDrag: 40
-  ballSprite: {fileID: -1738607512, guid: 6a96c68875506c440ac6999599ead7d4, type: 3}
-  canDestroyWalls: 1
+  _ballMass: 0.3
+  _ballAngularDrag: 40
+  _ballSprite: {fileID: -1738607512, guid: 6a96c68875506c440ac6999599ead7d4, type: 3}
+  _hardness: 1
