@@ -15,7 +15,12 @@ namespace Golf
         {
             if (collider.CompareTag("Player"))
             {
+                var _rbCollider = collider.GetComponent<Rigidbody2D>();
                 TriggerDialogue();
+                _rbCollider.angularVelocity = 0f;
+                _rbCollider.velocity = Vector3.zero;
+
+                gameObject.SetActive(false);
             }
         }
     }

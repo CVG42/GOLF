@@ -16,16 +16,16 @@ namespace Golf
         [SerializeField] private GameObject _dialoguePrefab;
         [SerializeField] private Action _onDialogueEnd;
 
-        private bool isTyping = false;
-        private bool skipTyping = false;
-        private string currentSentence = "";
+        private bool _isTyping = false;
+        private bool _skipTyping = false;
+        private string _currentSentence = "";
         private readonly Queue<DialogueLine> _lines = new Queue<DialogueLine>();
              
         public void StartDialogue(Dialogue dialogue, Action onDialogueEnd)
         {
             InputManager.Source.Disable();
             _onDialogueEnd = onDialogueEnd;
-            _dialoguePrefab.gameObject.SetActive(true);
+            _dialoguePrefab.SetActive(true);
             _lines.Clear();
 
             foreach (DialogueLine dialogueline in dialogue.DialogueLines)
@@ -38,9 +38,9 @@ namespace Golf
 
         public void DisplayNextDialogueLine()
         {
-            if (isTyping)
+            if (_isTyping)
             {
-                skipTyping = true;
+                _skipTyping = true;
                 return;
             }
 
@@ -60,16 +60,16 @@ namespace Golf
 
         private async void TypeSentence(DialogueLine dialogueline)
         {
-            isTyping = true;
-            skipTyping = false;
-            currentSentence = dialogueline.Line;
+            _isTyping = true;
+            _skipTyping = false;
+            _currentSentence = dialogueline.Line;
             
             AudioManager.Source.PlayOneShot(dialogueline.Character.AudioName);
 
             _dialogueArea.text = "";
             foreach (char letter in dialogueline.Line.ToCharArray())
             {
-                if (skipTyping)
+                if (_skipTyping)
                 {
                     _dialogueArea.text = dialogueline.Line;
                     break;
@@ -79,12 +79,12 @@ namespace Golf
                 AudioManager.Source.TypingSFX();
                 await UniTask.Delay(TimeSpan.FromSeconds(_typingSpeed), DelayType.DeltaTime);
             }
-            isTyping = false;
+            _isTyping = false;
         }
 
         private void EndDialogue()
         {
-            _dialoguePrefab.gameObject.SetActive(false);
+            _dialoguePrefab.SetActive(false);
             _onDialogueEnd?.Invoke();
             InputManager.Source.Enable();
         }
