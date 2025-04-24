@@ -25,9 +25,9 @@ namespace Golf
 
         private void ApplyPowerUp(PowerUpData powerUpData)
         {
-            _rigidbody.mass = powerUpData.ballMass;
-            _rigidbody.angularDrag = powerUpData.ballAngularDrag;
-            _ballSprite.sprite = powerUpData.ballSprite;
+            _rigidbody.mass = powerUpData.BallMass;
+            _rigidbody.angularDrag = powerUpData.BallAngularDrag;
+            _ballSprite.sprite = powerUpData.BallSprite;
         }
     }
 }

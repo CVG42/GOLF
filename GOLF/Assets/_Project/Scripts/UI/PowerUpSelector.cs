@@ -60,7 +60,7 @@ namespace Golf
         {
             if (_currentPowerUpIndex >= 0 && _currentPowerUpIndex < _availablePowerUps.Count)
             {
-                _powerUpIconImage.sprite = _availablePowerUps[_currentPowerUpIndex].ballSprite;
+                _powerUpIconImage.sprite = _availablePowerUps[_currentPowerUpIndex].BallSprite;
             }
         }
     }
