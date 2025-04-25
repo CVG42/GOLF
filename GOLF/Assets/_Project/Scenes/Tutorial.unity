@@ -177,6 +177,14 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2732094261185820736, guid: 4305f74152ae2084d80543b99499404f, type: 3}
+      propertyPath: _ballTransform
+      value: 
+      objectReference: {fileID: 933046800}
+    - target: {fileID: 2732094261185820736, guid: 4305f74152ae2084d80543b99499404f, type: 3}
+      propertyPath: _lineRendererLength
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3907353326556557548, guid: 4305f74152ae2084d80543b99499404f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -216,6 +224,38 @@ PrefabInstance:
     - target: {fileID: 3907353326556557548, guid: 4305f74152ae2084d80543b99499404f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6315795815795307777, guid: 4305f74152ae2084d80543b99499404f, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6315795815795307777, guid: 4305f74152ae2084d80543b99499404f, type: 3}
+      propertyPath: m_Parameters.textureMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6315795815795307777, guid: 4305f74152ae2084d80543b99499404f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 328c359546c9c6f47ac8316c4be0d411, type: 2}
+    - target: {fileID: 6315795815795307777, guid: 4305f74152ae2084d80543b99499404f, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6315795815795307777, guid: 4305f74152ae2084d80543b99499404f, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.b
+      value: 0.41320753
+      objectReference: {fileID: 0}
+    - target: {fileID: 6315795815795307777, guid: 4305f74152ae2084d80543b99499404f, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.g
+      value: 0.41320753
+      objectReference: {fileID: 0}
+    - target: {fileID: 6315795815795307777, guid: 4305f74152ae2084d80543b99499404f, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6315795815795307777, guid: 4305f74152ae2084d80543b99499404f, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7899568124590805281, guid: 4305f74152ae2084d80543b99499404f, type: 3}
       propertyPath: m_AnchorMax.x
@@ -6686,6 +6726,11 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!4 &933046800 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2734175016483872664, guid: 4305f74152ae2084d80543b99499404f, type: 3}
+  m_PrefabInstance: {fileID: 289881837}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &961623951
 GameObject:
   m_ObjectHideFlags: 0
