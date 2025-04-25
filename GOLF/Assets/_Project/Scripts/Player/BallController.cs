@@ -46,6 +46,8 @@ namespace Golf
 
         private void Update()
         {
+            if (GameStateManager.Source.CurrentGameState == GameState.OnPause) return;
+            
             StopBallCheck();
             SetAngularDrag();
         }
