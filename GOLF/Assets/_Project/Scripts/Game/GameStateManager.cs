@@ -3,28 +3,46 @@ using UnityEngine;
 
 namespace Golf
 {
-    public class GameStateManager : Singleton<GameStateManager>
+    public class GameStateManager : Singleton<IGameStateSource>, IGameStateSource
     {
-        [Serializable]
-        public enum GameState
-        { 
-            OnPlay,
-            OnPause,
-        }
-
         public event Action<GameState> OnGameStateChanged;
         public GameState CurrentGameState { get; private set; }
 
-        public void ChangeState(GameState state)
+        private void Start()
         {
-            if (CurrentGameState == state) return; 
-            CurrentGameState = state;
-            OnGameStateChanged?.Invoke(CurrentGameState);
+            InputManager.Source.OnPause += SetPauseState;
         }
 
         private void OnDestroy()
         {
-            OnGameStateChanged = null;
+            InputManager.Source.OnPause -= SetPauseState;
         }
+
+        private void SetPauseState()
+        {
+            switch (CurrentGameState)
+            {
+                case GameState.OnPlay:
+                    ChangeState(GameState.OnPause);
+                    break;
+                case GameState.OnPause:
+                    ChangeState(GameState.OnPlay);
+                    break;
+            }
+        }
+
+        private void ChangeState(GameState state)
+        {
+            if (CurrentGameState == state) return; 
+            
+            CurrentGameState = state;
+            OnGameStateChanged?.Invoke(CurrentGameState);
+        }
+    }
+    
+    public enum GameState
+    { 
+        OnPlay,
+        OnPause,
     }
 }

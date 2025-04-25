@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace Golf
@@ -43,7 +42,6 @@ namespace Golf
             GameManager.Source.OnBallRespawn -= ResetBallLastPosition;
             InputManager.Source.OnLaunch -= LaunchBall;
             GameStateManager.Source.OnGameStateChanged -= OnGameStatedChanged;
-
         }
 
         private void Update()
@@ -129,22 +127,20 @@ namespace Golf
             }
         }
 
-        private void OnGameStatedChanged(GameStateManager.GameState state)
+        private void OnGameStatedChanged(GameState state)
         {
             switch (state)
             {
-                case GameStateManager.GameState.OnPlay:
+                case GameState.OnPlay:
                     ResumePhysics();
                     break;
-                case GameStateManager.GameState.OnPause:
+                case GameState.OnPause:
                     PausePhysics();
                     break;
-                default:
-                    throw new ArgumentOutOfRangeException();
             }
         }
         
-        public void PausePhysics()
+        private void PausePhysics()
         {
             _savedVelocity = _rigidbody.velocity;
             _savedAngularVelocity = _rigidbody.angularVelocity;
@@ -153,7 +149,7 @@ namespace Golf
             _rigidbody.bodyType = RigidbodyType2D.Kinematic;
         }
 
-        public void ResumePhysics()
+        private void ResumePhysics()
         {
             _rigidbody.bodyType = RigidbodyType2D.Dynamic;
 

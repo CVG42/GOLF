@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using static Golf.GameStateManager;
 
 namespace Golf
 {
@@ -52,6 +51,16 @@ namespace Golf
             _movingHandler = new MovingHandler();
 
             _currentAction = _directionHandler;
+        }
+
+        private void Start()
+        {
+            GameStateManager.Source.OnGameStateChanged += OnGameStatedChanged;
+        }
+
+        private void OnDestroy()
+        {
+            GameStateManager.Source.OnGameStateChanged -= OnGameStatedChanged;
         }
 
         private void Update()
@@ -112,15 +121,20 @@ namespace Golf
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                switch (GameStateManager.Source.CurrentGameState)
-                {
-                    case GameState.OnPlay:
-                        GameStateManager.Source.ChangeState(GameStateManager.GameState.OnPause);
-                        break;
-                    case GameState.OnPause:
-                        GameStateManager.Source.ChangeState(GameStateManager.GameState.OnPlay);
-                        break;
-                }
+                OnPause?.Invoke();
+            }
+        }
+
+        private void OnGameStatedChanged(GameState state)
+        {
+            switch (state)
+            {
+                case GameState.OnPlay:
+                    Enable();
+                    break;
+                case GameState.OnPause:
+                    Disable();
+                    break;
             }
         }
         
@@ -140,7 +154,6 @@ namespace Golf
         Direction,
         Force,
         Launch,
-        Moving,
-        Pause
+        Moving
     }
 }
