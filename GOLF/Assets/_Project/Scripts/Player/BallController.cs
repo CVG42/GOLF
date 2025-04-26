@@ -60,7 +60,7 @@ namespace Golf
             _rigidbody.AddTorque(-x * _angularVelocity);
         }
 
-        private void AddAngularDrag()
+        private void SetAngularDrag()
         {
             if (IsGrounded())
             {
