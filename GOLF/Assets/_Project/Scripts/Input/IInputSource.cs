@@ -7,7 +7,10 @@ namespace Golf
     {
         void Enable();
         void Disable();
-        
+
+        event Action OnPreviousButtonPresssed;
+        event Action OnNextButtonPresssed;
+
         event Action OnConfirmButtonPressed;
         event Action<ActionState> OnActionChange;
         event Action<Vector2> OnMoveCamera;

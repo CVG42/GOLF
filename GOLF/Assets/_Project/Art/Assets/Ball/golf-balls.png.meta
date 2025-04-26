@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b0776ecbbe4da4b4ba4a8620c9c35120
+guid: 6a96c68875506c440ac6999599ead7d4
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 0
   alignment: 0
@@ -110,10 +110,10 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: golf-ball_0
+      name: golf-balls_0
       rect:
         serializedVersion: 2
-        x: 3
+        x: 0
         y: 0
         width: 10
         height: 10
@@ -124,8 +124,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1560cc694435c7c478b200272e676cb3
-      internalID: -460964616
+      spriteID: ec46779b58a8a63429b0a01496d133a5
+      internalID: -1738607512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: golf-balls_1
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 0
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61e814475db5a004896b1b0bd8b8f9ad
+      internalID: 1442839142
       vertices: []
       indices: 
       edges: []
@@ -141,7 +162,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      golf-ball_0: -460964616
+      golf-balls_0: -1738607512
+      golf-balls_1: 1442839142
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

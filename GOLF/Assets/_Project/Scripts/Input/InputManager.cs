@@ -8,6 +8,8 @@ namespace Golf
         public event Action OnConfirmButtonPressed;
         public event Action<ActionState> OnActionChange;
         public event Action<Vector2> OnMoveCamera;
+        public event Action OnPreviousButtonPresssed;
+        public event Action OnNextButtonPresssed;
 
         public bool IsLocking { get; set; } = false;
         public ActionState CurrentActionState => _currentAction.ActionState;
@@ -79,6 +81,16 @@ namespace Golf
             if (Input.GetKeyDown(KeyCode.Z))
             {
                 OnConfirmButtonPressed?.Invoke();
+            }
+
+            if (Input.GetKeyDown(KeyCode.Comma))
+            {
+                OnPreviousButtonPresssed?.Invoke();
+            }
+
+            if (Input.GetKeyDown(KeyCode.Period))
+            {
+                OnNextButtonPresssed?.Invoke();
             }
 
             if (IsLocking == false)
