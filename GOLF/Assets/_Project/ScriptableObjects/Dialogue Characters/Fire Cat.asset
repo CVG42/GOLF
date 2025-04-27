@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Fire Cat
+  m_EditorClassIdentifier: Assembly-CSharp:Golf:DialogueCharacter
+  Name: Chateux Cat
+  Icon: {fileID: 21300000, guid: b3a42a30320da914084bc8795fb99b07, type: 3}
+  AudioName: Blip
