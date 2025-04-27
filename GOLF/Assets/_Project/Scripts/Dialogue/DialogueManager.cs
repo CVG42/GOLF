@@ -27,6 +27,11 @@ namespace Golf
             InputManager.Source.OnConfirmButtonPressed += NextDialogue;
         }
 
+        private void OnDestroy()
+        {
+            InputManager.Source.OnConfirmButtonPressed -= NextDialogue;
+        }
+
         public void StartDialogue(Dialogue dialogue, Action onDialogueEnd)
         {
             InputManager.Source.Disable();
