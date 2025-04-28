@@ -42,7 +42,6 @@ namespace Golf
         private void Update()
         {
             StopBallCheck();
-            AddAngularDrag();
         }
 
         private void LaunchBall(float angle, float force)
