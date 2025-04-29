@@ -66,14 +66,18 @@ namespace Golf
         private void Update()
         {
             PauseButton();
-            _currentAction.DoAction();
-            CheckButtonInput();
+            CheckUIButtonInput();
+
+            if (!_isEnabled) return;
+            if (GameStateManager.Source.CurrentGameState != GameState.OnPlay) return;
+
+            CheckGameButtonInput();
         }
 
         public void ChangeAction(ActionState newAction)
         {
             if (!_isEnabled) return;
-            if (GameStateManager.Source.CurrentGameState != GameStateManager.GameState.OnPlay) return;
+            if (GameStateManager.Source.CurrentGameState != GameState.OnPlay) return;
             if (CurrentActionState == newAction) return;
 
             _currentAction = newAction switch
@@ -88,7 +92,7 @@ namespace Golf
             OnActionChange?.Invoke(CurrentActionState);
         }
 
-        private void CheckButtonInput()
+        private void CheckUIButtonInput()
         {
             if (Input.GetKeyDown(KeyCode.Z))
             {
@@ -104,7 +108,10 @@ namespace Golf
             {
                 OnNextButtonPresssed?.Invoke();
             }
+        }
 
+        private void CheckGameButtonInput()
+        {
             if (IsLocking == false)
             {
                 var horizontalInput = Input.GetAxis("Horizontal-Camera");
@@ -115,6 +122,8 @@ namespace Golf
                     OnMoveCamera?.Invoke(new Vector2(horizontalInput, verticalInput));
                 }
             }
+
+            _currentAction.DoAction();
         }
 
         private void PauseButton()
