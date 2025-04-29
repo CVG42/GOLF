@@ -529,7 +529,9 @@ MonoBehaviour:
   _isPersistent: 0
   _strokesText: {fileID: 1325333295222892001}
   _losePanel: {fileID: 6522886916616095373}
-  _pausePanel: {fileID: 0}
+  _pausePanel: {fileID: 183145067307123979}
+  _resumeButton: {fileID: 640812301480940453}
+  _restartButton: {fileID: 322753466401790868}
 --- !u!1 &2763289337446953447
 GameObject:
   m_ObjectHideFlags: 0
@@ -919,19 +921,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1711457137859969296}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8435416816928452712}
-        m_TargetAssemblyTypeName: Golf.UIManager, Assembly-CSharp
-        m_MethodName: DeactivatePausePanel
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &4226242057241763701
 GameObject:
   m_ObjectHideFlags: 0
@@ -1428,7 +1418,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 594368212520020772}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8435416816928452712}
+        m_TargetAssemblyTypeName: Golf.UIManager, Assembly-CSharp
+        m_MethodName: RestartLevel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8060789959400803796
 GameObject:
   m_ObjectHideFlags: 0
