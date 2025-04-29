@@ -31,7 +31,7 @@ namespace Golf
             }
         }
 
-        private void ChangeState(GameState state)
+        public void ChangeState(GameState state)
         {
             if (CurrentGameState == state) return; 
             

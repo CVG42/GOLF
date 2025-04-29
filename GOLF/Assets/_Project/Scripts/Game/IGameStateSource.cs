@@ -6,5 +6,6 @@ namespace Golf
     {
         event Action<GameState> OnGameStateChanged;
         GameState CurrentGameState { get; }
+        void ChangeState(GameState state);
     }
 }
