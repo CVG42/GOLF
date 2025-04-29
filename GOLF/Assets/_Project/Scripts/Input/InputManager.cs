@@ -10,6 +10,7 @@ namespace Golf
         public event Action<Vector2> OnMoveCamera;
         public event Action OnPreviousButtonPresssed;
         public event Action OnNextButtonPresssed;
+        public event Action OnPause;
 
         public bool IsLocking { get; set; } = false;
         public ActionState CurrentActionState => _currentAction.ActionState;
@@ -52,15 +53,31 @@ namespace Golf
             _currentAction = _directionHandler;
         }
 
+        private void Start()
+        {
+            GameStateManager.Source.OnGameStateChanged += OnGameStatedChanged;
+        }
+
+        private void OnDestroy()
+        {
+            GameStateManager.Source.OnGameStateChanged -= OnGameStatedChanged;
+        }
+
         private void Update()
         {
-            _currentAction.DoAction();
-            CheckButtonInput();
+            PauseButton();
+            CheckUIButtonInput();
+
+            if (!_isEnabled) return;
+            if (GameStateManager.Source.CurrentGameState != GameState.OnPlay) return;
+
+            CheckGameButtonInput();
         }
 
         public void ChangeAction(ActionState newAction)
         {
             if (!_isEnabled) return;
+            if (GameStateManager.Source.CurrentGameState != GameState.OnPlay) return;
             if (CurrentActionState == newAction) return;
 
             _currentAction = newAction switch
@@ -69,13 +86,13 @@ namespace Golf
                 ActionState.Force => _forceHandler,
                 ActionState.Launch => _launchHandler,
                 ActionState.Moving => _movingHandler,
-                _ => _currentAction
+                _ => _currentAction,
             };
-
+            
             OnActionChange?.Invoke(CurrentActionState);
         }
 
-        private void CheckButtonInput()
+        private void CheckUIButtonInput()
         {
             if (Input.GetKeyDown(KeyCode.Z))
             {
@@ -91,7 +108,10 @@ namespace Golf
             {
                 OnNextButtonPresssed?.Invoke();
             }
+        }
 
+        private void CheckGameButtonInput()
+        {
             if (IsLocking == false)
             {
                 var horizontalInput = Input.GetAxis("Horizontal-Camera");
@@ -101,6 +121,29 @@ namespace Golf
                 {
                     OnMoveCamera?.Invoke(new Vector2(horizontalInput, verticalInput));
                 }
+            }
+
+            _currentAction.DoAction();
+        }
+
+        private void PauseButton()
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                OnPause?.Invoke();
+            }
+        }
+
+        private void OnGameStatedChanged(GameState state)
+        {
+            switch (state)
+            {
+                case GameState.OnPlay:
+                    Enable();
+                    break;
+                case GameState.OnPause:
+                    Disable();
+                    break;
             }
         }
         

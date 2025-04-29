@@ -19,16 +19,20 @@ namespace Golf
         private Rigidbody2D _rigidbody;
         private IInputSource _inputSource;
 
+        private Vector2 _savedVelocity;
+        private float _savedAngularVelocity;
+
         private void Awake()
         {
             _inputSource = InputManager.Source;
             _rigidbody = GetComponent<Rigidbody2D>();
-            _currentLastPosition = transform.position;           
+            _currentLastPosition = transform.position;
         }
 
         private void Start()
         {
             _isOnPole = false;
+            GameStateManager.Source.OnGameStateChanged += OnGameStatedChanged;
             GameManager.Source.OnBallRespawn += ResetBallLastPosition;
             InputManager.Source.OnLaunch += LaunchBall;        
         }
@@ -37,10 +41,13 @@ namespace Golf
         {
             GameManager.Source.OnBallRespawn -= ResetBallLastPosition;
             InputManager.Source.OnLaunch -= LaunchBall;
+            GameStateManager.Source.OnGameStateChanged -= OnGameStatedChanged;
         }
-        
+
         private void Update()
         {
+            if (GameStateManager.Source.CurrentGameState == GameState.OnPause) return;
+            
             StopBallCheck();
             SetAngularDrag();
         }
@@ -120,6 +127,36 @@ namespace Golf
             {
                 _isOnPole = true;
             }
+        }
+
+        private void OnGameStatedChanged(GameState state)
+        {
+            switch (state)
+            {
+                case GameState.OnPlay:
+                    ResumePhysics();
+                    break;
+                case GameState.OnPause:
+                    PausePhysics();
+                    break;
+            }
+        }
+        
+        private void PausePhysics()
+        {
+            _savedVelocity = _rigidbody.velocity;
+            _savedAngularVelocity = _rigidbody.angularVelocity;
+            _rigidbody.angularVelocity = 0f;
+            _rigidbody.velocity = Vector2.zero;
+            _rigidbody.bodyType = RigidbodyType2D.Kinematic;
+        }
+
+        private void ResumePhysics()
+        {
+            _rigidbody.bodyType = RigidbodyType2D.Dynamic;
+
+            _rigidbody.velocity = _savedVelocity;
+            _rigidbody.angularVelocity = _savedAngularVelocity;
         }
     }
 }
