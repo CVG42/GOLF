@@ -27,12 +27,12 @@ namespace Golf
             _inputSource = InputManager.Source;
             _rigidbody = GetComponent<Rigidbody2D>();
             _currentLastPosition = transform.position;
-            GameStateManager.Source.OnGameStateChanged += OnGameStatedChanged;
         }
 
         private void Start()
         {
             _isOnPole = false;
+            GameStateManager.Source.OnGameStateChanged += OnGameStatedChanged;
             GameManager.Source.OnBallRespawn += ResetBallLastPosition;
             InputManager.Source.OnLaunch += LaunchBall;        
         }
