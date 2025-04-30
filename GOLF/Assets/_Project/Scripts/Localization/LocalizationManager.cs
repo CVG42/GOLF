@@ -4,17 +4,19 @@ using System.IO;
 
 namespace Golf
 {
-    public class LocalizationManager : Singleton<LocalizationManager>, ILocalizationSource
+    public class LocalizationManager : Singleton<ILocalizationSource>, ILocalizationSource
     {
         private Dictionary<string, Dictionary<Language, string>> _localizationData = new Dictionary<string, Dictionary<Language, string>>();
         private Language currentLanguage = Language.English;
 
-        public static event System.Action OnLanguageChanged;
+        public event System.Action OnLanguageChanged;
+
         protected override void Awake()
         {
             base.Awake();
             LoadLocalizationData();
         }
+
         public void LoadLocalizationData()
         {
             _localizationData = new Dictionary<string, Dictionary<Language, string>>();
@@ -89,7 +91,6 @@ namespace Golf
             return fields.ToArray();
         }
 
-
         private bool TryParseLanguage(string header, out Language language)
         {
             header = header.Trim().ToLower();
@@ -100,7 +101,7 @@ namespace Golf
                     language = Language.English;
                     return true;
                 case "spanish (es-mx)":
-                    language = Language.Spanish_MX;
+                    language = Language.Spanish;
                     return true;
                 case "portuguese (br)":
                     language = Language.Portuguese;
@@ -110,7 +111,6 @@ namespace Golf
                     return false;
             }
         }
-
 
         public void SetLanguage(Language language)
         {
@@ -137,7 +137,7 @@ namespace Golf
     public enum Language
     {
         English,
-        Spanish_MX,
+        Spanish,
         Portuguese
     }
 }

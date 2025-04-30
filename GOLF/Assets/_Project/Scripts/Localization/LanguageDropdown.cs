@@ -11,35 +11,46 @@ namespace Golf
         private void Awake()
         {
             if (dropdown == null)
-            {
                 dropdown = GetComponent<TMP_Dropdown>();
-            }
 
             if (dropdown == null)
             {
                 Debug.LogError("Dropdown is not assigned and could not be found automatically.");
-                return; 
+                return;
             }
 
             InitializeDropdown();
+            LocalizationManager.Source.OnLanguageChanged += UpdateDropdownLabels;
             dropdown.onValueChanged.AddListener(OnLanguageSelected);
         }
 
         private void InitializeDropdown()
         {
-            List<string> options = new List<string>();
+            UpdateDropdownLabels();
+            dropdown.value = (int)LocalizationManager.Source.CurrentLanguage;
+            dropdown.RefreshShownValue();
+        }
 
-            foreach (Language language in System.Enum.GetValues(typeof(Language)))
+        private void UpdateDropdownLabels()
+        {
+            int currentValue = dropdown.value;
+
+            string languageListRaw = "LANGUAGE".Localize();
+            string[] localizedLanguages = languageListRaw.Split(',');
+
+            var options = new List<TMP_Dropdown.OptionData>();
+            foreach (string lang in localizedLanguages)
             {
-                options.Add(language.ToString().Replace("_", " "));
+                options.Add(new TMP_Dropdown.OptionData(lang.Trim()));
             }
 
             dropdown.ClearOptions();
             dropdown.AddOptions(options);
 
-            dropdown.value = (int)LocalizationManager.Source.CurrentLanguage;
+            dropdown.value = currentValue;
             dropdown.RefreshShownValue();
         }
+
 
         private void OnLanguageSelected(int index)
         {
@@ -49,6 +60,8 @@ namespace Golf
         private void OnDestroy()
         {
             dropdown.onValueChanged.RemoveListener(OnLanguageSelected);
+            if (LocalizationManager.Source != null)
+                LocalizationManager.Source.OnLanguageChanged -= UpdateDropdownLabels;
         }
     }
 }

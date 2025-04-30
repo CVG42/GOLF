@@ -1,10 +1,11 @@
 Key,English (en),Spanish (es-MX),Portuguese (br)
-G001,Play,Jugar,Jogar
-G002,Exit,Salir,Saída
-G003,Pause,Pausa,Pausa
-G004,Credits,Créditos ,Créditos 
-G005,Settings,Ajustes,Configurações
-G006,Music,Música ,Música 
-G007,SFX,Efectos de sonido,Efeitos sonoros
-G008,Resolutions,Resolución ,Resoluções
-G009,Restart,Reiniciar,Reiniciar
+PLAY,Play,Jugar,Jogar
+EXIT,Exit,Salir,Saída
+PAUSE,Pause,Pausa,Pausa
+CREDITS,Credits,Créditos ,Créditos 
+SETTINGS,Settings,Ajustes,Configurações
+MUSIC,Music,Música ,Música 
+SFX,SFX,Efectos de sonido,Efeitos sonoros
+RESOLUTIONS,Resolutions,Resolución ,Resoluções
+RESTART,Restart,Reiniciar,Reiniciar
+LANGUAGE,"""English,Español,Português""","""Inglés,Español,Portugués""","""Inglês,Espanhol,Português"""
