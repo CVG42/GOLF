@@ -18,27 +18,18 @@ namespace Golf
 
         private void OnEnable()
         {
-            if (localizationSource != null)
-            {
-                localizationSource.OnLanguageChanged += UpdateText;
-                UpdateText();
-            }
+            localizationSource.OnLanguageChanged += UpdateText;
+            UpdateText();
         }
 
         private void OnDisable()
         {
-            if (localizationSource != null)
-            {
-                localizationSource.OnLanguageChanged -= UpdateText;
-            }
+            localizationSource.OnLanguageChanged -= UpdateText;
         }
 
         private void UpdateText()
         {
-            if (textComponent != null && !string.IsNullOrEmpty(localizationKey))
-            {
-                textComponent.text = localizationSource.GetLocalizedText(localizationKey);
-            }
+            textComponent.text = localizationSource.GetLocalizedText(localizationKey);
         }
 
         public void SetKey(string key)

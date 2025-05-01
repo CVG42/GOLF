@@ -20,8 +20,18 @@ namespace Golf
             }
 
             InitializeDropdown();
-            LocalizationManager.Source.OnLanguageChanged += UpdateDropdownLabels;
             dropdown.onValueChanged.AddListener(OnLanguageSelected);
+        }
+
+        private void OnEnable()
+        {
+            LocalizationManager.Source.OnLanguageChanged += UpdateDropdownLabels;
+            UpdateDropdownLabels();
+        }
+
+        private void OnDisable()
+        {
+            LocalizationManager.Source.OnLanguageChanged -= UpdateDropdownLabels;
         }
 
         private void InitializeDropdown()
@@ -35,13 +45,12 @@ namespace Golf
         {
             int currentValue = dropdown.value;
 
-            string languageListRaw = "LANGUAGE".Localize();
-            string[] localizedLanguages = languageListRaw.Split(',');
+            var languageKeys = new[] { "ENGLISH", "SPANISH", "PORTUGUESE" };
 
             var options = new List<TMP_Dropdown.OptionData>();
-            foreach (string lang in localizedLanguages)
+            foreach (string key in languageKeys)
             {
-                options.Add(new TMP_Dropdown.OptionData(lang.Trim()));
+                options.Add(new TMP_Dropdown.OptionData(key.Localize()));
             }
 
             dropdown.ClearOptions();
@@ -52,6 +61,7 @@ namespace Golf
         }
 
 
+
         private void OnLanguageSelected(int index)
         {
             LocalizationManager.Source.SetLanguage((Language)index);
@@ -60,8 +70,6 @@ namespace Golf
         private void OnDestroy()
         {
             dropdown.onValueChanged.RemoveListener(OnLanguageSelected);
-            if (LocalizationManager.Source != null)
-                LocalizationManager.Source.OnLanguageChanged -= UpdateDropdownLabels;
         }
     }
 }

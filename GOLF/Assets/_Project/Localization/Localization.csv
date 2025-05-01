@@ -8,4 +8,6 @@ MUSIC,Music,Música ,Música
 SFX,SFX,Efectos de sonido,Efeitos sonoros
 RESOLUTIONS,Resolutions,Resolución ,Resoluções
 RESTART,Restart,Reiniciar,Reiniciar
-LANGUAGE,"""English,Español,Português""","""Inglés,Español,Portugués""","""Inglês,Espanhol,Português"""
+ENGLISH,English,English,English
+SPANISH,Español,Español,Español
+PORTUGUESE,Português,Português,Português
