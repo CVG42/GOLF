@@ -18,10 +18,10 @@ EditorBuildSettings:
     path: Assets/_Project/Scenes/Credits.unity
     guid: 6a75fcf197593ff43b6f1b7549856efc
   - enabled: 1
-    path: Assets/_Project/Scenes/Tutorial.unity
+    path: Assets/_Project/Scenes/LevelSelector.unity
     guid: c61f06439dd9b6b4fa85c3ce447d0eca
   - enabled: 1
-    path: Assets/_Project/Scenes/FirstLevel.unity
+    path: Assets/_Project/Scenes/Level1.unity
     guid: e798fd4d381b6a440ab85cd86f2efb47
   - enabled: 1
     path: Assets/_Project/Scenes/SaveSlots.unity
