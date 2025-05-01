@@ -5,8 +5,8 @@ namespace Golf
     public interface ILocalizationSource
     {
         string GetLocalizedText(string key);
-        void SetLanguage(Language language);
-        Language CurrentLanguage { get; }
+        void SetLanguage(string language);
+        string CurrentLanguage { get; }
 
         event System.Action OnLanguageChanged;
     }

@@ -1,13 +1,13 @@
-Key,English (en),Spanish (es-MX),Portuguese (br)
-PLAY,Play,Jugar,Jogar
-EXIT,Exit,Salir,Saída
-PAUSE,Pause,Pausa,Pausa
-CREDITS,Credits,Créditos ,Créditos 
-SETTINGS,Settings,Ajustes,Configurações
-MUSIC,Music,Música ,Música 
+Key,English,Spanish,Portuguese
+Play,Play,Jugar,Jogar
+Exit,Exit,Salir,Saída
+Pause,Pause,Pausa,Pausa
+Credits,Credits,Créditos ,Créditos 
+Settings,Settings,Ajustes,Configurações
+Music,Music,Música ,Música 
 SFX,SFX,Efectos de sonido,Efeitos sonoros
-RESOLUTIONS,Resolutions,Resolución ,Resoluções
-RESTART,Restart,Reiniciar,Reiniciar
-ENGLISH,English,English,English
-SPANISH,Español,Español,Español
-PORTUGUESE,Português,Português,Português
+Resolutions,Resolutions,Resolución ,Resoluções
+Restart,Restart,Reiniciar,Reiniciar
+English,English,English,English
+Spanish,Español,Español,Español
+Portuguese,Português,Português,Português

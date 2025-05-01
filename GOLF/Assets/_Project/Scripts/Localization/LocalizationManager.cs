@@ -6,11 +6,12 @@ namespace Golf
 {
     public class LocalizationManager : Singleton<ILocalizationSource>, ILocalizationSource
     {
-        private Dictionary<string, Dictionary<Language, string>> _localizationData = new Dictionary<string, Dictionary<Language, string>>();
-        private Language currentLanguage = Language.English;
+        private Dictionary<string, Dictionary<string, string>> _localizationData = new();
+        private string currentLanguage = "English";
 
         public event System.Action OnLanguageChanged;
 
+        public static readonly string[] Languages = { "English", "Spanish", "Portuguese" };
         protected override void Awake()
         {
             base.Awake();
@@ -19,49 +20,38 @@ namespace Golf
 
         public void LoadLocalizationData()
         {
-            _localizationData = new Dictionary<string, Dictionary<Language, string>>();
-            string filePath = Path.Combine(Application.dataPath, "_Project/Localization/Localization.csv");
+            _localizationData.Clear();
 
+            string filePath = Path.Combine(Application.dataPath, "_Project/Localization/Localization.csv");
             if (!File.Exists(filePath))
             {
-                Debug.LogError($"Localization file not found at path: {filePath}");
+                Debug.LogError($"Localization file not found: {filePath}");
                 return;
             }
 
             var lines = File.ReadAllLines(filePath);
-            if (lines.Length < 2)
-            {
-                Debug.LogError("Localization CSV does not have enough data.");
-                return;
-            }
+            if (lines.Length < 2) return;
 
-            string[] headers = SplitCsvLine(lines[0]);
+            var headers = SplitCsvLine(lines[0]);
 
             for (int i = 1; i < lines.Length; i++)
             {
-                string[] fields = SplitCsvLine(lines[i]);
-
-                if (fields.Length != headers.Length)
-                {
-                    Debug.LogWarning($"Skipping malformed line {i + 1}: {lines[i]}");
-                    continue;
-                }
+                var fields = SplitCsvLine(lines[i]);
+                if (fields.Length != headers.Length) continue;
 
                 string key = fields[0].Trim();
-                var translations = new Dictionary<Language, string>();
+                var translations = new Dictionary<string, string>();
 
-                for (int j = 1; j < fields.Length; j++)
+                for (int j = 1; j < headers.Length; j++)
                 {
-                    if (TryParseLanguage(headers[j], out Language lang))
-                    {
-                        translations[lang] = fields[j];
-                    }
+                    string lang = headers[j].Trim();
+                    translations[lang] = fields[j];
                 }
 
                 _localizationData[key] = translations;
             }
 
-            Debug.Log($"Loaded {_localizationData.Count} keys from Localization CSV");
+            Debug.Log($"Loaded {_localizationData.Count} keys from CSV.");
         }
 
         private string[] SplitCsvLine(string line)
@@ -91,28 +81,7 @@ namespace Golf
             return fields.ToArray();
         }
 
-        private bool TryParseLanguage(string header, out Language language)
-        {
-            header = header.Trim().ToLower();
-
-            switch (header)
-            {
-                case "english (en)":
-                    language = Language.English;
-                    return true;
-                case "spanish (es-mx)":
-                    language = Language.Spanish;
-                    return true;
-                case "portuguese (br)":
-                    language = Language.Portuguese;
-                    return true;
-                default:
-                    language = default;
-                    return false;
-            }
-        }
-
-        public void SetLanguage(Language language)
+        public void SetLanguage(string language)
         {
             if (currentLanguage == language) return;
 
@@ -122,22 +91,16 @@ namespace Golf
 
         public string GetLocalizedText(string key)
         {
-            if (_localizationData.ContainsKey(key))
+            if (_localizationData.TryGetValue(key, out var translations))
             {
-                var translations = _localizationData[key];
-                if (translations.ContainsKey(CurrentLanguage))
-                    return translations[CurrentLanguage];
+                if (translations.TryGetValue(currentLanguage, out var value))
+                    return value;
             }
+
             return key;
         }
 
-        public Language CurrentLanguage => currentLanguage;
-    }
 
-    public enum Language
-    {
-        English,
-        Spanish,
-        Portuguese
+        public string CurrentLanguage => currentLanguage;
     }
 }

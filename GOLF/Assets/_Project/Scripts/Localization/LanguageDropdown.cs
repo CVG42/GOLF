@@ -7,6 +7,7 @@ namespace Golf
     public class LanguageDropdown : MonoBehaviour
     {
         [SerializeField] private TMP_Dropdown dropdown;
+        private static readonly string[] languageKeys = { "English", "Spanish", "Portuguese" };
 
         private void Awake()
         {
@@ -36,35 +37,44 @@ namespace Golf
 
         private void InitializeDropdown()
         {
-            UpdateDropdownLabels();
-            dropdown.value = (int)LocalizationManager.Source.CurrentLanguage;
-            dropdown.RefreshShownValue();
-        }
+            List<string> options = new List<string>();
 
-        private void UpdateDropdownLabels()
-        {
-            int currentValue = dropdown.value;
-
-            var languageKeys = new[] { "ENGLISH", "SPANISH", "PORTUGUESE" };
-
-            var options = new List<TMP_Dropdown.OptionData>();
             foreach (string key in languageKeys)
             {
-                options.Add(new TMP_Dropdown.OptionData(key.Localize()));
+                options.Add(key.Localize());
             }
 
             dropdown.ClearOptions();
             dropdown.AddOptions(options);
 
-            dropdown.value = currentValue;
+            dropdown.value = GetCurrentLanguageIndex();
             dropdown.RefreshShownValue();
         }
 
-
-
         private void OnLanguageSelected(int index)
         {
-            LocalizationManager.Source.SetLanguage((Language)index);
+            LocalizationManager.Source.SetLanguage(languageKeys[index]);
+        }
+
+        private void UpdateDropdownLabels()
+        {
+            var options = new List<TMP_Dropdown.OptionData>();
+            foreach (var key in languageKeys)
+                options.Add(new TMP_Dropdown.OptionData(key.Localize()));
+
+            dropdown.options = options;
+            dropdown.captionText.text = options[dropdown.value].text;
+        }
+
+        private int GetCurrentLanguageIndex()
+        {
+            string current = LocalizationManager.Source.CurrentLanguage;
+            for (int i = 0; i < languageKeys.Length; i++)
+            {
+                if (languageKeys[i] == current)
+                    return i;
+            }
+            return 0;
         }
 
         private void OnDestroy()
