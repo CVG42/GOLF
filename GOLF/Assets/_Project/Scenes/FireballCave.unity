@@ -2894,6 +2894,18 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1680752142934923104, guid: 4305f74152ae2084d80543b99499404f, type: 3}
+      propertyPath: _angularDrag
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 1680752142934923104, guid: 4305f74152ae2084d80543b99499404f, type: 3}
+      propertyPath: _angularVelocity
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 1680752142934923104, guid: 4305f74152ae2084d80543b99499404f, type: 3}
+      propertyPath: _groundLayer.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 3907353326556557548, guid: 4305f74152ae2084d80543b99499404f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -11.71
