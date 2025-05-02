@@ -302,7 +302,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ccd5409f42dc1346a7a315460fd5a81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isPersistent: 0
   _audioDatabase: {fileID: 11400000, guid: 4edb66cb9dd03ad46b4d81896cc540db, type: 2}
-  _audioMixer: {fileID: 24100000, guid: 704b159625322994ca74f38d52dd2c67, type: 2}
+  _sfxMixer: {fileID: 24100000, guid: 704b159625322994ca74f38d52dd2c67, type: 2}
+  _musicMixer: {fileID: 24100000, guid: 704b159625322994ca74f38d52dd2c67, type: 2}
   _sfxAudioSource: {fileID: 2040519349904363162}
   _bgmAudioSource: {fileID: 3425233843662662373}
