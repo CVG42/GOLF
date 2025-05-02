@@ -9,48 +9,48 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b41464446f66c44492d457ea5d10e3a, type: 3}
+  m_Script: {fileID: 11500000, guid: b11b7a6ab34443248afcbf418bf6ae17, type: 3}
   m_Name: FireCave
   m_EditorClassIdentifier: 
   DialogueLines:
   - Character: {fileID: 11400000, guid: e9e30d71bf8b4ee4582391aac14c5290, type: 2}
     Line: "Ehh, hola compa\xF1ero. \xBFT\xFA tambi\xE9n desafiaste al Dios del Limbo?"
-  - Character: {fileID: 11400000, guid: 9f671a10ea00e6e4dbee07920dbc136b, type: 2}
+  - Character: {fileID: 11400000, guid: 49aee6327fd80d64797422791a6b397a, type: 2}
     Line: "Est\xFApido, est\xFApido, est\xFApido\u2026 de que sirvio tanto conocimiento
       en boxeo si no pude ni con mi primer contricante\u2026 perd\xF3name por no
       regresar contigo"
   - Character: {fileID: 11400000, guid: e9e30d71bf8b4ee4582391aac14c5290, type: 2}
     Line: "\xBFTe encuentras bien?"
-  - Character: {fileID: 11400000, guid: 9f671a10ea00e6e4dbee07920dbc136b, type: 2}
+  - Character: {fileID: 11400000, guid: 49aee6327fd80d64797422791a6b397a, type: 2}
     Line: "Claro que no estoy bien, \xBFacaso eres ciego?"
   - Character: {fileID: 11400000, guid: e9e30d71bf8b4ee4582391aac14c5290, type: 2}
     Line: ...
-  - Character: {fileID: 11400000, guid: 9f671a10ea00e6e4dbee07920dbc136b, type: 2}
+  - Character: {fileID: 11400000, guid: 49aee6327fd80d64797422791a6b397a, type: 2}
     Line: "Perd\xF3name, siempre que suelo volver aqu\xED pierdo el control de mis
       emociones"
   - Character: {fileID: 11400000, guid: e9e30d71bf8b4ee4582391aac14c5290, type: 2}
     Line: "Eso quiere decir que t\xFA tambi\xE9n desafiaste al Dios del Limbo"
-  - Character: {fileID: 11400000, guid: 9f671a10ea00e6e4dbee07920dbc136b, type: 2}
+  - Character: {fileID: 11400000, guid: 49aee6327fd80d64797422791a6b397a, type: 2}
     Line: "Eso fue hace mucho tiempo chico\u2026 cr\xE9eme, desde ese d\xEDa no puedo
       evitar odiarme desde que fall\xE9"
   - Character: {fileID: 11400000, guid: e9e30d71bf8b4ee4582391aac14c5290, type: 2}
     Line: ...
-  - Character: {fileID: 11400000, guid: 9f671a10ea00e6e4dbee07920dbc136b, type: 2}
+  - Character: {fileID: 11400000, guid: 49aee6327fd80d64797422791a6b397a, type: 2}
     Line: "Si tan solo no hubiera sido un in\xFAtil, habr\xEDa podido regresar con
       mi due\xF1o hace mucho tiempo"
   - Character: {fileID: 11400000, guid: e9e30d71bf8b4ee4582391aac14c5290, type: 2}
     Line: "Espera, yo tambi\xE9n estoy intentando volver con mi due\xF1o"
-  - Character: {fileID: 11400000, guid: 0460a7a149ef4fb409a4f8e7a29a8f05, type: 2}
+  - Character: {fileID: 11400000, guid: e0ab81b290e112545b5597682be545d7, type: 2}
     Line: "Kira, gato in\xFAtil, \xBFd\xF3nde est\xE1s? Regresa ahora mismo"
-  - Character: {fileID: 11400000, guid: 9f671a10ea00e6e4dbee07920dbc136b, type: 2}
+  - Character: {fileID: 11400000, guid: 49aee6327fd80d64797422791a6b397a, type: 2}
     Line: "Chico, me gustar\xEDa seguir hablando contigo pero necesito irme"
-  - Character: {fileID: 11400000, guid: 9f671a10ea00e6e4dbee07920dbc136b, type: 2}
+  - Character: {fileID: 11400000, guid: 49aee6327fd80d64797422791a6b397a, type: 2}
     Line: "Desde el d\xEDa que fall\xE9 la apuesta con \xE9l, no he podido deshacerme
       de todo este odio que he acumulado todos estos a\xF1os\u2026 no quiero que
       otro gato sufra lo mismo"
-  - Character: {fileID: 11400000, guid: 0460a7a149ef4fb409a4f8e7a29a8f05, type: 2}
+  - Character: {fileID: 11400000, guid: e0ab81b290e112545b5597682be545d7, type: 2}
     Line: "Kira, Kira, Kira, si tanto quer\xEDas tu libertad debiste haber ganado
       la apuesta. \xA1AS\xCD QUE REGRESA AHORA MISMO!"
-  - Character: {fileID: 11400000, guid: 9f671a10ea00e6e4dbee07920dbc136b, type: 2}
+  - Character: {fileID: 11400000, guid: 49aee6327fd80d64797422791a6b397a, type: 2}
     Line: Por favor utiliza todo este odio para cumplir el objetivo que yo no pude
       conseguir
