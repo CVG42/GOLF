@@ -6,6 +6,7 @@ namespace Golf
     public class GameData
     {
         public int LastLevelCompleted = 0;
+        public bool IsTutorialCleared = false;
     }
 
     [Serializable]

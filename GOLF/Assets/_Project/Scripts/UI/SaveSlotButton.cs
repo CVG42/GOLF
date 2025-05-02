@@ -8,7 +8,8 @@ namespace Golf
 {
     public class SaveSlotButton : MonoBehaviour
     {
-        private const string DEFAULT_SCENE = "Tutorial";
+        private const string HUB_SCENE = "LevelSelector";
+        private const string TUTORIAL_SCENE = "Tutorial";
 
         [SerializeField] private int _slotIndex;
         [SerializeField] private TextMeshProUGUI _slotName;
@@ -36,7 +37,15 @@ namespace Golf
         private void LoadGameData()
         {
             _saveSystem.LoadGame(_slotIndex);
-            LevelManager.Source.LoadScene(DEFAULT_SCENE);
+
+            if (!_saveSystem.GetCurrentGameData().IsTutorialCleared)
+            {
+                LevelManager.Source.LoadScene(TUTORIAL_SCENE);
+            }
+            else
+            {
+                LevelManager.Source.LoadScene(HUB_SCENE);
+            }
         }
 
         private void DisplaySlotData()
