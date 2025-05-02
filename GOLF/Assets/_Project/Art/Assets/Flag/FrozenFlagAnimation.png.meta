@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a14f50ab1bb65cd42b6b9dd830c60fb0
+guid: bad9af064d75f0d448da319c49f2b24a
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,13 +123,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: FlagAnimation 1_0
+      name: FrozenFlagAnimation_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 30
-        height: 39
+        width: 32
+        height: 41
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,20 +137,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fa4cd1ce3e407644eaa3d0101f2e9881
-      internalID: 1075594407
+      spriteID: ad60ba89972923d45a25e37467e6bbf4
+      internalID: -1275976268
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FlagAnimation 1_1
+      name: FrozenFlagAnimation_1
       rect:
         serializedVersion: 2
-        x: 30
+        x: 32
         y: 0
-        width: 30
-        height: 39
+        width: 32
+        height: 41
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -158,20 +158,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4128df73c5419ed44b25301f28181a3e
-      internalID: 1868948190
+      spriteID: 5c9e6992b5740ee4fae96354a52e5adf
+      internalID: 830033987
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FlagAnimation 1_2
+      name: FrozenFlagAnimation_2
       rect:
         serializedVersion: 2
-        x: 60
+        x: 64
         y: 0
-        width: 30
-        height: 39
+        width: 32
+        height: 41
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -179,20 +179,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d3631a43a2613c544a87ec22a53fa922
-      internalID: -1394867891
+      spriteID: 002461c7a6ded9645a59abdbef9ad09f
+      internalID: 28200805
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FlagAnimation 1_3
+      name: FrozenFlagAnimation_3
       rect:
         serializedVersion: 2
-        x: 90
+        x: 96
         y: 0
-        width: 30
-        height: 39
+        width: 32
+        height: 41
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -200,20 +200,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0348a4d0301f29540a0b887f5ead5482
-      internalID: 71195374
+      spriteID: 42a5562919c619a4481eb25a4eede311
+      internalID: 1638517157
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FlagAnimation 1_4
+      name: FrozenFlagAnimation_4
       rect:
         serializedVersion: 2
-        x: 120
+        x: 128
         y: 0
-        width: 30
-        height: 39
+        width: 32
+        height: 41
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -221,20 +221,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1ed5a257bdd67dd42992f4b65b638984
-      internalID: 542386313
+      spriteID: 1a9801b333e92e14f8a5a645378a1ff6
+      internalID: -880382202
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FlagAnimation 1_5
+      name: FrozenFlagAnimation_5
       rect:
         serializedVersion: 2
-        x: 150
+        x: 160
         y: 0
-        width: 30
-        height: 39
+        width: 32
+        height: 41
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -242,8 +242,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8922a928371ad5c45b93ea7373605752
-      internalID: -240669179
+      spriteID: 2566f57fb847baf40bdd5a16a39075fe
+      internalID: 2061368003
       vertices: []
       indices: 
       edges: []
@@ -259,12 +259,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      FlagAnimation 1_0: 1075594407
-      FlagAnimation 1_1: 1868948190
-      FlagAnimation 1_2: -1394867891
-      FlagAnimation 1_3: 71195374
-      FlagAnimation 1_4: 542386313
-      FlagAnimation 1_5: -240669179
+      FrozenFlagAnimation_0: -1275976268
+      FrozenFlagAnimation_1: 830033987
+      FrozenFlagAnimation_2: 28200805
+      FrozenFlagAnimation_3: 1638517157
+      FrozenFlagAnimation_4: -880382202
+      FrozenFlagAnimation_5: 2061368003
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
