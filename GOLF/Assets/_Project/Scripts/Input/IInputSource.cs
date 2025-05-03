@@ -22,5 +22,8 @@ namespace Golf
         bool IsLocking { get; set; }
         ActionState CurrentActionState { get; }
         void ChangeAction(ActionState newAction);
+
+        event Action<ControllerType> OnControllerTypeChange;
+        ControllerType CurrentController { get; }
     }
 }
