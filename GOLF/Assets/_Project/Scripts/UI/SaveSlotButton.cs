@@ -38,7 +38,7 @@ namespace Golf
         {
             _saveSystem.LoadGame(_slotIndex);
 
-            if (!_saveSystem.GetCurrentGameData().IsTutorialCleared)
+            if (!_saveSystem.IsTutorialCleared())
             {
                 LevelManager.Source.LoadScene(TUTORIAL_SCENE);
             }
