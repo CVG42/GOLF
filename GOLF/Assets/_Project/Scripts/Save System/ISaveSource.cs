@@ -25,5 +25,6 @@ namespace Golf
         int GetHighestLevelCleared();
 
         void MarkTutorialAsCleared();
+        bool IsTutorialCleared();
     }
 }

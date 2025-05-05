@@ -116,6 +116,11 @@ namespace Golf
             SaveGame();
         }
 
+        public bool IsTutorialCleared()
+        {
+            return _currentGameData.IsTutorialCleared;
+        }
+
         public bool IsLevelUnlocked(int levelID)
         {
             return _currentGameData.LastLevelCompleted >= levelID;
