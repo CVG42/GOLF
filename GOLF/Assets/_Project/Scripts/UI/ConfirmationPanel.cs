@@ -1,6 +1,7 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Golf
@@ -17,9 +18,39 @@ namespace Golf
 
         private void Start()
         {
+            InputManager.Source.OnConfirmButtonPressed += OnOptionSelected;
+            InputManager.Source.OnCancelButtonPressed += ClosePanel;
+
             _confirmButton.onClick.AddListener(OnConfirm);
             _cancelButton.onClick.AddListener(OnCancel);
             _confirmationText.text = _panelText;
+        }
+
+        private void OnDestroy()
+        {
+            InputManager.Source.OnConfirmButtonPressed -= OnOptionSelected;
+            InputManager.Source.OnCancelButtonPressed -= ClosePanel;
+        }
+
+        private void ClosePanel()
+        {
+            if (!gameObject.activeInHierarchy) return;
+            OnCancel();
+        }
+
+        private void OnOptionSelected()
+        {
+            if (!gameObject.activeInHierarchy) return;
+            GameObject selected = EventSystem.current.currentSelectedGameObject;
+
+            if (selected == _confirmButton.gameObject)
+            {
+                OnConfirm();
+            }
+            else
+            {
+                OnCancel();
+            }
         }
 
         public void ShowConfirmationPanel(Action confirm, Action cancel = null)
@@ -27,6 +58,8 @@ namespace Golf
             _onConfirm = confirm;
             _onCancel = cancel;
             gameObject.SetActive(true);
+
+            EventSystem.current.SetSelectedGameObject(_confirmButton.gameObject);
         }
 
         private void OnConfirm() 
@@ -39,6 +72,7 @@ namespace Golf
         { 
             _onCancel?.Invoke();
             gameObject.SetActive(false);
+            EventSystem.current.sendNavigationEvents = true;
         }
     }
 }
