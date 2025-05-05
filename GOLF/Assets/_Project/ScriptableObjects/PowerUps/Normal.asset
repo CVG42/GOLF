@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _ballMass: 0.5
   _ballAngularDrag: 50
-  _ballSprite: {fileID: -460964616, guid: 4816efec12c3c0746b1106dd52a0d828, type: 3}
+  _ballSprite: {fileID: 172532299, guid: f829b16319536f9449e9384de5512c23, type: 3}
   _hardness: 0
