@@ -1,15 +1,14 @@
-using Golf.Dialogues;
 using UnityEngine;
 
 namespace Golf
 {
-    public class DialogueTrigger : MonoBehaviour
+    public class DialogueGameplayTrigger : MonoBehaviour
     {
         [SerializeField] private Dialogue _dialogue;
 
         private void TriggerDialogue()
         {
-            DialogueManager.Source.IsCinematic = true;
+            DialogueManager.Source.IsCinematic = false;
             DialogueManager.Source.StartDialogue(_dialogue);
         }
 
@@ -17,11 +16,7 @@ namespace Golf
         {
             if (collider.CompareTag("Player"))
             {
-                var _rbCollider = collider.GetComponent<Rigidbody2D>();
                 TriggerDialogue();
-                _rbCollider.angularVelocity = 0f;
-                _rbCollider.velocity = Vector3.zero;
-
                 gameObject.SetActive(false);
             }
         }
