@@ -11,6 +11,9 @@ namespace Golf
         event Action OnPreviousButtonPresssed;
         event Action OnNextButtonPresssed;
 
+        event Action OnDeleteButtonPressed;
+        event Action OnCancelButtonPressed;
+
         event Action OnConfirmButtonPressed;
         event Action<ActionState> OnActionChange;
         event Action<Vector2> OnMoveCamera;

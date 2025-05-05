@@ -13,6 +13,8 @@ namespace Golf
         public event Action OnNextButtonPresssed;
         public event Action OnPause;
         public event Action<ControllerType> OnControllerTypeChange;
+        public event Action OnDeleteButtonPressed;
+        public event Action OnCancelButtonPressed;
 
         public bool IsLocking { get; set; } = false;
         public ActionState CurrentActionState => _currentAction.ActionState;
@@ -105,6 +107,21 @@ namespace Golf
             if (Input.GetKeyDown(KeyCode.Z))
             {
                 OnConfirmButtonPressed?.Invoke();
+            }
+
+            if (Input.GetButtonDown("Submit")) 
+            {
+                OnConfirmButtonPressed?.Invoke();
+            }
+
+            if (Input.GetKeyDown(KeyCode.Backspace) || Input.GetKeyDown(KeyCode.JoystickButton2))
+            {
+                OnDeleteButtonPressed?.Invoke();
+            }
+
+            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton1))
+            {
+                OnCancelButtonPressed?.Invoke();
             }
 
             if (Input.GetKeyDown(KeyCode.Comma))
