@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a14f50ab1bb65cd42b6b9dd830c60fb0
+guid: 66448ec6c42a90e469303a94c3ed7871
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,12 +43,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 12
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -121,133 +121,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: FlagAnimation 1_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 30
-        height: 39
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fa4cd1ce3e407644eaa3d0101f2e9881
-      internalID: 1075594407
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: FlagAnimation 1_1
-      rect:
-        serializedVersion: 2
-        x: 30
-        y: 0
-        width: 30
-        height: 39
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4128df73c5419ed44b25301f28181a3e
-      internalID: 1868948190
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: FlagAnimation 1_2
-      rect:
-        serializedVersion: 2
-        x: 60
-        y: 0
-        width: 30
-        height: 39
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d3631a43a2613c544a87ec22a53fa922
-      internalID: -1394867891
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: FlagAnimation 1_3
-      rect:
-        serializedVersion: 2
-        x: 90
-        y: 0
-        width: 30
-        height: 39
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0348a4d0301f29540a0b887f5ead5482
-      internalID: 71195374
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: FlagAnimation 1_4
-      rect:
-        serializedVersion: 2
-        x: 120
-        y: 0
-        width: 30
-        height: 39
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1ed5a257bdd67dd42992f4b65b638984
-      internalID: 542386313
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: FlagAnimation 1_5
-      rect:
-        serializedVersion: 2
-        x: 150
-        y: 0
-        width: 30
-        height: 39
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8922a928371ad5c45b93ea7373605752
-      internalID: -240669179
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
@@ -258,13 +132,7 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      FlagAnimation 1_0: 1075594407
-      FlagAnimation 1_1: 1868948190
-      FlagAnimation 1_2: -1394867891
-      FlagAnimation 1_3: 71195374
-      FlagAnimation 1_4: 542386313
-      FlagAnimation 1_5: -240669179
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

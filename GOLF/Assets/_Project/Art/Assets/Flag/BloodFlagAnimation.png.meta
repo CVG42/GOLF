@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a14f50ab1bb65cd42b6b9dd830c60fb0
+guid: 8df15cf03f56cd94ba85ca7f2b0b068e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: FlagAnimation 1_0
+      name: BloodFlagAnimation_0
       rect:
         serializedVersion: 2
         x: 0
@@ -137,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fa4cd1ce3e407644eaa3d0101f2e9881
-      internalID: 1075594407
+      spriteID: b10c7baa1bcf8544f8e637c06ac6bc38
+      internalID: 2106760035
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FlagAnimation 1_1
+      name: BloodFlagAnimation_1
       rect:
         serializedVersion: 2
         x: 30
@@ -158,14 +158,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4128df73c5419ed44b25301f28181a3e
-      internalID: 1868948190
+      spriteID: e910061edfdda9546b802b311c510717
+      internalID: 968454580
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FlagAnimation 1_2
+      name: BloodFlagAnimation_2
       rect:
         serializedVersion: 2
         x: 60
@@ -179,14 +179,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d3631a43a2613c544a87ec22a53fa922
-      internalID: -1394867891
+      spriteID: 2d2fb6664d623734489cf48cab5a01ed
+      internalID: -1223942464
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FlagAnimation 1_3
+      name: BloodFlagAnimation_3
       rect:
         serializedVersion: 2
         x: 90
@@ -200,14 +200,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0348a4d0301f29540a0b887f5ead5482
-      internalID: 71195374
+      spriteID: 9d5bfd273965cab4f8cffead1350012b
+      internalID: -10118932
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FlagAnimation 1_4
+      name: BloodFlagAnimation_4
       rect:
         serializedVersion: 2
         x: 120
@@ -221,14 +221,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1ed5a257bdd67dd42992f4b65b638984
-      internalID: 542386313
+      spriteID: 86dd4fa255dac1446b2f7a49cad8b62c
+      internalID: -1837009361
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FlagAnimation 1_5
+      name: BloodFlagAnimation_5
       rect:
         serializedVersion: 2
         x: 150
@@ -242,8 +242,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8922a928371ad5c45b93ea7373605752
-      internalID: -240669179
+      spriteID: 868d8ec6e00329d45a29c46b347a5fbb
+      internalID: 1171857132
       vertices: []
       indices: 
       edges: []
@@ -259,12 +259,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      FlagAnimation 1_0: 1075594407
-      FlagAnimation 1_1: 1868948190
-      FlagAnimation 1_2: -1394867891
-      FlagAnimation 1_3: 71195374
-      FlagAnimation 1_4: 542386313
-      FlagAnimation 1_5: -240669179
+      BloodFlagAnimation_0: 2106760035
+      BloodFlagAnimation_1: 968454580
+      BloodFlagAnimation_2: -1223942464
+      BloodFlagAnimation_3: -10118932
+      BloodFlagAnimation_4: -1837009361
+      BloodFlagAnimation_5: 1171857132
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
