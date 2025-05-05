@@ -39,15 +39,7 @@ namespace Golf
 
             await UniTask.NextFrame();
 
-            _menuSidebarInitialPosition = _mainMenuSidebar.localPosition;
-            _menuButtonsInitialPosition = new Vector3[_mainMenuButtons.Length];
-            for (int i = 0; i < _mainMenuButtons.Length; i++)
-            {
-                _menuButtonsInitialPosition[i] = _mainMenuButtons[i].transform.localPosition;
-            }
-
-            _slotsPanelInitialPosition = _saveSlotsSidebar.localPosition;
-
+            SetInitialPositions();
             EventSystem.current.SetSelectedGameObject(_mainMenuButtons[0].gameObject);
         }
 
@@ -62,6 +54,18 @@ namespace Golf
             {
                 ReturnToMainMenuFromSaveSlots().Forget();
             }
+        }
+
+        private void SetInitialPositions()
+        {
+            _menuSidebarInitialPosition = _mainMenuSidebar.localPosition;
+            _menuButtonsInitialPosition = new Vector3[_mainMenuButtons.Length];
+            for (int i = 0; i < _mainMenuButtons.Length; i++)
+            {
+                _menuButtonsInitialPosition[i] = _mainMenuButtons[i].transform.localPosition;
+            }
+
+            _slotsPanelInitialPosition = _saveSlotsSidebar.localPosition;
         }
 
         public async UniTask ActivateLoadGamePanel()
@@ -79,7 +83,6 @@ namespace Golf
             Vector2 bounce = _slotInfoPanelFinalPosition + new Vector2(0, -15f);
 
             await _slotInfoPanel.DOAnchorPos(bounce, _startTime * 0.6f).SetEase(Ease.OutCubic).AsyncWaitForCompletion();
-
             await _slotInfoPanel.DOAnchorPos(_slotInfoPanelFinalPosition, _startTime * 0.4f).SetEase(Ease.OutBack).AsyncWaitForCompletion();
 
             EventSystem.current.sendNavigationEvents = true;
@@ -93,9 +96,7 @@ namespace Golf
             for (int i = 0; i < _mainMenuButtons.Length; i++)
             {
                 _mainMenuButtons[i].interactable = false;
-                _mainMenuButtons[i].transform.DOLocalMoveX(
-                    _menuButtonsInitialPosition[i].x - _buttonsDisplacement, _animationSpeed
-                ).SetEase(Ease.InOutCubic);
+                _mainMenuButtons[i].transform.DOLocalMoveX(_menuButtonsInitialPosition[i].x - _buttonsDisplacement, _animationSpeed).SetEase(Ease.InOutCubic);
             }
 
             await _mainMenuSidebar.DOLocalMoveX(_mainMenuSidebar.localPosition.x - _sidebarDisplacement, _animationSpeed).SetEase(Ease.InOutCubic).AsyncWaitForCompletion();
