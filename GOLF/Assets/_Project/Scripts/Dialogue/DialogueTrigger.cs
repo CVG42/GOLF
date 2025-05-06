@@ -1,3 +1,4 @@
+using Golf.Dialogues;
 using UnityEngine;
 
 namespace Golf

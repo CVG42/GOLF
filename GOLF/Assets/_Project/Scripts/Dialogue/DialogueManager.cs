@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Cysharp.Threading.Tasks;
 using System;
+using Golf.Dialogues;
 
 namespace Golf
 {
@@ -102,5 +103,13 @@ namespace Golf
         {
             _dialogueButton.onClick.Invoke();
         }
+    }
+
+    [Serializable]
+    public class DialogueLine
+    {
+        public DialogueCharacter Character;
+        [TextArea(3, 10)]
+        public string Line;
     }
 }

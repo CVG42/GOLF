@@ -97,12 +97,28 @@ namespace Golf
             return null;
         }
 
+        public GameData GetCurrentGameData()
+        {
+            return _currentGameData;
+        }
+
         public void DeleteGameFile(int gameIndex)
         {
             if (DoesFileExists(gameIndex))
             {
                 File.Delete(GetFilePath(gameIndex));
             }
+        }
+
+        public void MarkTutorialAsCleared()
+        {
+            _currentGameData.IsTutorialCleared = true;
+            SaveGame();
+        }
+
+        public bool IsTutorialCleared()
+        {
+            return _currentGameData.IsTutorialCleared;
         }
 
         public bool IsLevelUnlocked(int levelID)

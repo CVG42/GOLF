@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: c8f2ef42025e8bf4cb0da4e4bbd87ec6, type: 3}
   m_Name: Protagonist
-  m_EditorClassIdentifier: Assembly-CSharp:Golf:DialogueCharacter
-  Name: Cat
+  m_EditorClassIdentifier: 
+  Name: Protagonist
   Icon: {fileID: 21300000, guid: 83e229114036cd14ca83cf4f607dd5b5, type: 3}
   AudioName: Blop
