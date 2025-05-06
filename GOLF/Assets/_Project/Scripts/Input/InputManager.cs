@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using UnityEngine;
 
 namespace Golf
@@ -11,9 +12,12 @@ namespace Golf
         public event Action OnPreviousButtonPresssed;
         public event Action OnNextButtonPresssed;
         public event Action OnPause;
+        public event Action<ControllerType> OnControllerTypeChange;
 
         public bool IsLocking { get; set; } = false;
         public ActionState CurrentActionState => _currentAction.ActionState;
+
+        public ControllerType CurrentController => _currentController;
 
         public event Action<float> OnDirectionChange
         {
@@ -41,6 +45,8 @@ namespace Golf
         private LaunchHandler _launchHandler;
         private MovingHandler _movingHandler;
 
+        private ControllerType _currentController;
+
         protected override void Awake()
         {
             base.Awake();
@@ -67,6 +73,8 @@ namespace Golf
         {
             PauseButton();
             CheckUIButtonInput();
+            CheckForControllerType();
+            CheckForControllerConnected();
 
             if (!_isEnabled) return;
             if (GameStateManager.Source.CurrentGameState != GameState.OnPlay) return;
@@ -156,6 +164,58 @@ namespace Golf
         {
             _isEnabled = false;
         }
+
+        private void CheckForControllerType()
+        {
+            if (IsXboxButtonPressed())
+            {
+                if (_currentController != ControllerType.Xbox) 
+                {
+                    ChangeControllerType(ControllerType.Xbox); 
+                }
+            }
+            else if (Input.anyKeyDown)
+            {
+                ChangeControllerType(ControllerType.Keyboard);
+            }
+        }
+
+        private void CheckForControllerConnected()
+        {
+            bool controllerConnected = false;
+
+            foreach (var name in Input.GetJoystickNames())
+            {
+                if (name.Contains("Xbox"))
+                {
+                    controllerConnected = true;
+                    break;
+                }
+            }
+
+            if (!controllerConnected && _currentController != ControllerType.Keyboard)
+            { 
+                ChangeControllerType(ControllerType.Keyboard); 
+            }
+        }
+
+        private void ChangeControllerType(ControllerType newControllerType)
+        {
+            _currentController = newControllerType;
+            OnControllerTypeChange?.Invoke(_currentController);
+        }
+
+        private bool IsXboxButtonPressed()
+        {
+            for (int i = 0; i <= 19; i++)
+            {
+                if (Input.GetKeyDown((KeyCode)((int)KeyCode.JoystickButton0 + i)))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 
     public enum ActionState
@@ -164,5 +224,11 @@ namespace Golf
         Force,
         Launch,
         Moving
+    }
+
+    public enum ControllerType
+    {
+        Keyboard,
+        Xbox
     }
 }
