@@ -21,6 +21,12 @@ namespace Golf
         void ButtonSelectHoverSFX();
         void PauseSFX();
         void WaterPlatformBallSFX();
+        void SandPlatformBallSFX();
+        void SlimePlatformBallSFX();
+        void RockPlatformBallSFX();
+        void HoleSFX();
+        void IceWallBallSFX();
+        void GrassPlatformBallSFX();
         void TypingSFX();
     }
 }

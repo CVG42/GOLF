@@ -31,5 +31,21 @@ MonoBehaviour:
     audioName: Blip
   - audio: {fileID: 8300000, guid: 0c8047cc0b615ce478a5ef0aa7dcbf7b, type: 3}
     audioName: Blop
-  - audio: {fileID: 8300000, guid: 169267bc0b2ed0e48920eec415bb081a, type: 3}
-    audioName: Villain laugh
+  - audio: {fileID: 8300000, guid: a87ba1a16c150c841859a7673cf475b9, type: 3}
+    audioName: GrassPlatformSFX
+  - audio: {fileID: 8300000, guid: 22577e155a86c8c48a411ada433b9f55, type: 3}
+    audioName: IceWallSFX
+  - audio: {fileID: 8300000, guid: ab1fccb1094925140b1b984c8dc27b2c, type: 3}
+    audioName: RockPlatformSFX
+  - audio: {fileID: 8300000, guid: 74126c31d31565544a40a701eb1a11f5, type: 3}
+    audioName: SandPlatformSFX
+  - audio: {fileID: 8300000, guid: 47773f20df93a334eac74c5fb8c65f25, type: 3}
+    audioName: SlimePlatformSFX
+  - audio: {fileID: 8300000, guid: afacc8035e8ce6f48991a707d280deb1, type: 3}
+    audioName: Beach_Music
+  - audio: {fileID: 8300000, guid: 6f2f064d5e3cdc84ab8d3b32b4f04a15, type: 3}
+    audioName: FireballCave_Music
+  - audio: {fileID: 8300000, guid: 381d9597342407d499e470eb058aab6f, type: 3}
+    audioName: HoleSFX
+  - audio: {fileID: 8300000, guid: 56f4d79a88739a14bbee64fefeb0c672, type: 3}
+    audioName: IceCave_Music
