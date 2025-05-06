@@ -9,7 +9,7 @@ namespace Golf
 
         private void TriggerDialogue()
         {
-            DialogueManager.Source.StartDialogue(_dialogue);
+            DialogueManager.Source.StartDialogue(_dialogue,null,true);
         }
 
         private void OnTriggerEnter2D(Collider2D collider)
