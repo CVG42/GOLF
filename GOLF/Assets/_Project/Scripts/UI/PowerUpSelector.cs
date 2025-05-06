@@ -8,7 +8,9 @@ namespace Golf
     public class PowerUpSelector : MonoBehaviour
     {
         [SerializeField] private List<PowerUpData> _availablePowerUps;
+        [SerializeField] private List<RuntimeAnimatorController> _powerUpAnimators;
         [SerializeField] private Image _powerUpIconImage;
+        [SerializeField] private Animator _powerUpAnimator;
 
         private int _currentPowerUpIndex = 0;
         private IInputSource _inputSource;
@@ -61,7 +63,16 @@ namespace Golf
             if (_currentPowerUpIndex >= 0 && _currentPowerUpIndex < _availablePowerUps.Count)
             {
                 _powerUpIconImage.sprite = _availablePowerUps[_currentPowerUpIndex].BallSprite;
+                PlayPowerUpAnimation(_currentPowerUpIndex);
             }
+        }
+
+        private void PlayPowerUpAnimation(int index)
+        {
+            if (_powerUpAnimators == null || index >= _powerUpAnimators.Count || _powerUpAnimators[index] == null)
+                return;
+
+            _powerUpAnimator.runtimeAnimatorController = _powerUpAnimators[index];
         }
     }
 }
