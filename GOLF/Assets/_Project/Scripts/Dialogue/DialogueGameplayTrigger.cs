@@ -1,3 +1,4 @@
+using Golf.Dialogues;
 using UnityEngine;
 
 namespace Golf
@@ -8,8 +9,7 @@ namespace Golf
 
         private void TriggerDialogue()
         {
-            DialogueManager.Source.IsCinematic = false;
-            DialogueManager.Source.StartDialogue(_dialogue);
+            DialogueManager.Source.StartDialogue(_dialogue,null,false);
         }
 
         private void OnTriggerEnter2D(Collider2D collider)

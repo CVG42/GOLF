@@ -9,7 +9,6 @@ namespace Golf
 
         private void TriggerDialogue()
         {
-            DialogueManager.Source.IsCinematic = true;
             DialogueManager.Source.StartDialogue(_dialogue);
         }
 
