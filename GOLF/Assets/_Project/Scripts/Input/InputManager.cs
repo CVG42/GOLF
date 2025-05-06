@@ -174,13 +174,9 @@ namespace Golf
                     ChangeControllerType(ControllerType.Xbox); 
                 }
             }
-
-            if (Input.anyKeyDown && !IsXboxButtonPressed())
+            else if (Input.anyKeyDown)
             {
-                if (_currentController != ControllerType.Keyboard)
-                {
-                    ChangeControllerType(ControllerType.Keyboard);
-                }
+                ChangeControllerType(ControllerType.Keyboard);
             }
         }
 
