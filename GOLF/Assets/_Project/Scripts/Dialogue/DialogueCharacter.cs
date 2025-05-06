@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Golf
+namespace Golf.Dialogues
 {
     [CreateAssetMenu(fileName = "DialogueCharacter", menuName = "Dialogue System/DialogueCharacter")]
     public class DialogueCharacter : ScriptableObject
