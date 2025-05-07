@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,16 +14,16 @@ namespace Golf
         public event Action OnBallRespawn;
         public int CurrentHitsLeft => _strokesNumber;
 
-        private readonly string _tutorialLevelScene = "Tutorial";
+        private readonly HashSet<string> _excludedScenes = new HashSet<string> { "Tutorial", "LevelSelector", "FireballCave" };
 
-        private bool IsTutorialLevel()
+        private bool IsGameLevel()
         {
-            return SceneManager.GetActiveScene().name != _tutorialLevelScene;
+            return !_excludedScenes.Contains(SceneManager.GetActiveScene().name);
         }
 
         public void ReduceHitsLeft()
         {
-            if (!IsTutorialLevel()) return;
+            if (!IsGameLevel()) return;
 
             _strokesNumber = Mathf.Max(0, _strokesNumber - 1);
             OnHitsChanged?.Invoke(_strokesNumber);
@@ -35,7 +36,7 @@ namespace Golf
 
         public void TriggerLoseCondition()
         {
-            if (!IsTutorialLevel()) return;
+            if (!IsGameLevel()) return;
 
             OnLose?.Invoke();
         }
