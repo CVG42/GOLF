@@ -22,6 +22,7 @@ namespace Golf
         
         private bool _isTyping = false;
         private bool _skipTyping = false;
+        public bool _isCinematic = true;
         private string _currentSentence = "";
         private readonly Queue<DialogueLine> _lines = new Queue<DialogueLine>();
 
@@ -32,13 +33,14 @@ namespace Golf
 
         public void StartDialogue(Dialogue dialogue, Action onDialogueEnd, bool isCinematic)
         {
-            if (isCinematic) {
+            _isCinematic = isCinematic;
+            if (_isCinematic) {
                 InputManager.Source.OnConfirmButtonPressed += NextDialogue;
                 InputManager.Source.Disable();
             }
 
             _onDialogueEnd = onDialogueEnd;
-            EnableDialogue(isCinematic);
+            EnableDialogue();
             _lines.Clear();
 
             foreach (DialogueLine dialogueline in dialogue.DialogueLines)
@@ -46,12 +48,12 @@ namespace Golf
                 _lines.Enqueue(dialogueline);
             }
 
-            DisplayNextDialogueLine(isCinematic);
+            DisplayNextDialogueLine();
         }
 
-        public void DisplayNextDialogueLine(bool isCinematic)
+        public void DisplayNextDialogueLine()
         {
-            if (isCinematic)
+            if (_isCinematic)
             {
                 if (_isTyping)
                 {
@@ -62,7 +64,7 @@ namespace Golf
 
             if (_lines.Count == 0)
             {
-                EndDialogue(isCinematic);
+                EndDialogue();
                 return;
             }
 
@@ -71,13 +73,13 @@ namespace Golf
             _characterImage.sprite = currentline.Character.Icon;
             _characterName.text = currentline.Character.Name;
 
-            TypeSentence(currentline, isCinematic);
+            TypeSentence(currentline);
         }
 
-        private async void TypeSentence(DialogueLine dialogueline, bool isCinematic)
+        private async void TypeSentence(DialogueLine dialogueline)
         {
             _isTyping = true;
-            if (isCinematic)
+            if (_isCinematic)
             {                
                 _skipTyping = false;
             }
@@ -87,7 +89,7 @@ namespace Golf
             _dialogueArea.text = "";
             foreach (char letter in dialogueline.Line.ToCharArray())
             {
-                if (isCinematic)
+                if (_isCinematic)
                 {
                     if (_skipTyping)
                     {
@@ -97,7 +99,7 @@ namespace Golf
                 }
 
                 _dialogueArea.text += letter;
-                if (isCinematic)
+                if (_isCinematic)
                 {
                     AudioManager.Source.TypingSFX();
                     await UniTask.Delay(TimeSpan.FromSeconds(_typingCinematicSpeed), DelayType.DeltaTime);
@@ -108,26 +110,26 @@ namespace Golf
                 }
 
             }
-            if (isCinematic)
+            if (_isCinematic)
             {
                 _isTyping = false;
             }
             else
             {
                 await UniTask.Delay(TimeSpan.FromSeconds(2));
-                DisplayNextDialogueLine(isCinematic);
+                DisplayNextDialogueLine();
             }
 
         }
 
-        private void EndDialogue(bool isCinematic)
+        private void EndDialogue()
         {
-            if (isCinematic)
+            if (_isCinematic)
             {
                 _onDialogueEnd?.Invoke();
                 InputManager.Source.Enable();
             }
-            DisableDialogue(isCinematic).Forget();
+            DisableDialogue().Forget();
         }
 
         private void NextDialogue()
@@ -135,9 +137,9 @@ namespace Golf
             _dialogueButton.onClick.Invoke();
         }
 
-        private void EnableDialogue(bool isCinematic)
+        private void EnableDialogue()
         {
-            if (isCinematic) {
+            if (_isCinematic) {
                 _dialogueFormat.enabled = true;
                 _dialogueRectTransform.DOAnchorPosY(0, 0.5f, true);
             }
@@ -148,9 +150,9 @@ namespace Golf
             }
         }
 
-        private async UniTask DisableDialogue(bool isCinematic)
+        private async UniTask DisableDialogue()
         {
-            if (isCinematic)
+            if (_isCinematic)
             {
                 _dialogueRectTransform.DOAnchorPosY(-215, 0.5f, true).WaitForCompletion();
                 await UniTask.Delay(TimeSpan.FromSeconds(2), DelayType.DeltaTime);

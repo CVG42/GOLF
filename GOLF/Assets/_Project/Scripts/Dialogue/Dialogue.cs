@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace Golf.Dialogues
+namespace Golf
 {
     [CreateAssetMenu(fileName = "NewDialogue", menuName = "Dialogue System/Dialogue")]
     public class Dialogue : ScriptableObject
