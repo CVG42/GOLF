@@ -27,30 +27,14 @@ namespace Golf
         private void Start()
         {
             InputManager.Source.OnDeleteButtonPressed += OnDeletePressed;
-            InputManager.Source.OnConfirmButtonPressed += OnSelectSlot;
 
-            _slotButton.onClick.AddListener(() =>
-            {
-                LoadGameData();
-                EventSystem.current.SetSelectedGameObject(gameObject);
-            });
+            _slotButton.onClick.AddListener(LoadGameData);
             DisplaySlotData();
         }
 
         private void OnDestroy()
         {
             InputManager.Source.OnDeleteButtonPressed -= OnDeletePressed;
-            InputManager.Source.OnConfirmButtonPressed -= OnSelectSlot;
-        }
-
-        private void OnSelectSlot()
-        {
-            if (!_isSelected) return;
-
-            if (EventSystem.current.currentSelectedGameObject == gameObject)
-            {
-                _slotButton.onClick.Invoke();
-            }
         }
 
         private void OnDeletePressed()
@@ -65,16 +49,18 @@ namespace Golf
 
         private async UniTaskVoid HandleDeleteRequest()
         {
-            await UniTask.NextFrame();
+           // await UniTask.NextFrame();
 
-            _deleteConfirmationPanel.ShowConfirmationPanel(OnConfirmationCallback, () =>
-            {
-                UniTask.Void(async () =>
-                {
-                    await UniTask.NextFrame();
-                    EventSystem.current.SetSelectedGameObject(gameObject);
-                });
-            });
+            _deleteConfirmationPanel.ShowConfirmationPanel(
+                OnConfirmationCallback,
+                () => DelayObjectSelection().Forget()
+            );
+        }
+
+        private async UniTask DelayObjectSelection()
+        {
+            //await UniTask.NextFrame();
+            EventSystem.current.SetSelectedGameObject(gameObject);
         }
 
         private void LoadGameData()
