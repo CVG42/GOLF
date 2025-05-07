@@ -32,6 +32,7 @@ namespace Golf
         private Vector3[] _menuButtonsInitialPosition;
         private Vector3 _slotsPanelInitialPosition;
         private bool _isShowingSlotsSidebar = false;
+        private Sequence _saveSlotsActivateSequence;
 
         private async void Start()
         {
@@ -76,14 +77,18 @@ namespace Golf
             HideMainMenuSidebar().Forget();
 
             _saveSlotsSidebar.gameObject.SetActive(true);
-            _saveSlotsSidebar.DOLocalMoveX(_saveSlotsSidebar.localPosition.x - _sidebarDisplacement, _animationSpeed).SetEase(Ease.InOutCubic);
-
             _slotInfoPanel.gameObject.SetActive(true);
+            
             _slotInfoPanel.anchoredPosition = _slotInfoPanelFinalPosition + new Vector2(0, _slotInfoPanelOffsetPosition);
-            Vector2 bounce = _slotInfoPanelFinalPosition + new Vector2(0, -15f);
 
-            await _slotInfoPanel.DOAnchorPos(bounce, _startTime * 0.6f).SetEase(Ease.OutCubic).AsyncWaitForCompletion();
-            await _slotInfoPanel.DOAnchorPos(_slotInfoPanelFinalPosition, _startTime * 0.4f).SetEase(Ease.OutBack).AsyncWaitForCompletion();
+            _saveSlotsActivateSequence?.Kill();
+
+            _saveSlotsActivateSequence = DOTween.Sequence()
+                .Join(_saveSlotsSidebar.DOLocalMoveX(_saveSlotsSidebar.localPosition.x - _sidebarDisplacement, _animationSpeed).SetEase(Ease.InOutCubic))
+                .Append(_slotInfoPanel.DOAnchorPos(_slotInfoPanelFinalPosition + new Vector2(0, -15f), _startTime * 0.6f).SetEase(Ease.OutCubic))
+                .Append(_slotInfoPanel.DOAnchorPos(_slotInfoPanelFinalPosition, _startTime * 0.4f).SetEase(Ease.OutBack));
+
+            await _saveSlotsActivateSequence.AsyncWaitForCompletion();
 
             EventSystem.current.sendNavigationEvents = true;
             EventSystem.current.SetSelectedGameObject(_saveSlotsButtons[0].gameObject);
