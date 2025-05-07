@@ -13,44 +13,56 @@ MonoBehaviour:
   m_Name: FireCave
   m_EditorClassIdentifier: 
   DialogueLines:
-  - Character: {fileID: 11400000, guid: e9e30d71bf8b4ee4582391aac14c5290, type: 2}
-    Line: "Ehh, hola compa\xF1ero. \xBFT\xFA tambi\xE9n desafiaste al Dios del Limbo?"
+  - Character: {fileID: 11400000, guid: 7025ae23c62cf1d4783b7307e18aa6d9, type: 2}
+    Line: He...
   - Character: {fileID: 11400000, guid: 49aee6327fd80d64797422791a6b397a, type: 2}
-    Line: "Est\xFApido, est\xFApido, est\xFApido\u2026 de que sirvio tanto conocimiento
-      en boxeo si no pude ni con mi primer contricante\u2026 perd\xF3name por no
-      regresar contigo"
-  - Character: {fileID: 11400000, guid: e9e30d71bf8b4ee4582391aac14c5290, type: 2}
-    Line: "\xBFTe encuentras bien?"
+    Line: "Stupid... stupid... stupid! I should\u2019ve beaten him! Damn it all!"
+  - Character: {fileID: 11400000, guid: 7025ae23c62cf1d4783b7307e18aa6d9, type: 2}
+    Line: Are you okay?
   - Character: {fileID: 11400000, guid: 49aee6327fd80d64797422791a6b397a, type: 2}
-    Line: "Claro que no estoy bien, \xBFacaso eres ciego?"
-  - Character: {fileID: 11400000, guid: e9e30d71bf8b4ee4582391aac14c5290, type: 2}
+    Line: What do you think? Do I look okay to you?
+  - Character: {fileID: 11400000, guid: 7025ae23c62cf1d4783b7307e18aa6d9, type: 2}
     Line: ...
   - Character: {fileID: 11400000, guid: 49aee6327fd80d64797422791a6b397a, type: 2}
-    Line: "Perd\xF3name, siempre que suelo volver aqu\xED pierdo el control de mis
-      emociones"
-  - Character: {fileID: 11400000, guid: e9e30d71bf8b4ee4582391aac14c5290, type: 2}
-    Line: "Eso quiere decir que t\xFA tambi\xE9n desafiaste al Dios del Limbo"
+    Line: "Sorry... It\u2019s this place. Every time I come back here, I lose it.
+      It\u2019s like everything I felt that day is still waiting for me."
+  - Character: {fileID: 11400000, guid: 7025ae23c62cf1d4783b7307e18aa6d9, type: 2}
+    Line: "You\u2019ve been here before?"
   - Character: {fileID: 11400000, guid: 49aee6327fd80d64797422791a6b397a, type: 2}
-    Line: "Eso fue hace mucho tiempo chico\u2026 cr\xE9eme, desde ese d\xEDa no puedo
-      evitar odiarme desde que fall\xE9"
-  - Character: {fileID: 11400000, guid: e9e30d71bf8b4ee4582391aac14c5290, type: 2}
+    Line: "Wait... if you\u2019re here... that means you challenged him too."
+  - Character: {fileID: 11400000, guid: 7025ae23c62cf1d4783b7307e18aa6d9, type: 2}
     Line: ...
   - Character: {fileID: 11400000, guid: 49aee6327fd80d64797422791a6b397a, type: 2}
-    Line: "Si tan solo no hubiera sido un in\xFAtil, habr\xEDa podido regresar con
-      mi due\xF1o hace mucho tiempo"
-  - Character: {fileID: 11400000, guid: e9e30d71bf8b4ee4582391aac14c5290, type: 2}
-    Line: "Espera, yo tambi\xE9n estoy intentando volver con mi due\xF1o"
+    Line: "Kid... I respect your courage, but don\u2019t make the same mistake I
+      did. Don\u2019t end up like me..."
+  - Character: {fileID: 11400000, guid: 49aee6327fd80d64797422791a6b397a, type: 2}
+    Line: Sometimes... giving up is the only way to walk away without dragging your
+      regrets behind you
+  - Character: {fileID: 11400000, guid: 7025ae23c62cf1d4783b7307e18aa6d9, type: 2}
+    Line: "I can\u2019t do that. This is the most important moment in my owner\u2019s
+      life. He needs me. I\u2019m not leaving him\u2014not now"
+  - Character: {fileID: 11400000, guid: 49aee6327fd80d64797422791a6b397a, type: 2}
+    Line: "You need to face reality, kid. It\u2019s a lost cause. This is his ring,
+      his rules. Guts won\u2019t get you through this. Don\u2019t pick a fight you
+      can\u2019t win"
+  - Character: {fileID: 11400000, guid: 7025ae23c62cf1d4783b7307e18aa6d9, type: 2}
+    Line: "You, of all people\u2014a boxer\u2014should know: a fight isn\u2019t over
+      until the bell rings"
+  - Character: {fileID: 11400000, guid: 49aee6327fd80d64797422791a6b397a, type: 2}
+    Line: ...I hate to admit it, but that bell rang for me a long time ago
+  - Character: {fileID: 11400000, guid: 7025ae23c62cf1d4783b7307e18aa6d9, type: 2}
+    Line: "Maybe it is a lost cause... but I\u2019m not giving up. Not when he still
+      believes in me."
+  - Character: {fileID: 11400000, guid: 49aee6327fd80d64797422791a6b397a, type: 2}
+    Line: ...
+  - Character: {fileID: 11400000, guid: 49aee6327fd80d64797422791a6b397a, type: 2}
+    Line: "Look... I shouldn\u2019t ask you this, but I can\u2019t stand by and let
+      that bastard take down someone else"
   - Character: {fileID: 11400000, guid: e0ab81b290e112545b5597682be545d7, type: 2}
-    Line: "Kira, gato in\xFAtil, \xBFd\xF3nde est\xE1s? Regresa ahora mismo"
+    Line: Digging up the past again, Kira? Come back now, or crawl away like you
+      did last time
   - Character: {fileID: 11400000, guid: 49aee6327fd80d64797422791a6b397a, type: 2}
-    Line: "Chico, me gustar\xEDa seguir hablando contigo pero necesito irme"
+    Line: "Take my rage, kid. Use it to break through that wall of ice... and end
+      the God of the Limbo\u2026 for those of us who couldn\u2019t."
   - Character: {fileID: 11400000, guid: 49aee6327fd80d64797422791a6b397a, type: 2}
-    Line: "Desde el d\xEDa que fall\xE9 la apuesta con \xE9l, no he podido deshacerme
-      de todo este odio que he acumulado todos estos a\xF1os\u2026 no quiero que
-      otro gato sufra lo mismo"
-  - Character: {fileID: 11400000, guid: e0ab81b290e112545b5597682be545d7, type: 2}
-    Line: "Kira, Kira, Kira, si tanto quer\xEDas tu libertad debiste haber ganado
-      la apuesta. \xA1AS\xCD QUE REGRESA AHORA MISMO!"
-  - Character: {fileID: 11400000, guid: 49aee6327fd80d64797422791a6b397a, type: 2}
-    Line: Por favor utiliza todo este odio para cumplir el objetivo que yo no pude
-      conseguir
+    Line: "Carry me with you, even if it's just as fury. Do what I couldn\u2019t"
