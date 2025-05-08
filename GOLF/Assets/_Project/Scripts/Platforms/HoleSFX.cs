@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Golf
 {
-    public class HolePlatform : MonoBehaviour
+    public class HolePlatformSFX : MonoBehaviour
     {
         private void OnTriggerEnter2D(Collider2D collision)
         {
