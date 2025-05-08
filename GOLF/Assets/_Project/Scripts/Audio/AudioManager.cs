@@ -115,5 +115,17 @@ namespace Golf
         {
             PlayOneShot(UnityEngine.Random.value >= 0.5 ? "Blip" : "Blop");
         }
+
+        public void SandPlatformBallSFX() => PlayOneShot("SandPlatformSFX");
+
+        public void SlimePlatformBallSFX() => PlayOneShot("SlimePlatformSFX");
+
+        public void RockPlatformBallSFX() => PlayOneShot("RockPlatformSFX");
+
+        public void IceWallBallSFX() => PlayOneShot("IceWallSFX");
+
+        public void GrassPlatformBallSFX() => PlayOneShot("GrassPlatformSFX");
+
+        public void HoleSFX() => PlayOneShot("HoleSFX");
     }
 }

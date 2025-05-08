@@ -11,6 +11,11 @@ namespace Golf
             var collisionRigidbody = collision.gameObject.GetComponent<Rigidbody2D>();
             collisionRigidbody.angularVelocity = collisionRigidbody.angularVelocity / _velocityReduction;
             collisionRigidbody.velocity = collisionRigidbody.velocity / _velocityReduction;
+
+            if (collision.CompareTag("Player"))
+            {
+                AudioManager.Source.PlayOneShot("SandPlatformSFX");
+            }
         }
     }
 }
