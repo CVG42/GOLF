@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b11b7a6ab34443248afcbf418bf6ae17, type: 3}
+  m_Name: Goal and Interactions
+  m_EditorClassIdentifier: 
+  DialogueLines:
+  - Character: {fileID: 11400000, guid: e0ab81b290e112545b5597682be545d7, type: 2}
+    Line: "Hey, hold it! Take a moment to admire the scenery I *so kindly* built
+      for you, you ungrateful furball. I\u2019ve got three simple concepts to explain. "
+  - Character: {fileID: 11400000, guid: e0ab81b290e112545b5597682be545d7, type: 2}
+    Line: "First, something I really shouldn\u2019t have to say \u2014 but there\u2019s
+      always someone, right? Just ask the people who read shampoo labels. Your main
+      goal is to get the ball into the hole up there. Shocking, I know \u2014 it\u2019s
+      golf."
+  - Character: {fileID: 11400000, guid: e0ab81b290e112545b5597682be545d7, type: 2}
+    Line: "Second, see that cute little pond next to you? Avoid it at all costs.
+      Though, being a cat, I\u2019d assume that\u2019s obvious. "
+  - Character: {fileID: 11400000, guid: e0ab81b290e112545b5597682be545d7, type: 2}
+    Line: "Third, that giant purple platform in front of you? It\u2019s a slime.
+      Yep, you bounce. Use it to reach places that are normally *way* out of your
+      league."
+  - Character: {fileID: 11400000, guid: e0ab81b290e112545b5597682be545d7, type: 2}
+    Line: "I\u2019ve wasted enough of my precious time on you. I\u2019m out (again)."
