@@ -11,18 +11,27 @@ namespace Golf
 {
     public class DialogueManager : Singleton<IDialogueSource>, IDialogueSource
     {
-        [SerializeField] private Image _characterImage;
-        [SerializeField] private TextMeshProUGUI _characterName;
-        [SerializeField] private TextMeshProUGUI _dialogueArea;
+        [SerializeField] private Canvas _dialogueCanvas;
+
+        [Header("Cinematic format")]
+        [SerializeField] private Image _characterCinematicImage;
+        [SerializeField] private TextMeshProUGUI _characterCinematicName;
+        [SerializeField] private TextMeshProUGUI _dialogueCinematicArea;
         [SerializeField] private Button _dialogueButton;
-        [SerializeField] private float _typingCinematicSpeed = 0.2f, _typingGameplaySpeed = 0.05f;
-        [SerializeField] private Canvas _dialogueFormat;
+        [SerializeField] private float _typingCinematicSpeed = 0.2f;
+        [SerializeField] private RectTransform _dialogueCinematicRectTransform;
         [SerializeField] private Action _onDialogueEnd;
-        [SerializeField] private RectTransform _dialogueRectTransform;
-        
+
+        [Header("Gameplay format")]
+        [SerializeField] private Image _characterGameplayImage;
+        [SerializeField] private TextMeshProUGUI _characterGameplayName;
+        [SerializeField] private TextMeshProUGUI _dialogueGameplayArea;
+        [SerializeField] private float _typingGameplaySpeed = 0.05f;
+        [SerializeField] private RectTransform _dialogueGameplayRectTransform;
+
         private bool _isTyping = false;
         private bool _skipTyping = false;
-        public bool _isCinematic = true;
+        private bool _isCinematic = true;
         private string _currentSentence = "";
         private readonly Queue<DialogueLine> _lines = new Queue<DialogueLine>();
 
@@ -33,6 +42,7 @@ namespace Golf
 
         public void StartDialogue(Dialogue dialogue, Action onDialogueEnd, bool isCinematic)
         {
+            _lines.Clear();
             _isCinematic = isCinematic;
             if (_isCinematic) {
                 InputManager.Source.OnConfirmButtonPressed += NextDialogue;
@@ -41,7 +51,6 @@ namespace Golf
 
             _onDialogueEnd = onDialogueEnd;
             EnableDialogue();
-            _lines.Clear();
 
             foreach (DialogueLine dialogueline in dialogue.DialogueLines)
             {
@@ -70,14 +79,30 @@ namespace Golf
 
             DialogueLine currentline = _lines.Dequeue();
 
-            _characterImage.sprite = currentline.Character.Icon;
-            _characterName.text = currentline.Character.Name;
+            if (_isCinematic)
+            {
+                _characterCinematicImage.sprite = currentline.Character.Icon;
+                _characterCinematicName.text = currentline.Character.Name;
+            }
+            else
+            {
+                _characterGameplayImage.sprite = currentline.Character.Icon;
+                _characterGameplayName.text = currentline.Character.Name;
+            }
 
             TypeSentence(currentline);
         }
 
         private async void TypeSentence(DialogueLine dialogueline)
         {
+            if (_isCinematic)
+            {
+                _dialogueCinematicArea.text = "";
+            }
+            else
+            {
+                _dialogueGameplayArea.text = "";
+            }
             _isTyping = true;
             if (_isCinematic)
             {                
@@ -86,19 +111,26 @@ namespace Golf
 
             _currentSentence = dialogueline.Line;
 
-            _dialogueArea.text = "";
-            foreach (char letter in dialogueline.Line.ToCharArray())
+            foreach (char letter in _currentSentence)
             {
                 if (_isCinematic)
                 {
                     if (_skipTyping)
                     {
-                        _dialogueArea.text = dialogueline.Line;
+                        _dialogueCinematicArea.text = _currentSentence;
                         break;
                     }
                 }
 
-                _dialogueArea.text += letter;
+                if (_isCinematic)
+                {
+                    _dialogueCinematicArea.text += letter;
+                }
+                else
+                {
+                    _dialogueGameplayArea.text += letter;
+                }
+
                 if (_isCinematic)
                 {
                     AudioManager.Source.TypingSFX();
@@ -139,14 +171,15 @@ namespace Golf
 
         private void EnableDialogue()
         {
-            if (_isCinematic) {
-                _dialogueFormat.enabled = true;
-                _dialogueRectTransform.DOAnchorPosY(0, 0.5f, true);
+            _dialogueCanvas.enabled = true;
+
+            if (_isCinematic) 
+            {
+                _dialogueCinematicRectTransform.DOAnchorPosY(0, 0.5f, true);
             }
             else
             {
-                _dialogueFormat.enabled = true;
-                _dialogueRectTransform.DOAnchorPosX(0, 0.5f, true);
+                _dialogueGameplayRectTransform.DOAnchorPosX(0, 0.5f, true);
             }
         }
 
@@ -154,15 +187,15 @@ namespace Golf
         {
             if (_isCinematic)
             {
-                _dialogueRectTransform.DOAnchorPosY(-215, 0.5f, true).WaitForCompletion();
-                await UniTask.Delay(TimeSpan.FromSeconds(2), DelayType.DeltaTime);
-                _dialogueFormat.enabled = false;
+                _dialogueCinematicRectTransform.DOAnchorPosY(-215, 0.5f, true).WaitForCompletion();
+                await UniTask.Delay(TimeSpan.FromSeconds(1), DelayType.DeltaTime);
+                _dialogueCanvas.enabled = false;
             }
             else
             {
-                _dialogueRectTransform.DOAnchorPosX(761, 0.5f, true);
-                await UniTask.Delay(TimeSpan.FromSeconds(2), DelayType.DeltaTime);
-                _dialogueFormat.enabled = false;
+                _dialogueGameplayRectTransform.DOAnchorPosX(761, 0.5f, true);
+                await UniTask.Delay(TimeSpan.FromSeconds(1), DelayType.DeltaTime);
+                _dialogueCanvas.enabled = false;
             }
         }
     }
