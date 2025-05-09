@@ -11,7 +11,7 @@ namespace Golf
 
         public void OnSelect(BaseEventData eventData)
         {
-            _scrollingTextController.SetScrollingText(_scrollingText, _repeatedTextsAmount);
+            _scrollingTextController.SetScrollingText(_scrollingText.Localize(), _repeatedTextsAmount);
         }
     }
 }

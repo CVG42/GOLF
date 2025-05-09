@@ -8,13 +8,15 @@ namespace Golf
 {
     public class SlotButton : MonoBehaviour, ISelectHandler
     {
-        private const string DEFAULT_SCENE = "Tutorial";
+        private const string TUTORIAL_SCENE = "Tutorial";
+        private const string HUB_SCENE = "LevelSelector";
 
         [SerializeField] private int _slotIndex;
         [SerializeField] private TextMeshProUGUI _slotName;
         [SerializeField] private TextMeshProUGUI _slotDescription;
         [SerializeField] private Button _slotButton;
         [SerializeField] private ConfirmationPanel _deleteConfirmationPanel;
+        [SerializeField] private CanvasGroup _slotsCanvasGroup;
 
         private ISaveSource _saveSystem;
         private bool _isSelected = false;
@@ -42,31 +44,35 @@ namespace Golf
             if (!_isSelected) return;
 
             if (_saveSystem.DoesFileExists(_slotIndex))
-            {
-                HandleDeleteRequest().Forget();
+            {              
+                HandleDeleteRequest();
             }
         }
 
-        private async UniTaskVoid HandleDeleteRequest()
+        private void HandleDeleteRequest()
         {
-           // await UniTask.NextFrame();
-
+            _slotsCanvasGroup.interactable = false;
             _deleteConfirmationPanel.ShowConfirmationPanel(
                 OnConfirmationCallback,
-                () => DelayObjectSelection().Forget()
+                () => 
+                { 
+                    EventSystem.current.SetSelectedGameObject(gameObject); 
+                    _slotsCanvasGroup.interactable = true; 
+                }
             );
-        }
-
-        private async UniTask DelayObjectSelection()
-        {
-            //await UniTask.NextFrame();
-            EventSystem.current.SetSelectedGameObject(gameObject);
         }
 
         private void LoadGameData()
         {
             _saveSystem.LoadGame(_slotIndex);
-            LevelManager.Source.LoadScene(DEFAULT_SCENE);
+            if (!_saveSystem.IsTutorialCleared())
+            {
+                LevelManager.Source.LoadScene(TUTORIAL_SCENE);
+            }
+            else
+            {
+                LevelManager.Source.LoadScene(HUB_SCENE);
+            }
         }
 
         private void DisplaySlotData()
@@ -91,6 +97,8 @@ namespace Golf
         {
             _saveSystem.DeleteGameFile(_slotIndex);
             DisplaySlotData();
+            _slotsCanvasGroup.interactable = true;
+            EventSystem.current.SetSelectedGameObject(gameObject);
         }
 
         public void OnSelect(BaseEventData eventData)
