@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c8f2ef42025e8bf4cb0da4e4bbd87ec6, type: 3}
-  m_Name: FireCat
+  m_Name: Chartreux Cat
   m_EditorClassIdentifier: 
-  Name: Fire Cat
+  Name: Chartreux Cat
   Icon: {fileID: 21300000, guid: b3a42a30320da914084bc8795fb99b07, type: 3}
   AudioName: Blip

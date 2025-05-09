@@ -44,7 +44,10 @@ namespace Golf
         {
             _lines.Clear();
             _isCinematic = isCinematic;
+            _skipTyping = false;
+
             if (_isCinematic) {
+                InputManager.Source.OnConfirmButtonPressed -= NextDialogue;
                 InputManager.Source.OnConfirmButtonPressed += NextDialogue;
                 InputManager.Source.Disable();
             }
@@ -62,13 +65,10 @@ namespace Golf
 
         public void DisplayNextDialogueLine()
         {
-            if (_isCinematic)
+            if (_isCinematic && _isTyping)
             {
-                if (_isTyping)
-                {
-                    _skipTyping = true;
-                    return;
-                }
+                _skipTyping = true;
+                return;
             }
 
             if (_lines.Count == 0)
@@ -82,12 +82,12 @@ namespace Golf
             if (_isCinematic)
             {
                 _characterCinematicImage.sprite = currentline.Character.Icon;
-                _characterCinematicName.text = currentline.Character.Name;
+                _characterCinematicName.text = currentline.Character.Name.Localize();
             }
             else
             {
                 _characterGameplayImage.sprite = currentline.Character.Icon;
-                _characterGameplayName.text = currentline.Character.Name;
+                _characterGameplayName.text = currentline.Character.Name.Localize();
             }
 
             TypeSentence(currentline);
@@ -95,6 +95,8 @@ namespace Golf
 
         private async void TypeSentence(DialogueLine dialogueline)
         {
+            _isTyping = true;
+
             if (_isCinematic)
             {
                 _dialogueCinematicArea.text = "";
@@ -103,23 +105,20 @@ namespace Golf
             {
                 _dialogueGameplayArea.text = "";
             }
-            _isTyping = true;
+
             if (_isCinematic)
             {                
                 _skipTyping = false;
             }
 
-            _currentSentence = dialogueline.Line;
+            _currentSentence = dialogueline.Line.Localize();
 
             foreach (char letter in _currentSentence)
             {
-                if (_isCinematic)
+                if (_isCinematic && _skipTyping)
                 {
-                    if (_skipTyping)
-                    {
-                        _dialogueCinematicArea.text = _currentSentence;
-                        break;
-                    }
+                    _dialogueCinematicArea.text = _currentSentence;
+                    break;
                 }
 
                 if (_isCinematic)
@@ -142,14 +141,14 @@ namespace Golf
                 }
 
             }
-            if (_isCinematic)
-            {
-                _isTyping = false;
-            }
-            else
+
+            _isTyping = false;
+
+            if (!_isCinematic)
             {
                 await UniTask.Delay(TimeSpan.FromSeconds(2));
                 DisplayNextDialogueLine();
+                _skipTyping = false;
             }
 
         }
