@@ -1,5 +1,6 @@
 using UnityEngine;
 using DG.Tweening;
+using Cysharp.Threading.Tasks;
 
 namespace Golf
 { 
@@ -21,7 +22,13 @@ namespace Golf
                 .DOAnchorPosY(_endPosition, _duration)
                 .From(new Vector2(_textRectTransform.anchoredPosition.x, _initialPosition))
                 .SetEase(Ease.Linear)
-                .OnComplete(StartScrolling);           
+                .OnComplete(() => WaitAfterCredits().Forget());           
+        }
+
+        private async UniTaskVoid WaitAfterCredits()
+        {
+            await UniTask.Delay(2000);
+            LevelManager.Source.LoadScene("MainMenu");
         }
     }
 }
