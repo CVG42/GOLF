@@ -1,7 +1,6 @@
 using System.Linq;
 using DG.Tweening;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,10 +16,15 @@ namespace Golf
         private float _textBoxWidth;
         private Tween _scrollAnimationTween;
 
-        void Start()
+        private void Start()
         {
             _xPositionStart = 0f;
             _textRectTransform.localPosition = new Vector3(0f, _textRectTransform.localPosition.y, _textRectTransform.localPosition.z);
+        }
+
+        private void OnDestroy()
+        {
+            _scrollAnimationTween?.Kill();
         }
 
         public void SetScrollingText(string content, int amount)
@@ -39,7 +43,7 @@ namespace Golf
             StartScrolling();
         }
 
-        void StartScrolling()
+        private void StartScrolling()
         {
             _scrollAnimationTween = _textRectTransform.DOLocalMoveX(-_textBoxWidth, _textBoxWidth / _scrollSpeed)
                 .SetEase(Ease.Linear)
