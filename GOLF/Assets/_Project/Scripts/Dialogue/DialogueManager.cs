@@ -47,6 +47,7 @@ namespace Golf
             _skipTyping = false;
 
             if (_isCinematic) {
+                InputManager.Source.OnConfirmButtonPressed -= NextDialogue;
                 InputManager.Source.OnConfirmButtonPressed += NextDialogue;
                 InputManager.Source.Disable();
             }
