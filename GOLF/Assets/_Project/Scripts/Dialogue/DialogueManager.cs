@@ -44,6 +44,8 @@ namespace Golf
         {
             _lines.Clear();
             _isCinematic = isCinematic;
+            _skipTyping = false;
+
             if (_isCinematic) {
                 InputManager.Source.OnConfirmButtonPressed += NextDialogue;
                 InputManager.Source.Disable();
@@ -62,13 +64,10 @@ namespace Golf
 
         public void DisplayNextDialogueLine()
         {
-            if (_isCinematic)
+            if (_isCinematic && _isTyping)
             {
-                if (_isTyping)
-                {
-                    _skipTyping = true;
-                    return;
-                }
+                _skipTyping = true;
+                return;
             }
 
             if (_lines.Count == 0)
@@ -95,6 +94,8 @@ namespace Golf
 
         private async void TypeSentence(DialogueLine dialogueline)
         {
+            _isTyping = true;
+
             if (_isCinematic)
             {
                 _dialogueCinematicArea.text = "";
@@ -103,7 +104,7 @@ namespace Golf
             {
                 _dialogueGameplayArea.text = "";
             }
-            _isTyping = true;
+
             if (_isCinematic)
             {                
                 _skipTyping = false;
@@ -113,13 +114,10 @@ namespace Golf
 
             foreach (char letter in _currentSentence)
             {
-                if (_isCinematic)
+                if (_isCinematic && _skipTyping)
                 {
-                    if (_skipTyping)
-                    {
-                        _dialogueCinematicArea.text = _currentSentence;
-                        break;
-                    }
+                    _dialogueCinematicArea.text = _currentSentence;
+                    break;
                 }
 
                 if (_isCinematic)
@@ -142,14 +140,14 @@ namespace Golf
                 }
 
             }
-            if (_isCinematic)
-            {
-                _isTyping = false;
-            }
-            else
+
+            _isTyping = false;
+
+            if (!_isCinematic)
             {
                 await UniTask.Delay(TimeSpan.FromSeconds(2));
                 DisplayNextDialogueLine();
+                _skipTyping = false;
             }
 
         }
