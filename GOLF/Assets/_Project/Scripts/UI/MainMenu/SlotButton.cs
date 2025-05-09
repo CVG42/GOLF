@@ -84,12 +84,12 @@ namespace Golf
                 int displayCurrentLevel = data.LastLevelCompleted + 1;
 
                 _slotName.text = $"Slot {_slotIndex}";
-                _slotDescription.text = $"Current Level: {displayCurrentLevel}";
+                _slotDescription.text = "Current Level:".Localize() + " " + displayCurrentLevel;
             }
             else
             {
-                _slotName.text = "New Game";
-                _slotDescription.text = "Let's play some golf!";
+                _slotName.text = "New Game".Localize();
+                _slotDescription.text = "Let's play some golf!".Localize();
             }
         }
 

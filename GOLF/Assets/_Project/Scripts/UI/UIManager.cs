@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -60,18 +61,21 @@ namespace Golf
         public void ActivatePausePanel()
         {
             if (_isOnPlay) 
-            { 
+            {
+                EventSystem.current.SetSelectedGameObject(null);
                 _pausePanel.enabled = false;
             }
             else if (!_isOnPlay)
             {
                 _pausePanel.enabled = true;
+                EventSystem.current.SetSelectedGameObject(_resumeButton.gameObject);
             }
         }
 
         public void DeactivatePausePanel()
         {
             _pausePanel.enabled = false;
+            EventSystem.current.SetSelectedGameObject(null);
             GameStateManager.Source.ChangeState(GameState.OnPlay);
         }
 
