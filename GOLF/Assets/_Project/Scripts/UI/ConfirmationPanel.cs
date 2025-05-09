@@ -66,6 +66,7 @@ namespace Golf
         {
             _onConfirm?.Invoke();
             gameObject.SetActive(false);
+            EventSystem.current.sendNavigationEvents = true;
         }
 
         private void OnCancel() 
