@@ -7,8 +7,7 @@ namespace Golf
     public class LanguageDropdown : MonoBehaviour
     {
         [SerializeField] private TMP_Dropdown dropdown;
-        private static readonly string[] languageKeys = { "English", "Spanish", "Portuguese" };
-
+        
         private void Awake()
         {
             if (dropdown == null)
@@ -24,22 +23,23 @@ namespace Golf
             dropdown.onValueChanged.AddListener(OnLanguageSelected);
         }
 
-        private void OnEnable()
+        private void Start()
         {
             LocalizationManager.Source.OnLanguageChanged += UpdateDropdownLabels;
             UpdateDropdownLabels();
         }
 
-        private void OnDisable()
+        private void OnDestroy()
         {
             LocalizationManager.Source.OnLanguageChanged -= UpdateDropdownLabels;
+            dropdown.onValueChanged.RemoveListener(OnLanguageSelected);
         }
 
         private void InitializeDropdown()
         {
             List<string> options = new List<string>();
 
-            foreach (string key in languageKeys)
+            foreach (string key in LocalizationExtensions.LanguageKeys)
             {
                 options.Add(key.Localize());
             }
@@ -53,33 +53,28 @@ namespace Golf
 
         private void OnLanguageSelected(int index)
         {
-            LocalizationManager.Source.SetLanguage(languageKeys[index]);
+            LocalizationManager.Source.SetLanguage(LocalizationExtensions.LanguageKeys[index]);
         }
 
         private void UpdateDropdownLabels()
         {
             var options = new List<TMP_Dropdown.OptionData>();
-            foreach (var key in languageKeys)
+            foreach (var key in LocalizationExtensions.LanguageKeys)
                 options.Add(new TMP_Dropdown.OptionData(key.Localize()));
 
             dropdown.options = options;
-            dropdown.captionText.text = options[dropdown.value].text;
+            dropdown.captionText.text = options[GetCurrentLanguageIndex()].text;
         }
 
         private int GetCurrentLanguageIndex()
         {
             string current = LocalizationManager.Source.CurrentLanguage;
-            for (int i = 0; i < languageKeys.Length; i++)
+            for (int i = 0; i < LocalizationExtensions.LanguageKeys.Length; i++)
             {
-                if (languageKeys[i] == current)
+                if (LocalizationExtensions.LanguageKeys[i] == current)
                     return i;
             }
             return 0;
-        }
-
-        private void OnDestroy()
-        {
-            dropdown.onValueChanged.RemoveListener(OnLanguageSelected);
         }
     }
 }

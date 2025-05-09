@@ -6,16 +6,22 @@ namespace Golf
 {
     public class LocalizationManager : Singleton<ILocalizationSource>, ILocalizationSource
     {
-        private Dictionary<string, Dictionary<string, string>> _localizationData = new();
-        private string currentLanguage = "English";
-
+        public static readonly string[] Languages = { "English", "Spanish", "Portuguese" };
+        public string CurrentLanguage => _currentLanguage;
         public event System.Action OnLanguageChanged;
 
-        public static readonly string[] Languages = { "English", "Spanish", "Portuguese" };
+        private Dictionary<string, Dictionary<string, string>> _localizationData = new();
+        private string _currentLanguage = "English";
+
         protected override void Awake()
         {
             base.Awake();
             LoadLocalizationData();
+        }
+
+        private void Start()
+        {
+            SetLanguage(SaveSystem.Source.GetCurrentLanguage());
         }
 
         public void LoadLocalizationData()
@@ -83,9 +89,10 @@ namespace Golf
 
         public void SetLanguage(string language)
         {
-            if (currentLanguage == language) return;
+            if (_currentLanguage == language) return;
 
-            currentLanguage = language;
+            _currentLanguage = language;
+            SaveSystem.Source.SetSelectedLanguage(_currentLanguage);
             OnLanguageChanged?.Invoke();
         }
 
@@ -93,14 +100,11 @@ namespace Golf
         {
             if (_localizationData.TryGetValue(key, out var translations))
             {
-                if (translations.TryGetValue(currentLanguage, out var value))
+                if (translations.TryGetValue(_currentLanguage, out var value))
                     return value;
             }
 
             return key;
         }
-
-
-        public string CurrentLanguage => currentLanguage;
     }
 }
