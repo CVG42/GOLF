@@ -15,7 +15,7 @@ MonoBehaviour:
   DialogueLines:
   - Character: {fileID: 11400000, guid: e0ab81b290e112545b5597682be545d7, type: 2}
     Line: "Hey, hold it! Take a moment to admire the scenery I *so kindly* built
-      for you, you ungrateful furball. I\u2019ve got three simple concepts to explain. "
+      for you, you ungrateful furball. I\u2019ve got three simple concepts to explain."
   - Character: {fileID: 11400000, guid: e0ab81b290e112545b5597682be545d7, type: 2}
     Line: "First, something I really shouldn\u2019t have to say \u2014 but there\u2019s
       always someone, right? Just ask the people who read shampoo labels. Your main
@@ -23,7 +23,7 @@ MonoBehaviour:
       golf."
   - Character: {fileID: 11400000, guid: e0ab81b290e112545b5597682be545d7, type: 2}
     Line: "Second, see that cute little pond next to you? Avoid it at all costs.
-      Though, being a cat, I\u2019d assume that\u2019s obvious. "
+      Though, being a cat, I\u2019d assume that\u2019s obvious."
   - Character: {fileID: 11400000, guid: e0ab81b290e112545b5597682be545d7, type: 2}
     Line: "Third, that giant purple platform in front of you? It\u2019s a slime.
       Yep, you bounce. Use it to reach places that are normally *way* out of your

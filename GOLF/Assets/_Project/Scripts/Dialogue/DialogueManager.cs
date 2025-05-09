@@ -82,12 +82,12 @@ namespace Golf
             if (_isCinematic)
             {
                 _characterCinematicImage.sprite = currentline.Character.Icon;
-                _characterCinematicName.text = currentline.Character.Name;
+                _characterCinematicName.text = currentline.Character.Name.Localize();
             }
             else
             {
                 _characterGameplayImage.sprite = currentline.Character.Icon;
-                _characterGameplayName.text = currentline.Character.Name;
+                _characterGameplayName.text = currentline.Character.Name.Localize();
             }
 
             TypeSentence(currentline);
@@ -109,7 +109,7 @@ namespace Golf
                 _skipTyping = false;
             }
 
-            _currentSentence = dialogueline.Line;
+            _currentSentence = dialogueline.Line.Localize();
 
             foreach (char letter in _currentSentence)
             {

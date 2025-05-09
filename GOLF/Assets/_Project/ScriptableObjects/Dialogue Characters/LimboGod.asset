@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8f2ef42025e8bf4cb0da4e4bbd87ec6, type: 3}
   m_Name: LimboGod
   m_EditorClassIdentifier: 
-  Name: Limbo God
+  Name: The Limbo's God
   Icon: {fileID: 21300000, guid: 39e54219ebb30404ba7153d64200ebcb, type: 3}
   AudioName: Blip
