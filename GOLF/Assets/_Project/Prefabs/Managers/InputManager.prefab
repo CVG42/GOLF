@@ -44,5 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d6520ae75c6a05458f5ede47acfd6a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxAngle: 180
-  _angleChangeSpeed: 50
+  _isPersistent: 1
