@@ -1,6 +1,7 @@
 using System.IO;
 using UnityEngine;
 using Newtonsoft.Json;
+using static UnityEngine.Rendering.DebugUI;
 
 namespace Golf
 {
@@ -186,5 +187,15 @@ namespace Golf
             SaveSettings();
         }
 
+        public int GetStrokesNumber()
+        {
+            return _currentGameData.StrokesNumber;
+        }
+
+        public void SetStrokesNumber(int strokesNumber)
+        {
+            _currentGameData.StrokesNumber = strokesNumber;
+            SaveGame();
+        }
     }
 }

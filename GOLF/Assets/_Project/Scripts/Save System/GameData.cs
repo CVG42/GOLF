@@ -7,6 +7,7 @@ namespace Golf
     {
         public int LastLevelCompleted = 0;
         public bool IsTutorialCleared = false;
+        public int StrokesNumber = 30;
     }
 
     [Serializable]

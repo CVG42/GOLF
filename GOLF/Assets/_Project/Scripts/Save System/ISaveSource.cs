@@ -29,5 +29,8 @@ namespace Golf
 
         string GetCurrentLanguage();
         void SetSelectedLanguage(string language);
+
+        int GetStrokesNumber();
+        void SetStrokesNumber(int strokesNumber);
     }
 }
