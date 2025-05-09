@@ -49,3 +49,5 @@ MonoBehaviour:
     audioName: HoleSFX
   - audio: {fileID: 8300000, guid: 56f4d79a88739a14bbee64fefeb0c672, type: 3}
     audioName: IceCave_Music
+  - audio: {fileID: 8300000, guid: 329c42a02a05fe24ab92c2f2f0857098, type: 3}
+    audioName: Credits
