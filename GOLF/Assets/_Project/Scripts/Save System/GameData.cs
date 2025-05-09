@@ -17,5 +17,6 @@ namespace Golf
         public int ScreenHeight = 1080;
         public float MusicVolume = 1.0f;
         public float SFXVolume = 1.0f;
+        public string Language = "English";
     }
 }
