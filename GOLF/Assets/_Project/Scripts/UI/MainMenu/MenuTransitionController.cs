@@ -14,6 +14,7 @@ namespace Golf
         [SerializeField] private RectTransform _saveSlotsSidebar;
         [SerializeField] private Button[] _saveSlotsButtons;
         [SerializeField] private VerticalLayoutGroup _mainMenuSidebarLayoutGroup;
+        [SerializeField] private RectTransform _settingsPanel;
 
         [Header("DOTween Parameters")]
         [SerializeField] private float _animationSpeed = 0.4f;
@@ -27,11 +28,14 @@ namespace Golf
         [SerializeField] private float _slotInfoPanelExitDisplacement = 50f;
         [SerializeField] private float _startTime = 0.6f;
         [SerializeField] private float _slotInfoPanelExitDuration = 0.4f;
+        [SerializeField] private Vector2 _settingsPanelFinalPosition;
+        [SerializeField] private Slider _firstSliderInPanel;
 
         private Vector3 _menuSidebarInitialPosition;
         private Vector3[] _menuButtonsInitialPosition;
         private Vector3 _slotsPanelInitialPosition;
-        private bool _isShowingSlotsSidebar = false;
+        private bool _isShowingLoadGamePanel = false;
+        private bool _isShowingSettingsPanel = false;
         private Sequence _saveSlotsActivateSequence;
 
         private async void Start()
@@ -51,9 +55,13 @@ namespace Golf
 
         private void CloseLoadGamePanel()
         {
-            if (_isShowingSlotsSidebar)
+            if (_isShowingLoadGamePanel)
             {
                 ReturnToMainMenuFromSaveSlots().Forget();
+            }
+            if (_isShowingSettingsPanel) 
+            {
+                ReturnToMainMenuFromSettings().Forget();
             }
         }
 
@@ -69,10 +77,28 @@ namespace Golf
             _slotsPanelInitialPosition = _saveSlotsSidebar.localPosition;
         }
 
+        public async UniTask ActivateSettingsPanel()
+        {
+            EventSystem.current.sendNavigationEvents = false;
+            _isShowingSettingsPanel = true;
+
+            _settingsPanel.gameObject.SetActive(true);
+
+            HideMainMenuSidebar().Forget();
+            _saveSlotsActivateSequence?.Kill();
+            _saveSlotsActivateSequence = DOTween.Sequence()
+                .Append(_settingsPanel.DOAnchorPos(_settingsPanelFinalPosition + new Vector2(0, -15f), _startTime * 0.6f).SetEase(Ease.OutCubic))
+                .Append(_settingsPanel.DOAnchorPos(_settingsPanelFinalPosition, _startTime * 0.4f).SetEase(Ease.OutBack));
+
+            await _saveSlotsActivateSequence.AsyncWaitForCompletion();
+            EventSystem.current.sendNavigationEvents = true;
+            EventSystem.current.SetSelectedGameObject(_firstSliderInPanel.gameObject);
+        }
+
         public async UniTask ActivateLoadGamePanel()
         {
             EventSystem.current.sendNavigationEvents = false;
-            _isShowingSlotsSidebar = true;
+            _isShowingLoadGamePanel = true;
             
             HideMainMenuSidebar().Forget();
 
@@ -112,6 +138,24 @@ namespace Golf
             }
         }
 
+        public async UniTask ReturnToMainMenuFromSettings()
+        {
+            EventSystem.current.sendNavigationEvents = false;
+
+            await _settingsPanel.DOAnchorPos(_settingsPanelFinalPosition + new Vector2(0, -_slotInfoPanelExitDisplacement), 0.15f).SetEase(Ease.InSine).AsyncWaitForCompletion();
+            await _settingsPanel.DOAnchorPos(_settingsPanelFinalPosition + new Vector2(0, _slotInfoPanelOffsetPosition), _slotInfoPanelExitDuration).SetEase(Ease.InCubic).AsyncWaitForCompletion();
+            _settingsPanel.gameObject.SetActive(false);
+
+            await UniTask.Delay(250);
+
+            ShowMainMenu().Forget();
+            _mainMenuSidebarLayoutGroup.enabled = true;
+            _isShowingSettingsPanel = false;
+
+            EventSystem.current.sendNavigationEvents = true;
+            EventSystem.current.SetSelectedGameObject(_mainMenuButtons[0].gameObject);
+        }
+
         public async UniTask ReturnToMainMenuFromSaveSlots()
         {
             EventSystem.current.sendNavigationEvents = false;
@@ -125,6 +169,17 @@ namespace Golf
 
             await UniTask.Delay(250);
 
+            ShowMainMenu().Forget();
+
+            _mainMenuSidebarLayoutGroup.enabled = true;
+            _isShowingLoadGamePanel = false;
+
+            EventSystem.current.sendNavigationEvents = true;
+            EventSystem.current.SetSelectedGameObject(_mainMenuButtons[0].gameObject);
+        }
+
+        private async UniTask ShowMainMenu()
+        {
             await _mainMenuSidebar.DOLocalMove(_menuSidebarInitialPosition, _animationSpeed).SetEase(Ease.InOutCubic).AsyncWaitForCompletion();
 
             for (int i = 0; i < _mainMenuButtons.Length; i++)
@@ -140,12 +195,6 @@ namespace Golf
             {
                 _mainMenuButtons[i].interactable = true;
             }
-
-            _mainMenuSidebarLayoutGroup.enabled = true;
-            _isShowingSlotsSidebar = false;
-
-            EventSystem.current.sendNavigationEvents = true;
-            EventSystem.current.SetSelectedGameObject(_mainMenuButtons[0].gameObject);
         }
     }
 }
