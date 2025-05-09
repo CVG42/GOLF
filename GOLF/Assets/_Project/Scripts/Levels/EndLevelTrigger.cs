@@ -15,6 +15,7 @@ namespace Golf
                 if (!_isTutorialLevel)
                 {
                     SaveSystem.Source.SetLevelCleared(_levelID);
+                    SaveSystem.Source.SetStrokesNumber(GameManager.Source.CurrentHitsLeft);
                 }
                 else
                 {
