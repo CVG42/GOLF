@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Golf
 {
@@ -20,6 +21,8 @@ namespace Golf
 
         private void SetPauseState()
         {
+            if (SceneManager.GetActiveScene().name == "MainMenu") return;
+
             switch (CurrentGameState)
             {
                 case GameState.OnPlay:
@@ -27,6 +30,9 @@ namespace Golf
                     break;
                 case GameState.OnPause:
                     ChangeState(GameState.OnPlay);
+                    break;
+                case GameState.OnDialogue:
+                    ChangeState(GameState.OnDialogue); 
                     break;
             }
         }
@@ -44,5 +50,6 @@ namespace Golf
     { 
         OnPlay,
         OnPause,
+        OnDialogue,
     }
 }
