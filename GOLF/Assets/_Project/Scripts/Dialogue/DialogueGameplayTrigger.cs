@@ -7,13 +7,11 @@ namespace Golf
     {
         public static List<DialogueGameplayTrigger> _dialogueGameplayTriggers = new();
 
-        private Collider2D _triggerCollider;
         [SerializeField] private Dialogue _dialogue;
 
         private void Awake()
         {
             _dialogueGameplayTriggers.Add(this);
-            _triggerCollider = GetComponent<Collider2D>();
         }
 
         private void OnDestroy()
@@ -27,7 +25,7 @@ namespace Golf
             {
                 foreach (var trigger in _dialogueGameplayTriggers)
                 {
-                    trigger._triggerCollider.enabled = false;
+                    trigger.gameObject.SetActive(false);
                 }
 
                 DialogueManager.Source.StartGameplayDialogue(_dialogue, OnDialogueFinished);
@@ -40,7 +38,7 @@ namespace Golf
             {
                 if (trigger != this)
                 {
-                    trigger._triggerCollider.enabled = true;
+                    trigger.gameObject.SetActive(true);
                 }
             }
         }
