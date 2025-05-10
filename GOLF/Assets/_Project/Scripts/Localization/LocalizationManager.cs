@@ -28,14 +28,10 @@ namespace Golf
         {
             _localizationData.Clear();
 
-            string filePath = Path.Combine(Application.dataPath, "_Project/Localization/Localization.csv");
-            if (!File.Exists(filePath))
-            {
-                Debug.LogError($"Localization file not found: {filePath}");
-                return;
-            }
+            TextAsset filePath = Resources.Load<TextAsset>("Localization");
+            if (filePath == null) return;
 
-            var lines = File.ReadAllLines(filePath);
+            var lines = filePath.text.Split(new[] { '\n', '\r' }, System.StringSplitOptions.RemoveEmptyEntries);
             if (lines.Length < 2) return;
 
             var headers = SplitCsvLine(lines[0]);
