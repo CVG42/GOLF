@@ -158,7 +158,6 @@ namespace Golf
 
         private void DisplayNextGameplayDialogueLine()
         {
-
             if (_gameplayLines.Count == 0)
             {
                 EndGameplayCinematic();
@@ -199,13 +198,13 @@ namespace Golf
             _onGameplayDialogueEnd?.Invoke();
             DisableGameplayDialogue().Forget();
         }
+
         private async UniTask DisableGameplayDialogue()
         {
             _dialogueGameplayRectTransform.DOAnchorPosX(761, 0.5f, true);
             await UniTask.Delay(TimeSpan.FromSeconds(1), DelayType.DeltaTime);
             _dialogueGameplayCanvas.enabled = false;
         }
-
 
     }
 
