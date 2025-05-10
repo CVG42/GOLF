@@ -161,6 +161,7 @@ namespace Golf
                 InputManager.Source.Enable();
             }
             DisableDialogue().Forget();
+            GameStateManager.Source.ChangeState(GameState.OnPlay);
         }
 
         private void NextDialogue()

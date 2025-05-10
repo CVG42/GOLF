@@ -73,12 +73,12 @@ namespace Golf
 
         private void Update()
         {
+            PauseButton();
             CheckUIButtonInput();
             CheckForControllerType();
             CheckForControllerConnected();
 
             if (!_isEnabled) return;
-            PauseButton();
             if (GameStateManager.Source.CurrentGameState != GameState.OnPlay) return;
 
             CheckGameButtonInput();
@@ -105,11 +105,6 @@ namespace Golf
         private void CheckUIButtonInput()
         {
             if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.JoystickButton0))
-            {
-                OnConfirmButtonPressed?.Invoke();
-            }
-
-            if (Input.GetButtonDown("Submit")) 
             {
                 OnConfirmButtonPressed?.Invoke();
             }
@@ -153,7 +148,7 @@ namespace Golf
 
         private void PauseButton()
         {
-            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton7))
+            if ((Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton7)) && GameStateManager.Source.CurrentGameState != GameState.OnDialogue)
             {
                 OnPause?.Invoke();
             }

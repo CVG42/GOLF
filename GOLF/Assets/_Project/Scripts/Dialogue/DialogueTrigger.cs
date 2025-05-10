@@ -8,6 +8,7 @@ namespace Golf
 
         private void TriggerDialogue()
         {
+            GameStateManager.Source.ChangeState(GameState.OnDialogue);
             DialogueManager.Source.StartDialogue(_dialogue, null, true);
         }
 
