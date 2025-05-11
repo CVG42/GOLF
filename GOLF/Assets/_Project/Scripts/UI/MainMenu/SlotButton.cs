@@ -14,6 +14,7 @@ namespace Golf
         [SerializeField] private int _slotIndex;
         [SerializeField] private TextMeshProUGUI _slotName;
         [SerializeField] private TextMeshProUGUI _slotDescription;
+        [SerializeField] private TextMeshProUGUI _slotHits;
         [SerializeField] private Button _slotButton;
         [SerializeField] private ConfirmationPanel _deleteConfirmationPanel;
         [SerializeField] private CanvasGroup _slotsCanvasGroup;
@@ -85,11 +86,13 @@ namespace Golf
 
                 _slotName.text = $"Slot {_slotIndex}";
                 _slotDescription.text = "Current Level:".Localize() + " " + displayCurrentLevel;
+                _slotHits.text = "Current Hits:".Localize() + " " + data.StrokesNumber;
             }
             else
             {
                 _slotName.text = "New Game".Localize();
                 _slotDescription.text = "Let's play some golf!".Localize();
+                _slotHits.text = "";
             }
         }
 

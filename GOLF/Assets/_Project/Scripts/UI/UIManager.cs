@@ -12,14 +12,14 @@ namespace Golf
         [SerializeField] private GameObject _losePanel;
         [SerializeField] private Canvas _pausePanel;
         [SerializeField] private Button _resumeButton;
-        [SerializeField] private Button _restartButton;
+        [SerializeField] private Button _backToMenuButton;
 
         private bool _isOnPlay;
 
         private void Start()
         {
             _losePanel.SetActive(false);
-            UpdateHitsLeft(GameManager.Source.CurrentHitsLeft);
+            UpdateHitsLeft(SaveSystem.Source.GetStrokesNumber());
             
             GameManager.Source.OnHitsChanged += UpdateHitsLeft;
             GameManager.Source.OnLose += ShowLosePanel;
@@ -27,7 +27,6 @@ namespace Golf
             GameStateManager.Source.OnGameStateChanged += OnGameStateChanged;
 
             _resumeButton.onClick.AddListener(DeactivatePausePanel);
-            _restartButton.onClick.AddListener(RestartLevel);
         }
 
         private void OnDestroy()
@@ -46,6 +45,7 @@ namespace Golf
         public void ShowLosePanel()
         {
             _losePanel.SetActive(true);
+            EventSystem.current.SetSelectedGameObject(_backToMenuButton.gameObject);
         }
 
         public void HidePanels()
@@ -62,7 +62,6 @@ namespace Golf
         {
             if (_isOnPlay) 
             {
-                EventSystem.current.SetSelectedGameObject(null);
                 _pausePanel.enabled = false;
             }
             else if (!_isOnPlay)
@@ -75,17 +74,7 @@ namespace Golf
         public void DeactivatePausePanel()
         {
             _pausePanel.enabled = false;
-            EventSystem.current.SetSelectedGameObject(null);
             GameStateManager.Source.ChangeState(GameState.OnPlay);
-        }
-
-        public void RestartLevel()
-        {
-            GameStateManager.Source.ChangeState(GameState.OnPlay);
-
-            _pausePanel.enabled = false;
-            Scene currentScene = SceneManager.GetActiveScene();
-            SceneManager.LoadScene(currentScene.name);
         }
     }
 }
