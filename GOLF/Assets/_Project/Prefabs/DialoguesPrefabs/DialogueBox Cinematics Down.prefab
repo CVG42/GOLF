@@ -258,8 +258,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Character name
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a2d9443eb6b74e547b72707ce8cf455c, type: 2}
+  m_sharedMaterial: {fileID: 6522067083052409699, guid: a2d9443eb6b74e547b72707ce8cf455c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -467,8 +467,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Dialogue
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a2d9443eb6b74e547b72707ce8cf455c, type: 2}
+  m_sharedMaterial: {fileID: 6522067083052409699, guid: a2d9443eb6b74e547b72707ce8cf455c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -546,6 +546,7 @@ GameObject:
   - component: {fileID: 6196009303615570123}
   - component: {fileID: 5867475701455197687}
   - component: {fileID: 749245596329678449}
+  - component: {fileID: 1862179816630363446}
   m_Layer: 5
   m_Name: Next Button
   m_TagString: Untagged
@@ -600,7 +601,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -654,3 +655,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1862179816630363446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8161121272998194282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16786d14589a689478aaa48a6acbc8ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inputImage: {fileID: 5867475701455197687}
+  _keyboardInputSprite: {fileID: 1009998094, guid: bbf56e8a4f4b10a47a7568d6f83e4e7f, type: 3}
+  _controllerInputSprite: {fileID: -577648235, guid: ddac484acc79fe14f87cd20268cd4897, type: 3}
