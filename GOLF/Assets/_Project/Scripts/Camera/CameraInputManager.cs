@@ -11,6 +11,7 @@ namespace Golf
         [SerializeField] private GameObject _movementCameraFrame;
         [SerializeField] private CameraInputConfigurations _cameraInputConfigurations;
         [SerializeField] private float _followSmoothTime = 0.1f;
+        [SerializeField] private GameObject[] _cameraArrows;
 
         private Vector3 _velocityCamera = Vector3.zero;
 
@@ -43,6 +44,8 @@ namespace Golf
                 InputManager.Source.IsLocking = false;
                 _movementCameraFrame.SetActive(true);
             }
+
+            HideArrow();
         }
 
         private void FollowPlayer()
@@ -81,6 +84,16 @@ namespace Golf
             {
                 return false;
             }
+        }
+
+        private void HideArrow()
+        {
+            Vector2 position = transform.position;
+
+            _cameraArrows[0].SetActive(_cameraInputConfigurations.LeftThresholdMap != position.x);  
+            _cameraArrows[1].SetActive(_cameraInputConfigurations.RightThresholdMap != position.x); 
+            _cameraArrows[2].SetActive(_cameraInputConfigurations.UpThresholdMap != position.y);    
+            _cameraArrows[3].SetActive(_cameraInputConfigurations.DownThresholdMap != position.y);  
         }
     }
 }
