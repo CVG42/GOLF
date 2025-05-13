@@ -1,22 +1,44 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Golf
 {
     public class DialogueGameplayTrigger : MonoBehaviour
     {
+        public static List<DialogueGameplayTrigger> _dialogueGameplayTriggers = new();
+
         [SerializeField] private Dialogue _dialogue;
 
-        private void TriggerDialogue()
+        private void Awake()
         {
-            DialogueManager.Source.StartDialogue(_dialogue, null, false);
+            _dialogueGameplayTriggers.Add(this);
+        }
+
+        private void OnDestroy()
+        {
+            _dialogueGameplayTriggers.Remove(this);
         }
 
         private void OnTriggerEnter2D(Collider2D collider)
         {
             if (collider.CompareTag("Player"))
             {
-                TriggerDialogue();
-                gameObject.SetActive(false);
+                foreach (var trigger in _dialogueGameplayTriggers)
+                {
+                    trigger.gameObject.SetActive(false);
+                }
+                DialogueManager.Source.StartGameplayDialogue(_dialogue, OnDialogueFinished);
+            }
+        }
+
+        private void OnDialogueFinished()
+        {
+            foreach (var trigger in _dialogueGameplayTriggers)
+            {
+                if (trigger != this)
+                {
+                    trigger.gameObject.SetActive(true);
+                }
             }
         }
     }

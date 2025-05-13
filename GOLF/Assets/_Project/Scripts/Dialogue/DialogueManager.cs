@@ -11,193 +11,201 @@ namespace Golf
 {
     public class DialogueManager : Singleton<IDialogueSource>, IDialogueSource
     {
-        [SerializeField] private Canvas _dialogueCanvas;
-
         [Header("Cinematic format")]
+        [SerializeField] private Canvas _dialogueCinematicCanvas;
         [SerializeField] private Image _characterCinematicImage;
         [SerializeField] private TextMeshProUGUI _characterCinematicName;
         [SerializeField] private TextMeshProUGUI _dialogueCinematicArea;
         [SerializeField] private Button _dialogueButton;
         [SerializeField] private float _typingCinematicSpeed = 0.2f;
         [SerializeField] private RectTransform _dialogueCinematicRectTransform;
-        [SerializeField] private Action _onDialogueEnd;
+        [SerializeField] private Action _onCinematicDialogueEnd;
 
         [Header("Gameplay format")]
+        [SerializeField] private Canvas _dialogueGameplayCanvas;
         [SerializeField] private Image _characterGameplayImage;
         [SerializeField] private TextMeshProUGUI _characterGameplayName;
         [SerializeField] private TextMeshProUGUI _dialogueGameplayArea;
         [SerializeField] private float _typingGameplaySpeed = 0.05f;
         [SerializeField] private RectTransform _dialogueGameplayRectTransform;
+        [SerializeField] private Action _onGameplayDialogueEnd;
 
-        private bool _isTyping = false;
-        private bool _skipTyping = false;
-        private bool _isCinematic = true;
+        private bool _isCinematicTyping = false, _isGameplayTyping = false, _skipTypingCinematic = false;
         private string _currentSentence = "";
-        private readonly Queue<DialogueLine> _lines = new Queue<DialogueLine>();
+        private readonly Queue<DialogueLine> _cinematicLines = new Queue<DialogueLine>();
+        private readonly Queue<DialogueLine> _gameplayLines = new Queue<DialogueLine>();
 
         private void OnDestroy()
         {
-            InputManager.Source.OnConfirmButtonPressed -= NextDialogue;
+            InputManager.Source.OnConfirmButtonPressed -= NextCinematicDialogue;
         }
 
-        public void StartDialogue(Dialogue dialogue, Action onDialogueEnd, bool isCinematic)
+        public void StartCinematicDialogue(Dialogue dialogue, Action onDialogueEnd)
         {
-            _lines.Clear();
-            _isCinematic = isCinematic;
-            _skipTyping = false;
+            _onCinematicDialogueEnd = onDialogueEnd;
+            CinematicDialogues(dialogue);
+            EnableCinematicDialogue();
+            DisplayNextCinematicDialogueLine();
+        }
 
-            if (_isCinematic) {
-                InputManager.Source.OnConfirmButtonPressed -= NextDialogue;
-                InputManager.Source.OnConfirmButtonPressed += NextDialogue;
-                InputManager.Source.Disable();
-            }
+        private void CinematicDialogues(Dialogue dialogue)
+        {
+            InputManager.Source.OnConfirmButtonPressed -= NextCinematicDialogue;
+            InputManager.Source.OnConfirmButtonPressed += NextCinematicDialogue;
+            InputManager.Source.Disable();
 
-            _onDialogueEnd = onDialogueEnd;
-            EnableDialogue();
+            _cinematicLines.Clear();
 
             foreach (DialogueLine dialogueline in dialogue.DialogueLines)
             {
-                _lines.Enqueue(dialogueline);
+                _cinematicLines.Enqueue(dialogueline);
             }
-
-            DisplayNextDialogueLine();
         }
 
-        public void DisplayNextDialogueLine()
+        private void EnableCinematicDialogue()
         {
-            if (_isCinematic && _isTyping)
+            _dialogueCinematicCanvas.enabled = true;
+            _dialogueCinematicRectTransform.DOAnchorPosY(0, 0.5f, true);
+        }
+
+        public void DisplayNextCinematicDialogueLine()
+        {
+            if (_isCinematicTyping)
             {
-                _skipTyping = true;
+                _skipTypingCinematic = true;
                 return;
             }
 
-            if (_lines.Count == 0)
+            if (_cinematicLines.Count == 0)
             {
-                EndDialogue();
+                EndCinematicDialogue();
                 return;
             }
 
-            DialogueLine currentline = _lines.Dequeue();
+            DialogueLine currentline = _cinematicLines.Dequeue();
 
-            if (_isCinematic)
-            {
-                _characterCinematicImage.sprite = currentline.Character.Icon;
-                _characterCinematicName.text = currentline.Character.Name.Localize();
-            }
-            else
-            {
-                _characterGameplayImage.sprite = currentline.Character.Icon;
-                _characterGameplayName.text = currentline.Character.Name.Localize();
-            }
+            _characterCinematicImage.sprite = currentline.Character.Icon;
+            _characterCinematicName.text = currentline.Character.Name.Localize();
 
-            TypeSentence(currentline);
+            TypeCinematicSentence(currentline);
         }
 
-        private async void TypeSentence(DialogueLine dialogueline)
+        private async void TypeCinematicSentence(DialogueLine dialogueline)
         {
-            _isTyping = true;
-
-            if (_isCinematic)
-            {
-                _dialogueCinematicArea.text = "";
-            }
-            else
-            {
-                _dialogueGameplayArea.text = "";
-            }
-
-            if (_isCinematic)
-            {                
-                _skipTyping = false;
-            }
-
+            _isCinematicTyping = true;
+            _dialogueCinematicArea.text = "";
+            _skipTypingCinematic = false;
             _currentSentence = dialogueline.Line.Localize();
 
             foreach (char letter in _currentSentence)
             {
-                if (_isCinematic && _skipTyping)
+                if (_skipTypingCinematic)
                 {
                     _dialogueCinematicArea.text = _currentSentence;
                     break;
                 }
 
-                if (_isCinematic)
-                {
-                    _dialogueCinematicArea.text += letter;
-                }
-                else
-                {
-                    _dialogueGameplayArea.text += letter;
-                }
+                _dialogueCinematicArea.text += letter;
 
-                if (_isCinematic)
-                {
-                    AudioManager.Source.TypingSFX();
-                    await UniTask.Delay(TimeSpan.FromSeconds(_typingCinematicSpeed), DelayType.DeltaTime);
-                }
-                else
-                {
-                    await UniTask.Delay(TimeSpan.FromSeconds(_typingGameplaySpeed), DelayType.DeltaTime);
-                }
-
+                await UniTask.Delay(TimeSpan.FromSeconds(_typingCinematicSpeed), DelayType.DeltaTime);
             }
-
-            _isTyping = false;
-
-            if (!_isCinematic)
-            {
-                await UniTask.Delay(TimeSpan.FromSeconds(2));
-                DisplayNextDialogueLine();
-                _skipTyping = false;
-            }
-
+            _isCinematicTyping = false;
         }
 
-        private void EndDialogue()
+        private void EndCinematicDialogue()
         {
-            if (_isCinematic)
-            {
-                _onDialogueEnd?.Invoke();
-                InputManager.Source.Enable();
-            }
-            DisableDialogue().Forget();
+            _onCinematicDialogueEnd?.Invoke();
+            InputManager.Source.Enable();
+            DisableCinematicDialogue().Forget();
             GameStateManager.Source.ChangeState(GameState.OnPlay);
         }
 
-        private void NextDialogue()
+        private async UniTask DisableCinematicDialogue()
+        {
+            _dialogueCinematicRectTransform.DOAnchorPosY(-215, 0.5f, true).WaitForCompletion();
+            await UniTask.Delay(TimeSpan.FromSeconds(1), DelayType.DeltaTime);
+            _dialogueCinematicCanvas.enabled = false;
+        }
+
+        private void NextCinematicDialogue()
         {
             _dialogueButton.onClick.Invoke();
         }
 
-        private void EnableDialogue()
+        public void StartGameplayDialogue(Dialogue dialogue, Action onDialogueEnd)
         {
-            _dialogueCanvas.enabled = true;
+            _onGameplayDialogueEnd = onDialogueEnd;
+            GameplayDialogues(dialogue);
+            EnableGameplayDialogue();
+            DisplayNextGameplayDialogueLine();
+        }
 
-            if (_isCinematic) 
+        private void GameplayDialogues(Dialogue dialogue)
+        {
+            _gameplayLines.Clear();
+
+            foreach (DialogueLine dialogueline in dialogue.DialogueLines)
             {
-                _dialogueCinematicRectTransform.DOAnchorPosY(0, 0.5f, true);
-            }
-            else
-            {
-                _dialogueGameplayRectTransform.DOAnchorPosX(0, 0.5f, true);
+                _gameplayLines.Enqueue(dialogueline);
             }
         }
 
-        private async UniTask DisableDialogue()
+        private void EnableGameplayDialogue()
         {
-            if (_isCinematic)
+            _dialogueGameplayCanvas.enabled = true;
+            _dialogueGameplayRectTransform.DOAnchorPosX(0, 0.5f, true);
+        }
+
+        private void DisplayNextGameplayDialogueLine()
+        {
+            if (_gameplayLines.Count == 0)
             {
-                _dialogueCinematicRectTransform.DOAnchorPosY(-215, 0.5f, true).WaitForCompletion();
-                await UniTask.Delay(TimeSpan.FromSeconds(1), DelayType.DeltaTime);
-                _dialogueCanvas.enabled = false;
+                EndGameplayCinematic();
+                return;
             }
-            else
+
+            DialogueLine currentline = _gameplayLines.Dequeue();
+
+            _characterGameplayImage.sprite = currentline.Character.Icon;
+            _characterGameplayName.text = currentline.Character.Name.Localize();
+
+            TypeGameplaySentence(currentline);
+        }
+
+        private async void TypeGameplaySentence(DialogueLine dialogueline)
+        {
+            _isGameplayTyping = true;
+            _dialogueGameplayArea.text = "";
+            _currentSentence = dialogueline.Line.Localize();
+
+            foreach (char letter in _currentSentence)
             {
-                _dialogueGameplayRectTransform.DOAnchorPosX(761, 0.5f, true);
-                await UniTask.Delay(TimeSpan.FromSeconds(1), DelayType.DeltaTime);
-                _dialogueCanvas.enabled = false;
+                _dialogueGameplayArea.text += letter;
+
+                await UniTask.Delay(TimeSpan.FromSeconds(_typingGameplaySpeed), DelayType.DeltaTime);
+            }
+
+            if (_isGameplayTyping)
+            {
+                await UniTask.Delay(TimeSpan.FromSeconds(1.5f));
+                DisplayNextGameplayDialogueLine();
+                _isGameplayTyping = false;
             }
         }
+
+        private void EndGameplayCinematic()
+        {
+            _onGameplayDialogueEnd?.Invoke();
+            DisableGameplayDialogue().Forget();
+        }
+
+        private async UniTask DisableGameplayDialogue()
+        {
+            _dialogueGameplayRectTransform.DOAnchorPosX(761, 0.5f, true);
+            await UniTask.Delay(TimeSpan.FromSeconds(1), DelayType.DeltaTime);
+            _dialogueGameplayCanvas.enabled = false;
+        }
+
     }
 
     [Serializable]
