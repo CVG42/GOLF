@@ -7,8 +7,8 @@ namespace Golf
         void LoadGame(int gameIndex);
         void DeleteGameFile(int gameIndex);
         bool DoesFileExists(int gameIndex);
+        bool DoesAnyFileExist();
         GameData GetGameFileData(int gameIndex);
-        GameData GetCurrentGameData();
 
         bool GetFullScreenMode();
         void SetFullScreenMode(bool isFullScreen);
@@ -26,5 +26,11 @@ namespace Golf
 
         void MarkTutorialAsCleared();
         bool IsTutorialCleared();
+
+        string GetCurrentLanguage();
+        void SetSelectedLanguage(string language);
+
+        int GetStrokesNumber();
+        void SetStrokesNumber(int strokesNumber);
     }
 }

@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -11,14 +12,14 @@ namespace Golf
         [SerializeField] private GameObject _losePanel;
         [SerializeField] private Canvas _pausePanel;
         [SerializeField] private Button _resumeButton;
-        [SerializeField] private Button _restartButton;
+        [SerializeField] private Button _backToMenuButton;
 
         private bool _isOnPlay;
 
         private void Start()
         {
             _losePanel.SetActive(false);
-            UpdateHitsLeft(GameManager.Source.CurrentHitsLeft);
+            UpdateHitsLeft(SaveSystem.Source.GetStrokesNumber());
             
             GameManager.Source.OnHitsChanged += UpdateHitsLeft;
             GameManager.Source.OnLose += ShowLosePanel;
@@ -26,7 +27,6 @@ namespace Golf
             GameStateManager.Source.OnGameStateChanged += OnGameStateChanged;
 
             _resumeButton.onClick.AddListener(DeactivatePausePanel);
-            _restartButton.onClick.AddListener(RestartLevel);
         }
 
         private void OnDestroy()
@@ -45,6 +45,7 @@ namespace Golf
         public void ShowLosePanel()
         {
             _losePanel.SetActive(true);
+            EventSystem.current.SetSelectedGameObject(_backToMenuButton.gameObject);
         }
 
         public void HidePanels()
@@ -60,12 +61,13 @@ namespace Golf
         public void ActivatePausePanel()
         {
             if (_isOnPlay) 
-            { 
+            {
                 _pausePanel.enabled = false;
             }
             else if (!_isOnPlay)
             {
                 _pausePanel.enabled = true;
+                EventSystem.current.SetSelectedGameObject(_resumeButton.gameObject);
             }
         }
 
@@ -73,15 +75,6 @@ namespace Golf
         {
             _pausePanel.enabled = false;
             GameStateManager.Source.ChangeState(GameState.OnPlay);
-        }
-
-        public void RestartLevel()
-        {
-            GameStateManager.Source.ChangeState(GameState.OnPlay);
-
-            _pausePanel.enabled = false;
-            Scene currentScene = SceneManager.GetActiveScene();
-            SceneManager.LoadScene(currentScene.name);
         }
     }
 }

@@ -10,9 +10,9 @@ namespace Golf
         
         private void Start()
         {
+            LoadVolumeValues();
             _sfxSlider.onValueChanged.AddListener(AudioManager.Source.SetSFXVolume);
             _musicSlider.onValueChanged.AddListener(AudioManager.Source.SetMusicVolume);
-            LoadVolumeValues();
         }
 
         private void LoadVolumeValues()

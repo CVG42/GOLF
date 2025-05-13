@@ -21,7 +21,6 @@ namespace Golf
 
         private void LoadScene()
         {
-            GameManager.Source.ResetHitsLeft();
             UIManager.Source.HidePanels();
             LevelManager.Source.LoadScene(_sceneName);
         }

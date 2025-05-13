@@ -33,17 +33,18 @@ namespace Golf
             CurrentSFXVolume = SaveSystem.Source.GetSFXVolume();
             CurrentMusicVolume = SaveSystem.Source.GetMusicVolume();
 
-            var sfxVolumeMixerValue = Mathf.Lerp(MINIMUM_MIXER_VOLUME_VALUE, MAXIMUM_MIXER_VOLUME_VALUE, CurrentSFXVolume);
-            var musicVolumeMixerValue = Mathf.Lerp(MINIMUM_MIXER_VOLUME_VALUE, MAXIMUM_MIXER_VOLUME_VALUE, CurrentMusicVolume);
-            
-            _sfxMixer.SetFloat("sfx_vol", sfxVolumeMixerValue);
-            _musicMixer.SetFloat("bgm_vol", musicVolumeMixerValue);
+            float sfxDb = Mathf.Log10(CurrentSFXVolume == 0f ? 0.0001f : CurrentSFXVolume) * 20f;
+            float musicDb = Mathf.Log10(CurrentMusicVolume == 0f ? 0.0001f : CurrentMusicVolume) * 20f;
+
+            _sfxMixer.SetFloat("sfx_vol", sfxDb);
+            _musicMixer.SetFloat("bgm_vol", musicDb);
         }
 
         public void SetSFXVolume(float volume)
         {
-            var volumeMixerValue = Mathf.Lerp(MINIMUM_MIXER_VOLUME_VALUE, MAXIMUM_MIXER_VOLUME_VALUE, volume);
-            _sfxMixer.SetFloat("sfx_vol", volumeMixerValue);
+            var volumeMixerValue = Mathf.Clamp01(volume);
+            var dB = Mathf.Log10(volumeMixerValue == 0f ? 0.0001f : volumeMixerValue) * 20f;
+            _sfxMixer.SetFloat("sfx_vol", dB);
             
             CurrentSFXVolume = volume;
             SaveSystem.Source.SetSFXVolume(volume);
@@ -52,8 +53,9 @@ namespace Golf
 
         public void SetMusicVolume(float volume)
         {
-            var volumeMixerValue = Mathf.Lerp(MINIMUM_MIXER_VOLUME_VALUE, MAXIMUM_MIXER_VOLUME_VALUE, volume);
-            _musicMixer.SetFloat("bgm_vol", volumeMixerValue);
+            var volumeMixerValue = Mathf.Clamp01(volume);
+            var dB = Mathf.Log10(volumeMixerValue == 0f ? 0.0001f : volumeMixerValue) * 20f;
+            _musicMixer.SetFloat("bgm_vol", dB);
             
             CurrentMusicVolume = volume;
             SaveSystem.Source.SetMusicVolume(volume);

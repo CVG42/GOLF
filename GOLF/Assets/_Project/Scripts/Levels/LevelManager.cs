@@ -62,7 +62,7 @@ namespace Golf
         {
             foreach (var ball in _loadingBalls)
             {
-                ball.DOPause();
+                ball.DOKill();
             }
         }
     }

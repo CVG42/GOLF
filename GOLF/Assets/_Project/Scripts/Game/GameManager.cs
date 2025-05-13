@@ -16,6 +16,11 @@ namespace Golf
 
         private readonly HashSet<string> _excludedScenes = new HashSet<string> { "Tutorial", "LevelSelector", "FireballCave" };
 
+        private void Start()
+        {
+            _strokesNumber = SaveSystem.Source.GetStrokesNumber();
+        }
+
         private bool IsGameLevel()
         {
             return !_excludedScenes.Contains(SceneManager.GetActiveScene().name);

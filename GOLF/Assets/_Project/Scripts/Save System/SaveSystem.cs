@@ -1,6 +1,7 @@
 using System.IO;
 using UnityEngine;
 using Newtonsoft.Json;
+using static UnityEngine.Rendering.DebugUI;
 
 namespace Golf
 {
@@ -97,9 +98,11 @@ namespace Golf
             return null;
         }
 
-        public GameData GetCurrentGameData()
+        public bool DoesAnyFileExist()
         {
-            return _currentGameData;
+            string directory = Application.persistentDataPath;
+            string[] savedFiles = Directory.GetFiles(directory, "save*.json");
+            return savedFiles.Length > 0;
         }
 
         public void DeleteGameFile(int gameIndex)
@@ -171,6 +174,28 @@ namespace Golf
                 Screen.SetResolution(width, height, false);
 
             SaveSettings();
+        }
+
+        public string GetCurrentLanguage()
+        {
+            return _currentSettingsData.Language;
+        }
+
+        public void SetSelectedLanguage(string language)
+        {
+            _currentSettingsData.Language = language;
+            SaveSettings();
+        }
+
+        public int GetStrokesNumber()
+        {
+            return _currentGameData.StrokesNumber;
+        }
+
+        public void SetStrokesNumber(int strokesNumber)
+        {
+            _currentGameData.StrokesNumber = strokesNumber;
+            SaveGame();
         }
     }
 }
