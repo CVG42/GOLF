@@ -9,6 +9,7 @@ namespace Golf
         private void TriggerDialogue()
         {
             DialogueManager.Source.StartCinematicDialogue(_dialogue, null);
+            GameStateManager.Source.ChangeState(GameState.OnDialogue);
         }
 
         private void OnTriggerEnter2D(Collider2D collider)

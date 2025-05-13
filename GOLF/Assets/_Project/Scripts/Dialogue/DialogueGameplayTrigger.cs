@@ -27,7 +27,6 @@ namespace Golf
                 {
                     trigger.gameObject.SetActive(false);
                 }
-
                 DialogueManager.Source.StartGameplayDialogue(_dialogue, OnDialogueFinished);
             }
         }
