@@ -1867,7 +1867,7 @@ GameObject:
   - component: {fileID: 320414868}
   - component: {fileID: 320414871}
   m_Layer: 5
-  m_Name: SelectText
+  m_Name: DeleteText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4714,7 +4714,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inputImage: {fileID: 910515168}
-  _keyboardInputSprite: {fileID: 1781108151, guid: bbf56e8a4f4b10a47a7568d6f83e4e7f, type: 3}
+  _keyboardInputSprite: {fileID: -189874488, guid: 0e9081fb467268843addce76e4bb2d7d, type: 3}
   _controllerInputSprite: {fileID: 244066996, guid: ddac484acc79fe14f87cd20268cd4897, type: 3}
 --- !u!114 &910515167
 MonoBehaviour:
@@ -5417,7 +5417,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inputImage: {fileID: 1066143281}
-  _keyboardInputSprite: {fileID: -2079028436, guid: bbf56e8a4f4b10a47a7568d6f83e4e7f, type: 3}
+  _keyboardInputSprite: {fileID: -1325585986, guid: e34633d41336c3f40b4bf3bb356fcd86, type: 3}
   _controllerInputSprite: {fileID: -1641539458, guid: ddac484acc79fe14f87cd20268cd4897, type: 3}
 --- !u!114 &1066143280
 MonoBehaviour:
