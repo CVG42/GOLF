@@ -13,6 +13,8 @@ namespace Golf
         public event Action OnNextButtonPresssed;
         public event Action OnPause;
         public event Action<ControllerType> OnControllerTypeChange;
+        public event Action OnDeleteButtonPressed;
+        public event Action OnCancelButtonPressed;
 
         public bool IsLocking { get; set; } = false;
         public ActionState CurrentActionState => _currentAction.ActionState;
@@ -102,17 +104,27 @@ namespace Golf
 
         private void CheckUIButtonInput()
         {
-            if (Input.GetKeyDown(KeyCode.Z))
+            if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.JoystickButton0))
             {
                 OnConfirmButtonPressed?.Invoke();
             }
 
-            if (Input.GetKeyDown(KeyCode.Comma))
+            if (Input.GetKeyDown(KeyCode.Backspace) || Input.GetKeyDown(KeyCode.JoystickButton2))
+            {
+                OnDeleteButtonPressed?.Invoke();
+            }
+
+            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton1))
+            {
+                OnCancelButtonPressed?.Invoke();
+            }
+
+            if (Input.GetKeyDown(KeyCode.Comma) || Input.GetKeyDown(KeyCode.JoystickButton4))
             {
                 OnPreviousButtonPresssed?.Invoke();
             }
 
-            if (Input.GetKeyDown(KeyCode.Period))
+            if (Input.GetKeyDown(KeyCode.Period) || Input.GetKeyDown(KeyCode.JoystickButton5))
             {
                 OnNextButtonPresssed?.Invoke();
             }
@@ -136,7 +148,7 @@ namespace Golf
 
         private void PauseButton()
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if ((Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton7)) && GameStateManager.Source.CurrentGameState != GameState.OnDialogue)
             {
                 OnPause?.Invoke();
             }
