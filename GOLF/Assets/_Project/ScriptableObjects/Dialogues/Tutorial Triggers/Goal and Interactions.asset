@@ -18,9 +18,10 @@ MonoBehaviour:
       for you, you ungrateful furball. I\u2019ve got three simple concepts to explain."
   - Character: {fileID: 11400000, guid: e0ab81b290e112545b5597682be545d7, type: 2}
     Line: "First, something I really shouldn\u2019t have to say \u2014 but there\u2019s
-      always someone, right? Just ask the people who read shampoo labels. Your main
-      goal is to get the ball into the hole up there. Shocking, I know \u2014 it\u2019s
-      golf."
+      always someone, right? Just ask the people who read shampoo labels. "
+  - Character: {fileID: 11400000, guid: e0ab81b290e112545b5597682be545d7, type: 2}
+    Line: "Your main goal is to get the ball into the hole up there. Shocking, I
+      know \u2014 it\u2019s golf."
   - Character: {fileID: 11400000, guid: e0ab81b290e112545b5597682be545d7, type: 2}
     Line: "Second, see that cute little pond next to you? Avoid it at all costs.
       Though, being a cat, I\u2019d assume that\u2019s obvious."

@@ -17,13 +17,19 @@ MonoBehaviour:
     Line: Hold on a second! I like to be a good host to my guests. Let me show you
       how to move around these lands.
   - Character: {fileID: 11400000, guid: e0ab81b290e112545b5597682be545d7, type: 2}
-    Line: Use the joystick above you to aim in the direction you want to shoot.
+    Line: "I took the liberty of placing the controls at the bottom of the screen\u2026
+      you know, just in case your tiny attention span can\u2019t handle more."
   - Character: {fileID: 11400000, guid: e0ab81b290e112545b5597682be545d7, type: 2}
-    Line: Press this button to confirm the direction and then choose how much force
-      to apply. Your force is shown on the bar to your left.
+    Line: "In the lower right corner, oh mighty chosen one, you\u2019ll see how to
+      aim and shoot\u2026 though I highly doubt you\u2019ll master it on your first
+      try."
+  - Character: {fileID: 11400000, guid: e0ab81b290e112545b5597682be545d7, type: 2}
+    Line: "And when you finally decide to shoot, a bar will appear next to you to
+      choose the force. Yes, I set that up for you too. Amazing, isn\u2019t it?"
   - Character: {fileID: 11400000, guid: e0ab81b290e112545b5597682be545d7, type: 2}
     Line: That's it, useless cat. From here on out, whether you make it back alive
       or not is up to you. Bye.
   - Character: {fileID: 11400000, guid: e0ab81b290e112545b5597682be545d7, type: 2}
-    Line: "Oh, and by the way \u2014 you can use the other joystick to look around,
-      in case your tiny brain forgot where you are."
+    Line: "Ah, I almost forgot\u2026 in the lower left corner, you\u2019ll behold
+      the world I\u2019ve built for you. Or in case your tiny brain forgot where
+      you are."
