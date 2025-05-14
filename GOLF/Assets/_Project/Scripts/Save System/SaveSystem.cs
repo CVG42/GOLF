@@ -1,7 +1,6 @@
 using System.IO;
 using UnityEngine;
 using Newtonsoft.Json;
-using static UnityEngine.Rendering.DebugUI;
 
 namespace Golf
 {
@@ -15,6 +14,10 @@ namespace Golf
 
         private GameSettingsData _currentSettingsData;
         private GameData _currentGameData;
+        
+        [Header("CONFIGURATIONS")]
+        [SerializeField] private bool _forceLoadGame = false;
+        [SerializeField] private int _forceLoadGameIndex = 0;
 
         protected override void Awake()
         {
@@ -23,6 +26,11 @@ namespace Golf
             if (_hasBeenDestroyed) return;
             
             LoadSettings();
+
+            if (_forceLoadGame)
+            {
+                LoadGame(_forceLoadGameIndex);
+            }
         }
 
         private void OnGameQuit()

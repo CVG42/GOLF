@@ -45,3 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isPersistent: 1
+  _forceLoadGame: 1
+  _forceLoadGameIndex: 0
