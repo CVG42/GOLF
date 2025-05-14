@@ -174,7 +174,7 @@ namespace Golf
 
         private async void TypeGameplaySentence(DialogueLine dialogueline)
         {
-            _isGameplayTyping = true;
+
             _dialogueGameplayArea.text = "";
             _currentSentence = dialogueline.Line.Localize();
 
@@ -184,6 +184,7 @@ namespace Golf
 
                 await UniTask.Delay(TimeSpan.FromSeconds(_typingGameplaySpeed), DelayType.DeltaTime);
             }
+            _isGameplayTyping = true;
 
             if (_isGameplayTyping)
             {
