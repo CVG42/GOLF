@@ -108,6 +108,7 @@ namespace Golf
                 _dialogueCinematicArea.text += letter;
 
                 await UniTask.Delay(TimeSpan.FromSeconds(_typingCinematicSpeed), DelayType.DeltaTime);
+                AudioManager.Source.TypingSFX();
             }
             _isCinematicTyping = false;
         }
