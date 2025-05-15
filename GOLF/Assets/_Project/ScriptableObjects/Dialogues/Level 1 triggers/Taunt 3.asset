@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Taunt 3
   m_EditorClassIdentifier: 
   DialogueLines:
-  - Character: {fileID: 11400000, guid: e0ab81b290e112545b5597682be545d7, type: 2}
+  - Character: {fileID: 11400000, guid: 6719ab8bc66dfc2479ab4a9677272f2c, type: 2}
     Line: Don't worry, this sand trap was made just for people like you
