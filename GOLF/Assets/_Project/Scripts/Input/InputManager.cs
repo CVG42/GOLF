@@ -63,6 +63,9 @@ namespace Golf
 
         private void Start()
         {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+
             GameStateManager.Source.OnGameStateChanged += OnGameStatedChanged;
         }
 
