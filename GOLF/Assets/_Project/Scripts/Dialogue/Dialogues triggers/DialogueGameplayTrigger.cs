@@ -22,11 +22,12 @@ namespace Golf
         private void OnTriggerEnter2D(Collider2D collider)
         {
             if (collider.CompareTag("Player"))
-            {
+            {                
                 foreach (var trigger in _dialogueGameplayTriggers)
                 {
                     trigger.gameObject.SetActive(false);
                 }
+                _dialogueGameplayTriggers.Remove(this);
                 DialogueManager.Source.StartGameplayDialogue(_dialogue, OnDialogueFinished);
             }
         }

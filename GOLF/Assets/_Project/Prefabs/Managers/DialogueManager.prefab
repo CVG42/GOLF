@@ -51,7 +51,7 @@ MonoBehaviour:
   _characterCinematicName: {fileID: 7489713290291105513}
   _dialogueCinematicArea: {fileID: 4474720699197047823}
   _dialogueButton: {fileID: 8223607823673265278}
-  _typingCinematicSpeed: 0.2
+  _typingCinematicSpeed: 0.05
   _dialogueCinematicRectTransform: {fileID: 2269672371929577866}
   _dialogueGameplayCanvas: {fileID: 4596600002765165426}
   _characterGameplayImage: {fileID: 1011982964551148300}

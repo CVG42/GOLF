@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Hard path
   m_EditorClassIdentifier: 
   DialogueLines:
-  - Character: {fileID: 11400000, guid: e0ab81b290e112545b5597682be545d7, type: 2}
+  - Character: {fileID: 11400000, guid: 6719ab8bc66dfc2479ab4a9677272f2c, type: 2}
     Line: Rush all you want... the outcome remains unchanged.
