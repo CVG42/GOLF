@@ -1547,7 +1547,7 @@ GameObject:
   - component: {fileID: 392800739}
   m_Layer: 0
   m_Name: 2
-  m_TagString: Untagged
+  m_TagString: Hole
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1578,7 +1578,7 @@ Transform:
   m_GameObject: {fileID: 392800736}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -12.5, y: -3.24, z: 0}
+  m_LocalPosition: {x: -12.5, y: -2.92, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1616,7 +1616,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.32817113}
+  m_Offset: {x: 0, y: 0.24612343}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1627,7 +1627,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.34365773}
+  m_Size: {x: 1, y: 0.65361667}
   m_EdgeRadius: 0
 --- !u!1 &466378157
 GameObject:
@@ -6856,7 +6856,7 @@ GameObject:
   - component: {fileID: 961623955}
   m_Layer: 0
   m_Name: 1
-  m_TagString: Untagged
+  m_TagString: Hole
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

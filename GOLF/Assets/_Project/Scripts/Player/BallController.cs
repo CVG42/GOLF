@@ -112,7 +112,11 @@ namespace Golf
         {
             _stopTimer = 0f;
             _currentLastPosition = transform.position;
-            _inputSource.ChangeAction(ActionState.Direction);
+            
+            if (!_isOnPole)
+            {
+                _inputSource.ChangeAction(ActionState.Direction);
+            }
         }
 
         private void ResetBallLastPosition()
