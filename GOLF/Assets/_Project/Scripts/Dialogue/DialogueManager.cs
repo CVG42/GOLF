@@ -35,9 +35,14 @@ namespace Golf
         private readonly Queue<DialogueLine> _cinematicLines = new Queue<DialogueLine>();
         private readonly Queue<DialogueLine> _gameplayLines = new Queue<DialogueLine>();
 
+        private void Start()
+        {
+            _dialogueButton.onClick.AddListener(DisplayNextCinematicDialogueLine);
+        }
+
         private void OnDestroy()
         {
-            InputManager.Source.OnConfirmButtonPressed -= NextCinematicDialogue;
+            InputManager.Source.OnConfirmButtonPressed -= DisplayNextCinematicDialogueLine;
         }
 
         public void StartCinematicDialogue(Dialogue dialogue, Action onDialogueEnd)
@@ -50,8 +55,8 @@ namespace Golf
 
         private void CinematicDialogues(Dialogue dialogue)
         {
-            InputManager.Source.OnConfirmButtonPressed -= NextCinematicDialogue;
-            InputManager.Source.OnConfirmButtonPressed += NextCinematicDialogue;
+            InputManager.Source.OnConfirmButtonPressed -= DisplayNextCinematicDialogueLine;
+            InputManager.Source.OnConfirmButtonPressed += DisplayNextCinematicDialogueLine;
             InputManager.Source.Disable();
 
             _cinematicLines.Clear();
@@ -126,11 +131,6 @@ namespace Golf
             _dialogueCinematicRectTransform.DOAnchorPosY(-215, 0.5f, true).WaitForCompletion();
             await UniTask.Delay(TimeSpan.FromSeconds(1), DelayType.DeltaTime);
             _dialogueCinematicCanvas.enabled = false;
-        }
-
-        private void NextCinematicDialogue()
-        {
-            _dialogueButton.onClick.Invoke();
         }
 
         public void StartGameplayDialogue(Dialogue dialogue, Action onDialogueEnd)
