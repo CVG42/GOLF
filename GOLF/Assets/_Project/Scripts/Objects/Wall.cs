@@ -16,6 +16,9 @@ namespace Golf
         [SerializeField] private float _cameraShakeDuration = 1f;
         [SerializeField] private AnimationCurve _curve;
 
+        [SerializeField] private Animator[] _wallAnimators;
+        [SerializeField] private string _animatorParameter;
+
         private Vector3 _originalPosition;
         private bool _isShaking = false;
 
@@ -46,6 +49,7 @@ namespace Golf
             Time.timeScale = _slowTimeScale;
             Time.fixedDeltaTime = originalFixedDeltaTime * _slowTimeScale;
 
+            PlayAnimation();
             var shakeTask = ShakeCamera();
 
             await UniTask.Delay(TimeSpan.FromSeconds(_slowdownDuration), DelayType.UnscaledDeltaTime);
@@ -55,7 +59,9 @@ namespace Golf
 
             await shakeTask;
 
-            gameObject.SetActive(false);
+            await UniTask.Delay(TimeSpan.FromSeconds(1f), DelayType.UnscaledDeltaTime);
+
+            DeactivateObjects(false);
             _isShaking = false;
         }
 
@@ -80,6 +86,25 @@ namespace Golf
             }
 
             cameraTransform.position = _originalPosition;
+        }
+
+        private void PlayAnimation()
+        {
+            for (int i = 0; i < _wallAnimators.Length; i++)
+            {
+                int animationIndex = (i == 0) ? 1 : 2;
+                _wallAnimators[i].SetInteger(_animatorParameter, animationIndex);
+            }
+        }
+
+        private void DeactivateObjects(bool state)
+        {
+            gameObject.SetActive(state);
+
+            for (int i = 0; i < _wallAnimators.Length; i++)
+            {
+                _wallAnimators[i].gameObject.SetActive(state);
+            }
         }
     }
 }
