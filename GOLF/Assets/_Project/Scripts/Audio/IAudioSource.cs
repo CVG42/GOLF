@@ -14,7 +14,6 @@ namespace Golf
         
         void PlayOneShot(string audioName);
         void PlayLevelMusic(string audioName);
-        void FadeOutMusic();
 
         void BallHitSFX();
         void ButtonClickSFX();

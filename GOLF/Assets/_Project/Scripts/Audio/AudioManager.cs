@@ -7,9 +7,6 @@ namespace Golf
 {
     public class AudioManager : Singleton<IAudioSource>, IAudioSource
     {
-        private const float MINIMUM_MIXER_VOLUME_VALUE = -80f;
-        private const float MAXIMUM_MIXER_VOLUME_VALUE = 0f;
-
         [SerializeField] private AudioDatabase _audioDatabase;
         [SerializeField] private AudioMixer _sfxMixer;
         [SerializeField] private AudioMixer _musicMixer;
@@ -66,36 +63,6 @@ namespace Golf
         {
             _bgmAudioSource.clip = _audioDatabase.GetAudio(audioName);
             _bgmAudioSource.Play();
-
-            _musicMixer.SetFloat("bgm_vol", MINIMUM_MIXER_VOLUME_VALUE);
-
-            if(CurrentMusicVolume > 0)
-            {
-                DOTween.To(
-                    () => {
-                        _musicMixer.GetFloat("bgm_vol", out float currentVol);
-                        return currentVol;
-                    },
-                    x => _musicMixer.SetFloat("bgm_vol", x),
-                    MAXIMUM_MIXER_VOLUME_VALUE,
-                    1
-                );
-            }
-        }
-
-        public void FadeOutMusic()
-        {
-            if (CurrentMusicVolume > 0) { 
-                DOTween.To(
-                    () => { 
-                        _musicMixer.GetFloat("bgm_vol", out float currentVol); 
-                        return currentVol; 
-                    },
-                    x => _musicMixer.SetFloat("bgm_vol", x), 
-                    MINIMUM_MIXER_VOLUME_VALUE, 
-                    1
-                );
-            }
         }
 
         public void PlayOneShot(string audioName)

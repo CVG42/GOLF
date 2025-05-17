@@ -22,7 +22,6 @@ namespace Golf
                     SaveSystem.Source.MarkTutorialAsCleared();
                 }
 
-                AudioManager.Source.FadeOutMusic();
                 LevelManager.Source.LoadScene(_sceneName);
             }
         }
