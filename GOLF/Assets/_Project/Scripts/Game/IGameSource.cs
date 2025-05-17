@@ -14,5 +14,6 @@ namespace Golf
         void TriggerLoseCondition();
         void ResetHitsLeft();
         void RespawnLastPosition();
+        void RestoreHitsGameOver();
     }
 }

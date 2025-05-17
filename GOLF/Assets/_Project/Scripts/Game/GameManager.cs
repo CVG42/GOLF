@@ -50,5 +50,10 @@ namespace Golf
         {
             OnBallRespawn?.Invoke();
         }
+
+        public void RestoreHitsGameOver()
+        {
+            _strokesNumber = SaveSystem.Source.GetStrokesNumber();
+        }
     }
 }
