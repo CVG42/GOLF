@@ -8248,6 +8248,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1325333295222892001, guid: f8ac41656ca63714c865df855b0adfd6, type: 3}
+      propertyPath: m_fontColor.a
+      value: 0.03137255
+      objectReference: {fileID: 0}
+    - target: {fileID: 1325333295222892001, guid: f8ac41656ca63714c865df855b0adfd6, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 150994943
+      objectReference: {fileID: 0}
     - target: {fileID: 1524683112173116464, guid: f8ac41656ca63714c865df855b0adfd6, type: 3}
       propertyPath: m_Name
       value: UIManager
