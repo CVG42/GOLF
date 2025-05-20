@@ -53,3 +53,5 @@ MonoBehaviour:
     audioName: Credits
   - audio: {fileID: 8300000, guid: eeab21fa5704aaf479d9e40a8203fd72, type: 3}
     audioName: Menu
+  - audio: {fileID: 8300000, guid: 61496028d7d28934dae2865b7ed37699, type: 3}
+    audioName: Desolate Cave
