@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b112847a445174b48b80ba0241c4afc6, type: 3}
   m_Name: Normal
   m_EditorClassIdentifier: 
+  _powerUpName: Normal
   _ballMass: 0.5
   _ballAngularDrag: 50
   _ballSprite: {fileID: 172532299, guid: f829b16319536f9449e9384de5512c23, type: 3}
