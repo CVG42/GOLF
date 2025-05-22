@@ -17,3 +17,4 @@ MonoBehaviour:
   _ballAngularDrag: 50
   _ballSprite: {fileID: 1442839142, guid: 6a96c68875506c440ac6999599ead7d4, type: 3}
   _hardness: 0
+  _hasEffect: 1
