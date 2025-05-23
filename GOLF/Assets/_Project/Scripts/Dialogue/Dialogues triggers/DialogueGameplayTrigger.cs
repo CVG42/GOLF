@@ -1,11 +1,19 @@
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace Golf
 {
     public class DialogueGameplayTrigger : MonoBehaviour
     {
+        public enum DialogueType
+        {
+            Character,
+            Camera
+        }
+
         public static List<DialogueGameplayTrigger> _dialogueGameplayTriggers = new();
+        public DialogueType type;
 
         [SerializeField] private Dialogue _dialogue;
 
@@ -21,15 +29,32 @@ namespace Golf
 
         private void OnTriggerEnter2D(Collider2D collider)
         {
-            if (collider.CompareTag("Player"))
-            {                
-                foreach (var trigger in _dialogueGameplayTriggers)
-                {
-                    trigger.gameObject.SetActive(false);
-                }
-                _dialogueGameplayTriggers.Remove(this);
-                DialogueManager.Source.StartGameplayDialogue(_dialogue, OnDialogueFinished);
+            switch (type)
+            {
+                case DialogueType.Character:
+                    if (collider.CompareTag("Player"))
+                    {
+                        DeactivateDialogue().Forget();
+                    }
+                    break;
+                case DialogueType.Camera:
+                    if (collider.CompareTag("MainCamera"))
+                    {
+                        DeactivateDialogue().Forget();
+                    }
+                    break;
             }
+        }
+
+        private async UniTask DeactivateDialogue()
+        {
+            foreach (var trigger in _dialogueGameplayTriggers)
+            {
+                trigger.gameObject.SetActive(false);
+            }
+            _dialogueGameplayTriggers.Remove(this);
+            await UniTask.Delay(1000);
+            DialogueManager.Source.StartGameplayDialogue(_dialogue, OnDialogueFinished);
         }
 
         private void OnDialogueFinished()
