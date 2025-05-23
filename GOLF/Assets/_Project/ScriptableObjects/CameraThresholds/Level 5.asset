@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b850ad4353d327b4a977a47853d92577, type: 3}
   m_Name: Level 5
   m_EditorClassIdentifier: 
-  RightThresholdMap: 30
+  RightThresholdMap: 120
   LeftThresholdMap: -2
-  UpThresholdMap: 9
+  UpThresholdMap: 68
   DownThresholdMap: -24
