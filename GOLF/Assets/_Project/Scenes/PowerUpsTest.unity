@@ -257,6 +257,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7585941226440248819, guid: 298e8d3bf9ee8ac45aae36849044905d, type: 3}
+      propertyPath: _forceLoadGame
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -280,6 +284,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ballSprite: {fileID: 83014367}
+  _groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!1 &419074375
 GameObject:
   m_ObjectHideFlags: 0

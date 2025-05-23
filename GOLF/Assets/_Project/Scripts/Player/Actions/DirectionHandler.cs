@@ -28,7 +28,14 @@ namespace Golf
         private void AdjustAngleBasedOnInput(float input)
         {
             _angle -= input * DIRECTION_CHANGE_SPEED * Time.deltaTime;
-            _angle = Mathf.Clamp(_angle, 0f, 180f);
+            float maxAngle = 180f;
+
+            if (PowerUpSystem.Source?.IsEffectActivated == true)
+            {
+                maxAngle = 360f;
+            }
+
+            _angle = Mathf.Clamp(_angle, 0f, maxAngle);
             OnDirectionChange?.Invoke(_angle);
         }
     }
