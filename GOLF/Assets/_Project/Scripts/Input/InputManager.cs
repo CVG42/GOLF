@@ -15,6 +15,7 @@ namespace Golf
         public event Action<ControllerType> OnControllerTypeChange;
         public event Action OnDeleteButtonPressed;
         public event Action OnCancelButtonPressed;
+        public event Action OnPowerUpActivated;
 
         public bool IsLocking { get; set; } = false;
         public ActionState CurrentActionState => _currentAction.ActionState;
@@ -84,6 +85,8 @@ namespace Golf
             if (!_isEnabled) return;
             if (GameStateManager.Source.CurrentGameState != GameState.OnPlay) return;
 
+            ChangePowerUpInput();
+            ActivatePowerUpInput();
             CheckGameButtonInput();
         }
 
@@ -121,7 +124,12 @@ namespace Golf
             {
                 OnCancelButtonPressed?.Invoke();
             }
+        }
 
+        private void ChangePowerUpInput()
+        {
+            if (CurrentActionState is not (ActionState.Direction or ActionState.Force)) return;
+  
             if (Input.GetKeyDown(KeyCode.Comma) || Input.GetKeyDown(KeyCode.JoystickButton4))
             {
                 OnPreviousButtonPresssed?.Invoke();
@@ -130,6 +138,14 @@ namespace Golf
             if (Input.GetKeyDown(KeyCode.Period) || Input.GetKeyDown(KeyCode.JoystickButton5))
             {
                 OnNextButtonPresssed?.Invoke();
+            }
+        }
+
+        private void ActivatePowerUpInput()
+        {
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                OnPowerUpActivated?.Invoke();
             }
         }
 
@@ -144,7 +160,7 @@ namespace Golf
                 {
                     OnMoveCamera?.Invoke(new Vector2(horizontalInput, verticalInput));
                 }
-            }
+            }    
 
             _currentAction.DoAction();
         }

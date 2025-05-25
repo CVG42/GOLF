@@ -21,6 +21,7 @@ namespace Golf
 
         private Vector2 _savedVelocity;
         private float _savedAngularVelocity;
+        private int _onAirThrows = 1;
 
         private void Awake()
         {
@@ -34,7 +35,8 @@ namespace Golf
             _isOnPole = false;
             GameStateManager.Source.OnGameStateChanged += OnGameStatedChanged;
             GameManager.Source.OnBallRespawn += ResetBallLastPosition;
-            InputManager.Source.OnLaunch += LaunchBall;        
+            InputManager.Source.OnLaunch += LaunchBall;
+            InputManager.Source.OnPowerUpActivated += ApplyCurrentPowerUpEffect;
         }
 
         private void OnDestroy()
@@ -42,6 +44,7 @@ namespace Golf
             GameManager.Source.OnBallRespawn -= ResetBallLastPosition;
             InputManager.Source.OnLaunch -= LaunchBall;
             GameStateManager.Source.OnGameStateChanged -= OnGameStatedChanged;
+            InputManager.Source.OnPowerUpActivated -= ApplyCurrentPowerUpEffect;
         }
 
         private void Update()
@@ -54,12 +57,23 @@ namespace Golf
 
         private void LaunchBall(float angle, float force)
         {
+            _rigidbody.bodyType = RigidbodyType2D.Dynamic;
             float radians = angle * Mathf.Deg2Rad;
             Vector2 launchDirection = new Vector2(Mathf.Cos(radians), Mathf.Sin(radians));
             _rigidbody.AddForce(launchDirection * force, ForceMode2D.Impulse);
             AddTorque(launchDirection.x);
             GameManager.Source.ReduceHitsLeft();
             AudioManager.Source.PlayOneShot("BallHitSFX");
+
+            if (IsGrounded())
+            {
+                PowerUpSystem.Source?.StrokesCooldown();
+            }
+            
+            if (PowerUpSystem.Source != null)
+            {
+                PowerUpSystem.Source.IsEffectActivated = false;
+            }
         }
 
         private void AddTorque(float x)
@@ -116,6 +130,7 @@ namespace Golf
             if (!_isOnPole)
             {
                 _inputSource.ChangeAction(ActionState.Direction);
+                _onAirThrows = 1;
             }
         }
 
@@ -143,6 +158,36 @@ namespace Golf
                 case GameState.OnPause:
                     PausePhysics();
                     break;
+            }
+        }
+
+        private void ApplyCurrentPowerUpEffect()
+        {
+            if (!PowerUpSystem.Source.TryActivatePowerUp()) return;
+
+            var currentData = PowerUpSystem.Source.CurrentPowerUpData;
+            
+            if (currentData == null) return;
+
+            switch (currentData.PowerUpType)
+            {
+                case PowerUpType.Ice:
+                    ApplyIceEffect();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void ApplyIceEffect()
+        {
+            if (!IsGrounded() && _onAirThrows > 0)
+            {
+                PowerUpSystem.Source.IsEffectActivated = true;
+                _onAirThrows--;
+                PausePhysics();
+                _inputSource.ChangeAction(ActionState.Direction);
+                Debug.Log("ICE POWER UP ACTIVATED");
             }
         }
         
