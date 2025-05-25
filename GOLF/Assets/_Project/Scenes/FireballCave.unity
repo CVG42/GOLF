@@ -2397,6 +2397,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5192718450374624912, guid: 27c6cf8323874fa409372d3b4305b09f, type: 3}
+      propertyPath: _powerUpAnimators.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5192718450374624912, guid: 27c6cf8323874fa409372d3b4305b09f, type: 3}
+      propertyPath: _availablePowerUps.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6554821521012939611, guid: 27c6cf8323874fa409372d3b4305b09f, type: 3}
       propertyPath: orthographic size
       value: 8
@@ -4833,6 +4841,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _wallCollider: {fileID: 1804297747734319684}
   _wallHardness: 0
+  _slowTimeScale: 0.1
+  _slowdownDuration: 0.4
+  _cameraShakeDuration: 1
+  _curve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _wallAnimators: []
+  _animatorParameter: 
 --- !u!1 &4153837720461707775
 GameObject:
   m_ObjectHideFlags: 0
