@@ -128,7 +128,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3630090819234838591
 RectTransform:
   m_ObjectHideFlags: 0
@@ -164,9 +164,11 @@ MonoBehaviour:
   _availablePowerUps:
   - {fileID: 11400000, guid: a24d04e574a4d6f4f8062e48d7ee7aa6, type: 2}
   - {fileID: 11400000, guid: 742f1bd907634254b9e7c061d8141c87, type: 2}
+  - {fileID: 11400000, guid: 5fdb574022f63a34c9760bd5056e3e9e, type: 2}
   _powerUpAnimators:
   - {fileID: 9100000, guid: 45088ac9c8750d842a9caea160fedf85, type: 2}
   - {fileID: 9100000, guid: b369ce42dd7221b47a604fa59dd38ae1, type: 2}
+  - {fileID: 9100000, guid: 694fa74bbff397d4ab0ff71bb68386b6, type: 2}
   _powerUpIconImage: {fileID: 4799492555666667357}
   _powerUpAnimator: {fileID: 8338307020382203018}
 --- !u!1 &1508740928249027457
@@ -736,8 +738,8 @@ Camera:
   m_GameObject: {fileID: 2677574554477263671}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -845,7 +847,7 @@ MonoBehaviour:
   _player: {fileID: 0}
   _camera: {fileID: 6554821521012939611}
   _movementCameraFrame: {fileID: 7679883184443129797}
-  _cameraInputConfigurations: {fileID: 11400000, guid: 46a00b16eb04beb4aa42e41cb35bc0b1, type: 2}
+  _cameraInputConfigurations: {fileID: 11400000, guid: d289e7423d2584f4db037718204058f5, type: 2}
   _followSmoothTime: 0.1
   _cameraArrows:
   - {fileID: 7098875038253667276}
@@ -925,6 +927,7 @@ RectTransform:
   - {fileID: 1939969671580797046}
   - {fileID: 7075172222731910972}
   - {fileID: 5668445394121953673}
+  - {fileID: 1693907327991705157}
   m_Father: {fileID: 8200418336236936684}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -3041,6 +3044,98 @@ MonoBehaviour:
   _inputImage: {fileID: 2140934048558581784}
   _keyboardInputSprite: {fileID: 703039226, guid: bbf56e8a4f4b10a47a7568d6f83e4e7f, type: 3}
   _controllerInputSprite: {fileID: 21300000, guid: eb495730f2bcc9f47b30dd7496829b45, type: 3}
+--- !u!1 &9032995507297969639
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1693907327991705157}
+  - component: {fileID: 6320734947987430206}
+  - component: {fileID: 6202636849990758299}
+  - component: {fileID: 5457124103521342167}
+  m_Layer: 5
+  m_Name: IcePowerUP
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1693907327991705157
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9032995507297969639}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2616985705185325694}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -809.21014, y: -478.38995}
+  m_SizeDelta: {x: 50, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &6320734947987430206
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9032995507297969639}
+  m_CullTransparentMesh: 1
+--- !u!114 &6202636849990758299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9032995507297969639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5457124103521342167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9032995507297969639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25da9c46ed5a6564d88f43bf3bc23705, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inputImage: {fileID: 6202636849990758299}
+  _keyboardInputSprite: {fileID: 198117557, guid: bbf56e8a4f4b10a47a7568d6f83e4e7f, type: 3}
+  _controllerInputSprite: {fileID: 1479251247, guid: ddac484acc79fe14f87cd20268cd4897, type: 3}
+  _emptySprite: {fileID: 21300000, guid: eb495730f2bcc9f47b30dd7496829b45, type: 3}
 --- !u!1 &9119060412336474352
 GameObject:
   m_ObjectHideFlags: 0
