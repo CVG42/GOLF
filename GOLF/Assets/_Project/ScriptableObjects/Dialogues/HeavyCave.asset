@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b11b7a6ab34443248afcbf418bf6ae17, type: 3}
+  m_Name: HeavyCave
+  m_EditorClassIdentifier: 
+  DialogueLines:
+  - Character: {fileID: 11400000, guid: 7025ae23c62cf1d4783b7307e18aa6d9, type: 2}
+    Line: Hello! Are you another one of the... uh... cats who stayed here?
+  - Character: {fileID: 11400000, guid: 0bed3636a8daf824ab971dc0fd932241, type: 2}
+    Line: Stay? Nah... I parked. Like a ball in the gutter.
+  - Character: {fileID: 11400000, guid: 7025ae23c62cf1d4783b7307e18aa6d9, type: 2}
+    Line: Oh... sorry. Did you play something before?
+  - Character: {fileID: 11400000, guid: 0bed3636a8daf824ab971dc0fd932241, type: 2}
+    Line: Bowling. Thirty-nine strikes in a row. And then... a rat crossed the lane.
+      I lost the line. I lost the momentum. I lost...
+  - Character: {fileID: 11400000, guid: 7025ae23c62cf1d4783b7307e18aa6d9, type: 2}
+    Line: Wow! But you're still here. Have you thought about trying again?
+  - Character: {fileID: 11400000, guid: 0bed3636a8daf824ab971dc0fd932241, type: 2}
+    Line: Mmm... nah. Now I'm dedicated to philosophizing about the weight of things.
+      Life. The ball. Wet croquettes.
+  - Character: {fileID: 11400000, guid: 7025ae23c62cf1d4783b7307e18aa6d9, type: 2}
+    Line: Well, I'm right in the middle. I've already passed two camps... and although
+      it's been difficult, I think I'm closer to returning to my human.
+  - Character: {fileID: 11400000, guid: 0bed3636a8daf824ab971dc0fd932241, type: 2}
+    Line: With that spirit... you're going to go far, rookie. And speaking of weight...
+      Maybe this will help.
+  - Character: {fileID: 11400000, guid: 0bed3636a8daf824ab971dc0fd932241, type: 2}
+    Line: "Your ball is now heavier. More stable. Like me after five cans of pat\xE9."
+  - Character: {fileID: 11400000, guid: 7025ae23c62cf1d4783b7307e18aa6d9, type: 2}
+    Line: Thanks! This is going to help me a lot.
+  - Character: {fileID: 11400000, guid: 0bed3636a8daf824ab971dc0fd932241, type: 2}
+    Line: Don't forget one thing, kid... Not everything that weighs you down is a
+      hindrance. Sometimes it's the weight itself that keeps you on the straight
+      and narrow.
+  - Character: {fileID: 11400000, guid: 0bed3636a8daf824ab971dc0fd932241, type: 2}
+    Line: And now if you don't mind, I have a nap pending with a first and last name.
+  - Character: {fileID: 11400000, guid: 7025ae23c62cf1d4783b7307e18aa6d9, type: 2}
+    Line: I promise to put your power to good use... and maybe one day, I'll roll
+      a strike for you.
