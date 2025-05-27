@@ -187,7 +187,6 @@ namespace Golf
                 _onAirThrows--;
                 PausePhysics();
                 _inputSource.ChangeAction(ActionState.Direction);
-                Debug.Log("ICE POWER UP ACTIVATED");
             }
         }
         
