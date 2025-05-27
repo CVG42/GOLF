@@ -243,7 +243,7 @@ PrefabInstance:
     - target: {fileID: 3848718382898269624, guid: 27c6cf8323874fa409372d3b4305b09f, type: 3}
       propertyPath: _cameraInputConfigurations
       value: 
-      objectReference: {fileID: 11400000, guid: 70d5c7bfac00728419e58d65baa61abb, type: 2}
+      objectReference: {fileID: 11400000, guid: 45cfe81a28cb6ac4c9607d1ab73f07b2, type: 2}
     - target: {fileID: 5192718450374624912, guid: 27c6cf8323874fa409372d3b4305b09f, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -270,15 +270,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6554821521012939611, guid: 27c6cf8323874fa409372d3b4305b09f, type: 3}
       propertyPath: m_BackGroundColor.b
-      value: 0.9960785
+      value: 0.19215688
       objectReference: {fileID: 0}
     - target: {fileID: 6554821521012939611, guid: 27c6cf8323874fa409372d3b4305b09f, type: 3}
       propertyPath: m_BackGroundColor.g
-      value: 0.6039216
+      value: 0.17254902
       objectReference: {fileID: 0}
     - target: {fileID: 6554821521012939611, guid: 27c6cf8323874fa409372d3b4305b09f, type: 3}
       propertyPath: m_BackGroundColor.r
-      value: 0.38823533
+      value: 0.22352943
       objectReference: {fileID: 0}
     - target: {fileID: 7316803372588282280, guid: 27c6cf8323874fa409372d3b4305b09f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -51271,7 +51271,7 @@ Tilemap:
       - {fileID: 1180415229, guid: 576d7998b1d2a434a9fc890e85996acb, type: 3}
       - {fileID: 1599526751, guid: 576d7998b1d2a434a9fc890e85996acb, type: 3}
       - {fileID: -1930863296, guid: 576d7998b1d2a434a9fc890e85996acb, type: 3}
-      m_AnimationSpeed: 2.728208
+      m_AnimationSpeed: 4.643934
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 16, y: -7, z: 0}
@@ -51286,7 +51286,7 @@ Tilemap:
       - {fileID: 1180415229, guid: 576d7998b1d2a434a9fc890e85996acb, type: 3}
       - {fileID: 1599526751, guid: 576d7998b1d2a434a9fc890e85996acb, type: 3}
       - {fileID: -1930863296, guid: 576d7998b1d2a434a9fc890e85996acb, type: 3}
-      m_AnimationSpeed: 4.3143444
+      m_AnimationSpeed: 5.527965
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 17, y: -7, z: 0}
@@ -51301,7 +51301,7 @@ Tilemap:
       - {fileID: 1180415229, guid: 576d7998b1d2a434a9fc890e85996acb, type: 3}
       - {fileID: 1599526751, guid: 576d7998b1d2a434a9fc890e85996acb, type: 3}
       - {fileID: -1930863296, guid: 576d7998b1d2a434a9fc890e85996acb, type: 3}
-      m_AnimationSpeed: 4.360627
+      m_AnimationSpeed: 2.7811894
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 18, y: -7, z: 0}
@@ -51316,7 +51316,7 @@ Tilemap:
       - {fileID: 1180415229, guid: 576d7998b1d2a434a9fc890e85996acb, type: 3}
       - {fileID: 1599526751, guid: 576d7998b1d2a434a9fc890e85996acb, type: 3}
       - {fileID: -1930863296, guid: 576d7998b1d2a434a9fc890e85996acb, type: 3}
-      m_AnimationSpeed: 4.804955
+      m_AnimationSpeed: 7.220291
       m_AnimationTimeOffset: 0
       m_Flags: 0
   m_TileAssetArray:
@@ -52611,8 +52611,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b567d5b94f9fa74c9b4be4a29cb3cac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _levelID: 2
-  _sceneName: Credits
+  _levelID: 3
+  _sceneName: LevelSelector
   _isTutorialLevel: 0
 --- !u!1 &1542107118
 GameObject:
