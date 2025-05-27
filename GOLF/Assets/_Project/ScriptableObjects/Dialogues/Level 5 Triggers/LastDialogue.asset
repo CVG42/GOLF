@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b11b7a6ab34443248afcbf418bf6ae17, type: 3}
+  m_Name: LastDialogue
+  m_EditorClassIdentifier: 
+  DialogueLines:
+  - Character: {fileID: 11400000, guid: e0ab81b290e112545b5597682be545d7, type: 2}
+    Line: Hey, hey! Hold it right there.
+  - Character: {fileID: 11400000, guid: e0ab81b290e112545b5597682be545d7, type: 2}
+    Line: "I really hope you're just one shot away. It\u2019d be hilarious if you
+      lost because of this little chat."
+  - Character: {fileID: 11400000, guid: 7025ae23c62cf1d4783b7307e18aa6d9, type: 2}
+    Line: "Why exactly are you stopping me now, right when I\u2019m about to beat
+      you?"
+  - Character: {fileID: 11400000, guid: e0ab81b290e112545b5597682be545d7, type: 2}
+    Line: "Relaaax... I just wanted to speak to the only living being who\u2019s
+      ever managed to beat me in a challenge."
+  - Character: {fileID: 11400000, guid: e0ab81b290e112545b5597682be545d7, type: 2}
+    Line: Congratulations! Honestly, I never expected anything from you. You genuinely
+      surprised me.
+  - Character: {fileID: 11400000, guid: 7025ae23c62cf1d4783b7307e18aa6d9, type: 2}
+    Line: No one else ever did because you spent all your time rigging the trials.
+  - Character: {fileID: 11400000, guid: e0ab81b290e112545b5597682be545d7, type: 2}
+    Line: "Ohhh, look who\u2019s talking\u2014the one who needed some extra help
+      that wasn\u2019t exactly in the original deal."
+  - Character: {fileID: 11400000, guid: 7025ae23c62cf1d4783b7307e18aa6d9, type: 2}
+    Line: "They helped me, and for that, I\u2019ll be forever grateful."
+  - Character: {fileID: 11400000, guid: 7025ae23c62cf1d4783b7307e18aa6d9, type: 2}
+    Line: "Thanks to them, I was able to defeat you. And thanks to them\u2026 I\u2019ll
+      go back to the one who matters most in my life."
+  - Character: {fileID: 11400000, guid: 7025ae23c62cf1d4783b7307e18aa6d9, type: 2}
+    Line: Because your word never meant anything from the beginning.
+  - Character: {fileID: 11400000, guid: e0ab81b290e112545b5597682be545d7, type: 2}
+    Line: "What, did you think I\u2019d stop doing my job just because of your cute
+      little face?"
+  - Character: {fileID: 11400000, guid: e0ab81b290e112545b5597682be545d7, type: 2}
+    Line: No, I do this for fun.
+  - Character: {fileID: 11400000, guid: e0ab81b290e112545b5597682be545d7, type: 2}
+    Line: "Ethics? Please\u2014I make decisions for the drama, not the morals."
+  - Character: {fileID: 11400000, guid: e0ab81b290e112545b5597682be545d7, type: 2}
+    Line: "Enjoy your prize\u2026 but remember: death is the only certainty."
+  - Character: {fileID: 11400000, guid: e0ab81b290e112545b5597682be545d7, type: 2}
+    Line: "And at that time, there won\u2019t be any second chances."
+  - Character: {fileID: 11400000, guid: e0ab81b290e112545b5597682be545d7, type: 2}
+    Line: Enjoy the rest of your life.
+  - Character: {fileID: 11400000, guid: 7025ae23c62cf1d4783b7307e18aa6d9, type: 2}
+    Line: "Believe me\u2026 I will."
