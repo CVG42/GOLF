@@ -11,9 +11,9 @@ namespace Golf
         public PowerUpData CurrentPowerUpData => _currentPowerUp;
 
         public bool IsEffectActivated { get; set; } = false;
+        public bool IsOnCooldown { get; set; } = false;
 
         private PowerUpData _currentPowerUp;
-        private bool _isOnCooldown = false;
         private int _strikesSinceLastActivated = 0;
 
         public void ApplyPowerUpData(PowerUpData powerUpData)
@@ -25,21 +25,21 @@ namespace Golf
 
         public bool TryActivatePowerUp()
         {
-            if (_isOnCooldown || _currentPowerUp.HasEffect == false) return false;
+            if (IsOnCooldown || _currentPowerUp.HasEffect == false) return false;
 
-            _isOnCooldown = true;
+            IsOnCooldown = true;
             _strikesSinceLastActivated = 0;
             return true;
         }
 
         public void StrokesCooldown()
         {
-            if(!_isOnCooldown) return;
+            if(!IsOnCooldown) return;
 
             _strikesSinceLastActivated++;
             if (_strikesSinceLastActivated >= STROKES_REQUIRED)
             {
-                _isOnCooldown = false;
+                IsOnCooldown = false;
                 _strikesSinceLastActivated = 0;
             }
         }
