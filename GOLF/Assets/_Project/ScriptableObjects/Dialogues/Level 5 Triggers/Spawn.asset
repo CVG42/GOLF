@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b11b7a6ab34443248afcbf418bf6ae17, type: 3}
+  m_Name: Spawn
+  m_EditorClassIdentifier: 
+  DialogueLines:
+  - Character: {fileID: 11400000, guid: e0ab81b290e112545b5597682be545d7, type: 2}
+    Line: "Incredible\u2026 you actually made it this far. And I didn\u2019t even
+      have time to decorate this field."
+  - Character: {fileID: 11400000, guid: e0ab81b290e112545b5597682be545d7, type: 2}
+    Line: Look at those unfinished edges. That floating platform, barely placed...
+  - Character: {fileID: 11400000, guid: e0ab81b290e112545b5597682be545d7, type: 2}
+    Line: "All ruined! And now I\u2019ll have to call my decorator and tell him I
+      won\u2019t need him after all."
+  - Character: {fileID: 11400000, guid: e0ab81b290e112545b5597682be545d7, type: 2}
+    Line: "A whole family without dinner tonight. Hope you\u2019re proud of yourself."
+  - Character: {fileID: 11400000, guid: 7025ae23c62cf1d4783b7307e18aa6d9, type: 2}
+    Line: "I\u2019m not responsible for your incompetence."
+  - Character: {fileID: 11400000, guid: e0ab81b290e112545b5597682be545d7, type: 2}
+    Line: How dare you?!
+  - Character: {fileID: 11400000, guid: e0ab81b290e112545b5597682be545d7, type: 2}
+    Line: I built this entire world for you.
+  - Character: {fileID: 11400000, guid: e0ab81b290e112545b5597682be545d7, type: 2}
+    Line: "The landscapes, the music, the challenges\u2026"
+  - Character: {fileID: 11400000, guid: e0ab81b290e112545b5597682be545d7, type: 2}
+    Line: And this is how you repay me?
+  - Character: {fileID: 11400000, guid: e0ab81b290e112545b5597682be545d7, type: 2}
+    Line: You know what?
+  - Character: {fileID: 11400000, guid: e0ab81b290e112545b5597682be545d7, type: 2}
+    Line: I was going to break the deal and trap you here even if you won.
+  - Character: {fileID: 11400000, guid: e0ab81b290e112545b5597682be545d7, type: 2}
+    Line: "But now? You\u2019re not even worth the cruelty. You\u2019ve bored me."
+  - Character: {fileID: 11400000, guid: e0ab81b290e112545b5597682be545d7, type: 2}
+    Line: "I\u2019m so disappointed\u2026 I won\u2019t even finish this course."
+  - Character: {fileID: 11400000, guid: e0ab81b290e112545b5597682be545d7, type: 2}
+    Line: "You\u2019ll face it as it is \u2014 raw sketches. No guidance. No logic."
+  - Character: {fileID: 11400000, guid: 7025ae23c62cf1d4783b7307e18aa6d9, type: 2}
+    Line: I never planned to ask for your help anyway.
+  - Character: {fileID: 11400000, guid: e0ab81b290e112545b5597682be545d7, type: 2}
+    Line: You better make it back to your owner.
+  - Character: {fileID: 11400000, guid: e0ab81b290e112545b5597682be545d7, type: 2}
+    Line: "Because if you don\u2019t\u2026 there won\u2019t even be a limbo left
+      for you."

@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b11b7a6ab34443248afcbf418bf6ae17, type: 3}
+  m_Name: MidDialogue
+  m_EditorClassIdentifier: 
+  DialogueLines:
+  - Character: {fileID: 11400000, guid: e0ab81b290e112545b5597682be545d7, type: 2}
+    Line: How did you get those powers? Who gave them to you?
+  - Character: {fileID: 11400000, guid: 7025ae23c62cf1d4783b7307e18aa6d9, type: 2}
+    Line: "From those you tried to break so I wouldn\u2019t stand a chance."
+  - Character: {fileID: 11400000, guid: 7025ae23c62cf1d4783b7307e18aa6d9, type: 2}
+    Line: They gave me these abilities to end this cycle.
+  - Character: {fileID: 11400000, guid: 7025ae23c62cf1d4783b7307e18aa6d9, type: 2}
+    Line: "And I\u2019ll live up to each of their hopes \u2014 to return to the one
+      I love\u2026 and defeat you on the way."
+  - Character: {fileID: 11400000, guid: e0ab81b290e112545b5597682be545d7, type: 2}
+    Line: "Kitty, kitty, kitty... Sure, go ahead and chase what they couldn\u2019t
+      do \u2014 but you and I both know it\u2019s impossible."
+  - Character: {fileID: 11400000, guid: e0ab81b290e112545b5597682be545d7, type: 2}
+    Line: "These are my lands, which means my rules. You\u2019re just another pawn
+      in this little chess game I call leisure."
+  - Character: {fileID: 11400000, guid: 7025ae23c62cf1d4783b7307e18aa6d9, type: 2}
+    Line: "That\u2019s exactly why they gave me this chance. They saw something in
+      me \u2014 something even I didn\u2019t see."
+  - Character: {fileID: 11400000, guid: 7025ae23c62cf1d4783b7307e18aa6d9, type: 2}
+    Line: "And I\u2019ll say it again: this isn\u2019t just my goal anymore\u2026
+      it\u2019s ours."
+  - Character: {fileID: 11400000, guid: e0ab81b290e112545b5597682be545d7, type: 2}
+    Line: "Hah! Doesn\u2019t matter what story you tell yourself \u2014 the ending\u2019s
+      already written."
+  - Character: {fileID: 11400000, guid: e0ab81b290e112545b5597682be545d7, type: 2}
+    Line: "And if \u2014 by some miracle \u2014 you do beat me, what do you think
+      happens to them? Everyone gets a happy ending?"
+  - Character: {fileID: 11400000, guid: e0ab81b290e112545b5597682be545d7, type: 2}
+    Line: "Of course not. While you live out your precious little life, they\u2019ll
+      still be stuck here with no way out."
+  - Character: {fileID: 11400000, guid: e0ab81b290e112545b5597682be545d7, type: 2}
+    Line: "That, my feline friend, makes you nothing but a manipulator\u2026 and
+      a hopeless optimist."
+  - Character: {fileID: 11400000, guid: 2c0730b1d30476b44aaa9ab0b7371ca3, type: 2}
+    Line: "Come on, kid\u2026 You haven\u2019t fought alone. I\u2019ve been in your
+      corner since round one \u2014 and I won\u2019t let you fall now."
+  - Character: {fileID: 11400000, guid: 13395de99bfa0ec4abf704516b7103cb, type: 2}
+    Line: You really think a chessmaster like me would let his pawn not become a
+      queen?
+  - Character: {fileID: 11400000, guid: dece07a5a52b6f149aff04333be37893, type: 2}
+    Line: "It's clutch time, kitty. Don\u2019t let us down."
+  - Character: {fileID: 11400000, guid: e0ab81b290e112545b5597682be545d7, type: 2}
+    Line: GET BACK TO YOUR POSTS, OR THOSE WILL BE YOUR FINAL WORDS!
+  - Character: {fileID: 11400000, guid: 7025ae23c62cf1d4783b7307e18aa6d9, type: 2}
+    Line: "You can\u2019t stop me anymore."
