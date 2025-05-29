@@ -45,6 +45,7 @@ namespace Golf
         public void ShowLosePanel()
         {
             _losePanel.SetActive(true);
+            GameStateManager.Source.ChangeState(GameState.OnGameOver);
             EventSystem.current.SetSelectedGameObject(_backToMenuButton.gameObject);
         }
 
