@@ -118,6 +118,7 @@ namespace Golf
             if (DoesFileExists(gameIndex))
             {
                 File.Delete(GetFilePath(gameIndex));
+                GameManager.Source.ResetHitsLeft();
             }
         }
 
