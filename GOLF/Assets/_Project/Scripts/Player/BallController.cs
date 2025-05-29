@@ -127,7 +127,7 @@ namespace Golf
             _stopTimer = 0f;
             _currentLastPosition = transform.position;
             
-            if (!_isOnPole)
+            if (!_isOnPole && GameManager.Source.CurrentHitsLeft != 0)
             {
                 _inputSource.ChangeAction(ActionState.Direction);
                 _onAirThrows = 1;
