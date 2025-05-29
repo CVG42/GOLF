@@ -36,7 +36,7 @@ namespace Golf
 
         public void ResetHitsLeft()
         {
-            _strokesNumber = 5;
+            _strokesNumber = 50;
         }
 
         public void TriggerLoseCondition()
