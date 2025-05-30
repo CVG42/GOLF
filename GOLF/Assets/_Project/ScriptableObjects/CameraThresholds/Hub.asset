@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b850ad4353d327b4a977a47853d92577, type: 3}
   m_Name: Hub
   m_EditorClassIdentifier: 
-  RightThresholdMap: 0.8
-  LeftThresholdMap: -1.8
-  UpThresholdMap: 2.8
-  DownThresholdMap: 1.4
+  RightThresholdMap: -1.1
+  LeftThresholdMap: -1.1
+  UpThresholdMap: 2.4
+  DownThresholdMap: 2.4
