@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Protagonist
   m_EditorClassIdentifier: 
   Name: Orange Cat
-  Icon: {fileID: 21300000, guid: 83e229114036cd14ca83cf4f607dd5b5, type: 3}
+  Icon: {fileID: 21300000, guid: 313ca64a2c141be4caed77ae5fbcd545, type: 3}
   AudioName: Blop
