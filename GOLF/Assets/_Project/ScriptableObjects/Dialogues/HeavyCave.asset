@@ -16,17 +16,18 @@ MonoBehaviour:
   - Character: {fileID: 11400000, guid: 7025ae23c62cf1d4783b7307e18aa6d9, type: 2}
     Line: Hello! Are you another one of the... uh... cats who stayed here?
   - Character: {fileID: 11400000, guid: 0bed3636a8daf824ab971dc0fd932241, type: 2}
-    Line: Stay? Nah... I parked. Like a ball in the gutter.
+    Line: Mmm... technically, I'm in existential checkmate. But yes, you could say
+      I gave up before the end. A miscalculation.
   - Character: {fileID: 11400000, guid: 7025ae23c62cf1d4783b7307e18aa6d9, type: 2}
     Line: Oh... sorry. Did you play something before?
   - Character: {fileID: 11400000, guid: 0bed3636a8daf824ab971dc0fd932241, type: 2}
-    Line: Bowling. Thirty-nine strikes in a row. And then... a rat crossed the lane.
-      I lost the line. I lost the momentum. I lost...
+    Line: I played and breathed chess. Until a mouse distracted me in the middle
+      of a crucial game. I lost focus. I lost the queen.
   - Character: {fileID: 11400000, guid: 7025ae23c62cf1d4783b7307e18aa6d9, type: 2}
     Line: Wow! But you're still here. Have you thought about trying again?
   - Character: {fileID: 11400000, guid: 0bed3636a8daf824ab971dc0fd932241, type: 2}
     Line: Mmm... nah. Now I'm dedicated to philosophizing about the weight of things.
-      Life. The ball. Wet croquettes.
+      Life.
   - Character: {fileID: 11400000, guid: 7025ae23c62cf1d4783b7307e18aa6d9, type: 2}
     Line: Well, I'm right in the middle. I've already passed two camps... and although
       it's been difficult, I think I'm closer to returning to my human.
