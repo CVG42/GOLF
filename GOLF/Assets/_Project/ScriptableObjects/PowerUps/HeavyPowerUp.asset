@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b112847a445174b48b80ba0241c4afc6, type: 3}
   m_Name: HeavyPowerUp
   m_EditorClassIdentifier: 
+  _powerUpType: 3
   _ballMass: 0.8
   _ballAngularDrag: 30
   _ballSprite: {fileID: 0}
   _hardness: 0
+  _hasEffect: 0
