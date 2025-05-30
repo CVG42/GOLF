@@ -2950,7 +2950,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _inputImage: {fileID: 6202636849990758299}
   _keyboardInputSprite: {fileID: 198117557, guid: bbf56e8a4f4b10a47a7568d6f83e4e7f, type: 3}
-  _controllerInputSprite: {fileID: 1479251247, guid: ddac484acc79fe14f87cd20268cd4897, type: 3}
+  _controllerInputSprite: {fileID: -1488142001, guid: ddac484acc79fe14f87cd20268cd4897, type: 3}
   _emptySprite: {fileID: 21300000, guid: eb495730f2bcc9f47b30dd7496829b45, type: 3}
 --- !u!1 &9119060412336474352
 GameObject:

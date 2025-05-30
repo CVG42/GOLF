@@ -143,7 +143,7 @@ namespace Golf
 
         private void ActivatePowerUpInput()
         {
-            if (Input.GetKeyDown(KeyCode.P))
+            if (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.JoystickButton2))
             {
                 OnPowerUpActivated?.Invoke();
             }
