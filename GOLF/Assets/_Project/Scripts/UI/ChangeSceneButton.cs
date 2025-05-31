@@ -16,10 +16,12 @@ namespace Golf
         private void Start()
         {
             _button.onClick.AddListener(ChangeScene);
+            _button.interactable = true;
         }
 
         private void ChangeScene()
         {
+            _button.interactable = false;
             LevelManager.Source.LoadScene(_sceneName);
         }
     }

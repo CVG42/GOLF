@@ -31,6 +31,7 @@ namespace Golf
         {
             InputManager.Source.OnDeleteButtonPressed += OnDeletePressed;
 
+            _slotButton.interactable = true;
             _slotButton.onClick.AddListener(LoadGameData);
             DisplaySlotData();
         }
@@ -65,6 +66,7 @@ namespace Golf
 
         private void LoadGameData()
         {
+            _slotButton.interactable = false;
             _saveSystem.LoadGame(_slotIndex);
             if (!_saveSystem.IsTutorialCleared())
             {
