@@ -74,6 +74,7 @@ namespace Golf
             {
                 LevelManager.Source.LoadScene(HUB_SCENE);
             }
+            GameStateManager.Source.ChangeState(GameState.OnPlay);
         }
 
         private void DisplaySlotData()

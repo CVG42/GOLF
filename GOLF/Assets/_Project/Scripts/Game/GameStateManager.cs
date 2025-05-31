@@ -34,6 +34,9 @@ namespace Golf
                 case GameState.OnDialogue:
                     ChangeState(GameState.OnDialogue); 
                     break;
+                case GameState.OnGameOver:
+                    ChangeState(GameState.OnGameOver);
+                    break;
             }
         }
 
@@ -51,5 +54,6 @@ namespace Golf
         OnPlay,
         OnPause,
         OnDialogue,
+        OnGameOver
     }
 }
