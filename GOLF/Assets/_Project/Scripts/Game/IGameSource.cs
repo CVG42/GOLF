@@ -9,6 +9,7 @@ namespace Golf
         event Action OnLose;
         event Action OnBallRespawn;
         int CurrentHitsLeft { get; }
+        int InitialStrokes { get; }
 
         void ReduceHitsLeft();
         void TriggerLoseCondition();
