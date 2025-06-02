@@ -1623,6 +1623,9 @@ MonoBehaviour:
   _wallAnimators:
   - {fileID: 506440910}
   - {fileID: 511708470}
+  - {fileID: 786384868}
+  - {fileID: 1893114256}
+  - {fileID: 830874919}
   _animatorParameter: IceIndex
 --- !u!61 &260315288
 BoxCollider2D:
@@ -3467,6 +3470,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1182378500}
+  - {fileID: 292769277}
   - {fileID: 74680353}
   - {fileID: 1691114862}
   - {fileID: 853232926}
@@ -3475,7 +3479,6 @@ Transform:
   - {fileID: 66762621}
   - {fileID: 739590876}
   - {fileID: 1918491347}
-  - {fileID: 292769277}
   m_Father: {fileID: 1375504982}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &774022262
@@ -3540,6 +3543,13 @@ MonoBehaviour:
   _wallAnimators:
   - {fileID: 292769278}
   - {fileID: 74680354}
+  - {fileID: 1691114863}
+  - {fileID: 853232927}
+  - {fileID: 878625497}
+  - {fileID: 149755476}
+  - {fileID: 66762622}
+  - {fileID: 739590877}
+  - {fileID: 1918491348}
   _animatorParameter: IceIndex
 --- !u!61 &774022263
 BoxCollider2D:
@@ -52818,7 +52828,7 @@ Tilemap:
       - {fileID: 1180415229, guid: 576d7998b1d2a434a9fc890e85996acb, type: 3}
       - {fileID: 1599526751, guid: 576d7998b1d2a434a9fc890e85996acb, type: 3}
       - {fileID: -1930863296, guid: 576d7998b1d2a434a9fc890e85996acb, type: 3}
-      m_AnimationSpeed: 1.5952272
+      m_AnimationSpeed: 5.1102057
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 16, y: -7, z: 0}
@@ -52833,7 +52843,7 @@ Tilemap:
       - {fileID: 1180415229, guid: 576d7998b1d2a434a9fc890e85996acb, type: 3}
       - {fileID: 1599526751, guid: 576d7998b1d2a434a9fc890e85996acb, type: 3}
       - {fileID: -1930863296, guid: 576d7998b1d2a434a9fc890e85996acb, type: 3}
-      m_AnimationSpeed: 4.279399
+      m_AnimationSpeed: 5.971894
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 17, y: -7, z: 0}
@@ -52848,7 +52858,7 @@ Tilemap:
       - {fileID: 1180415229, guid: 576d7998b1d2a434a9fc890e85996acb, type: 3}
       - {fileID: 1599526751, guid: 576d7998b1d2a434a9fc890e85996acb, type: 3}
       - {fileID: -1930863296, guid: 576d7998b1d2a434a9fc890e85996acb, type: 3}
-      m_AnimationSpeed: 4.413988
+      m_AnimationSpeed: 1.9154482
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 18, y: -7, z: 0}
@@ -52863,7 +52873,7 @@ Tilemap:
       - {fileID: 1180415229, guid: 576d7998b1d2a434a9fc890e85996acb, type: 3}
       - {fileID: 1599526751, guid: 576d7998b1d2a434a9fc890e85996acb, type: 3}
       - {fileID: -1930863296, guid: 576d7998b1d2a434a9fc890e85996acb, type: 3}
-      m_AnimationSpeed: 7.6526713
+      m_AnimationSpeed: 2.103747
       m_AnimationTimeOffset: 0
       m_Flags: 0
   m_TileAssetArray:
@@ -53205,6 +53215,10 @@ MonoBehaviour:
   _wallAnimators:
   - {fileID: 722293642}
   - {fileID: 317466357}
+  - {fileID: 125733314}
+  - {fileID: 853869549}
+  - {fileID: 979396363}
+  - {fileID: 297830646}
   _animatorParameter: IceIndex
 --- !u!61 &1110329392
 BoxCollider2D:
