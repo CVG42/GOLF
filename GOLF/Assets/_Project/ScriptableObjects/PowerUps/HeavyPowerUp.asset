@@ -15,6 +15,6 @@ MonoBehaviour:
   _powerUpType: 3
   _ballMass: 0.8
   _ballAngularDrag: 30
-  _ballSprite: {fileID: 0}
-  _hardness: 0
+  _ballSprite: {fileID: 21300000, guid: e389390837f3f8a4886d88b8ab414d7e, type: 3}
+  _hardness: 2
   _hasEffect: 0
