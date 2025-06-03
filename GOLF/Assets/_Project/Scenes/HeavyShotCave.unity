@@ -177,7 +177,7 @@ PrefabInstance:
     - target: {fileID: 5192718450374624912, guid: 27c6cf8323874fa409372d3b4305b09f, type: 3}
       propertyPath: _powerUpAnimators.Array.data[2]
       value: 
-      objectReference: {fileID: 9100000, guid: b369ce42dd7221b47a604fa59dd38ae1, type: 2}
+      objectReference: {fileID: 9100000, guid: e69335484710623499698a397adcf773, type: 2}
     - target: {fileID: 5192718450374624912, guid: 27c6cf8323874fa409372d3b4305b09f, type: 3}
       propertyPath: _availablePowerUps.Array.data[2]
       value: 
