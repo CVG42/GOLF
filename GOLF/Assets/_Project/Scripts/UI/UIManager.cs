@@ -10,9 +10,14 @@ namespace Golf
     {
         [SerializeField] private TextMeshProUGUI _strokesText;
         [SerializeField] private GameObject _losePanel;
+        [SerializeField] private Canvas _settingsPanel;
         [SerializeField] private Canvas _pausePanel;
         [SerializeField] private Button _resumeButton;
+        [SerializeField] private Button _settingsButton;
+        [SerializeField] private Button _mainMenuButton;
         [SerializeField] private Button _backToMenuButton;
+        [SerializeField] private Slider _settingsFirstButton;
+        [SerializeField] private Button _closeSettingsButton;
 
         private bool _isOnPlay;
 
@@ -27,6 +32,9 @@ namespace Golf
             GameStateManager.Source.OnGameStateChanged += OnGameStateChanged;
 
             _resumeButton.onClick.AddListener(DeactivatePausePanel);
+            _settingsButton.onClick.AddListener(ShowSettingsPanel);
+            _closeSettingsButton.onClick.AddListener(HideSettingsPanel);
+            _mainMenuButton.onClick.AddListener(BackToMainMenu);
         }
 
         private void OnDestroy()
@@ -47,6 +55,25 @@ namespace Golf
             _losePanel.SetActive(true);
             GameStateManager.Source.ChangeState(GameState.OnGameOver);
             EventSystem.current.SetSelectedGameObject(_backToMenuButton.gameObject);
+        }
+
+        public void ShowSettingsPanel()
+        {
+            _pausePanel.enabled = false;
+            _settingsPanel.enabled = true;
+            EventSystem.current.SetSelectedGameObject(_settingsFirstButton.gameObject);
+        }
+
+        public void HideSettingsPanel()
+        {
+            _settingsPanel.enabled = false;
+            _pausePanel.enabled = true;
+            EventSystem.current.SetSelectedGameObject(_resumeButton.gameObject);
+        }
+
+        private void BackToMainMenu()
+        {
+            LevelManager.Source.LoadScene("MainMenu");
         }
 
         public void HidePanels()
