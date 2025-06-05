@@ -7,7 +7,7 @@ namespace Golf
 {
     public class GameManager : Singleton<IGameSource>, IGameSource
     {
-        private const int INITIAL_STROKES = 50;
+        public const int INITIAL_STROKES = 50;
 
         [SerializeField] private int _strokesNumber;
 
@@ -15,8 +15,6 @@ namespace Golf
         public event Action OnLose;
         public event Action OnBallRespawn;
         public int CurrentHitsLeft => _strokesNumber;
-
-        public int InitialStrokes => INITIAL_STROKES;
 
         private readonly HashSet<string> _excludedScenes = new HashSet<string> { "Tutorial", "LevelSelector", "FireballCave" };
 
@@ -40,7 +38,7 @@ namespace Golf
 
         public void ResetHitsLeft()
         {
-            _strokesNumber = InitialStrokes;
+            _strokesNumber = INITIAL_STROKES;
         }
 
         public void TriggerLoseCondition()
