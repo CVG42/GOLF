@@ -7,6 +7,8 @@ namespace Golf
 {
     public class GameManager : Singleton<IGameSource>, IGameSource
     {
+        public const int INITIAL_STROKES = 50;
+
         [SerializeField] private int _strokesNumber;
 
         public event Action<int> OnHitsChanged;
@@ -36,7 +38,7 @@ namespace Golf
 
         public void ResetHitsLeft()
         {
-            _strokesNumber = 5;
+            _strokesNumber = INITIAL_STROKES;
         }
 
         public void TriggerLoseCondition()

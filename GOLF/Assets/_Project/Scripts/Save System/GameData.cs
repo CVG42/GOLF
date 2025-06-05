@@ -7,7 +7,7 @@ namespace Golf
     {
         public int LastLevelCompleted = 0;
         public bool IsTutorialCleared = false;
-        public int StrokesNumber = 20;
+        public int StrokesNumber = GameManager.INITIAL_STROKES;
     }
 
     [Serializable]
