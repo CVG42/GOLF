@@ -278,12 +278,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5192718450374624912, guid: 27c6cf8323874fa409372d3b4305b09f, type: 3}
       propertyPath: _powerUpAnimators.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5192718450374624912, guid: 27c6cf8323874fa409372d3b4305b09f, type: 3}
       propertyPath: _availablePowerUps.Array.size
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5192718450374624912, guid: 27c6cf8323874fa409372d3b4305b09f, type: 3}
+      propertyPath: _powerUpAnimators.Array.data[1]
+      value: 
+      objectReference: {fileID: 9100000, guid: e69335484710623499698a397adcf773, type: 2}
     - target: {fileID: 5192718450374624912, guid: 27c6cf8323874fa409372d3b4305b09f, type: 3}
       propertyPath: _powerUpAnimators.Array.data[2]
       value: 
