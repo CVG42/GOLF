@@ -15,34 +15,34 @@ MonoBehaviour:
   DialogueLines:
   - Character: {fileID: 11400000, guid: 7025ae23c62cf1d4783b7307e18aa6d9, type: 2}
     Line: Hello! Are you another one of the... uh... cats who stayed here?
-  - Character: {fileID: 11400000, guid: 0bed3636a8daf824ab971dc0fd932241, type: 2}
+  - Character: {fileID: 11400000, guid: 13395de99bfa0ec4abf704516b7103cb, type: 2}
     Line: Mmm... technically, I'm in existential checkmate. But yes, you could say
       I gave up before the end. A miscalculation.
   - Character: {fileID: 11400000, guid: 7025ae23c62cf1d4783b7307e18aa6d9, type: 2}
     Line: Oh... sorry. Did you play something before?
-  - Character: {fileID: 11400000, guid: 0bed3636a8daf824ab971dc0fd932241, type: 2}
+  - Character: {fileID: 11400000, guid: 13395de99bfa0ec4abf704516b7103cb, type: 2}
     Line: I played and breathed chess. Until a mouse distracted me in the middle
       of a crucial game. I lost focus. I lost the queen.
   - Character: {fileID: 11400000, guid: 7025ae23c62cf1d4783b7307e18aa6d9, type: 2}
     Line: Wow! But you're still here. Have you thought about trying again?
-  - Character: {fileID: 11400000, guid: 0bed3636a8daf824ab971dc0fd932241, type: 2}
+  - Character: {fileID: 11400000, guid: 13395de99bfa0ec4abf704516b7103cb, type: 2}
     Line: Mmm... nah. Now I'm dedicated to philosophizing about the weight of things.
       Life.
   - Character: {fileID: 11400000, guid: 7025ae23c62cf1d4783b7307e18aa6d9, type: 2}
     Line: Well, I'm right in the middle. I've already passed two camps... and although
       it's been difficult, I think I'm closer to returning to my human.
-  - Character: {fileID: 11400000, guid: 0bed3636a8daf824ab971dc0fd932241, type: 2}
+  - Character: {fileID: 11400000, guid: 13395de99bfa0ec4abf704516b7103cb, type: 2}
     Line: With that spirit... you're going to go far, rookie. And speaking of weight...
       Maybe this will help.
-  - Character: {fileID: 11400000, guid: 0bed3636a8daf824ab971dc0fd932241, type: 2}
+  - Character: {fileID: 11400000, guid: 13395de99bfa0ec4abf704516b7103cb, type: 2}
     Line: "Your ball is now heavier. More stable. Like me after five cans of pat\xE9."
   - Character: {fileID: 11400000, guid: 7025ae23c62cf1d4783b7307e18aa6d9, type: 2}
     Line: Thanks! This is going to help me a lot.
-  - Character: {fileID: 11400000, guid: 0bed3636a8daf824ab971dc0fd932241, type: 2}
+  - Character: {fileID: 11400000, guid: 13395de99bfa0ec4abf704516b7103cb, type: 2}
     Line: Don't forget one thing, kid... Not everything that weighs you down is a
       hindrance. Sometimes it's the weight itself that keeps you on the straight
       and narrow.
-  - Character: {fileID: 11400000, guid: 0bed3636a8daf824ab971dc0fd932241, type: 2}
+  - Character: {fileID: 11400000, guid: 13395de99bfa0ec4abf704516b7103cb, type: 2}
     Line: And now if you don't mind, I have a nap pending with a first and last name.
   - Character: {fileID: 11400000, guid: 7025ae23c62cf1d4783b7307e18aa6d9, type: 2}
     Line: I promise to put your power to good use... and maybe one day, I'll roll
