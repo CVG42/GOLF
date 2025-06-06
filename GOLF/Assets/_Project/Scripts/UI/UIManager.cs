@@ -47,7 +47,7 @@ namespace Golf
 
         public void UpdateHitsLeft(int hitsLeft)
         {
-            _strokesText.text = "Strokes left: " + hitsLeft;
+            _strokesText.text = "Strokes left:".Localize() + " " + hitsLeft;
         }
 
         public void ShowLosePanel()
