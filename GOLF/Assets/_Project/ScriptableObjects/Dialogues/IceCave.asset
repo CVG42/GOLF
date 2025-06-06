@@ -29,4 +29,5 @@ MonoBehaviour:
   - Character: {fileID: 11400000, guid: dece07a5a52b6f149aff04333be37893, type: 2}
     Line: Good luck my fellow feline friend!
   - Character: {fileID: 11400000, guid: dece07a5a52b6f149aff04333be37893, type: 2}
-    Line: Oh! And before I forget! You only have once chance every two hits.
+    Line: Oh! And before I forget! You only have once chance every two hits after
+      touching the ground.
