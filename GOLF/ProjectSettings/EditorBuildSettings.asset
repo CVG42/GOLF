@@ -36,6 +36,9 @@ EditorBuildSettings:
     path: Assets/_Project/Scenes/Level2.unity
     guid: 6d9fa996b9e454246992cc2c87a40222
   - enabled: 1
+    path: Assets/_Project/Scenes/HeavyShotCave.unity
+    guid: a4b9e291ae22c0f4c9c86830229bb5cb
+  - enabled: 1
     path: Assets/_Project/Scenes/Level3.unity
     guid: c5bb5b50407a9de48a398522774d719a
   - enabled: 1
