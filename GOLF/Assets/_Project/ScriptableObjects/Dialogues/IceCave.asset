@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b11b7a6ab34443248afcbf418bf6ae17, type: 3}
+  m_Name: IceCave
+  m_EditorClassIdentifier: 
+  DialogueLines:
+  - Character: {fileID: 11400000, guid: dece07a5a52b6f149aff04333be37893, type: 2}
+    Line: What a surprise! No one has reached this far besides me.
+  - Character: {fileID: 11400000, guid: dece07a5a52b6f149aff04333be37893, type: 2}
+    Line: So your owner is a golfist, mine was a basketball player.
+  - Character: {fileID: 11400000, guid: dece07a5a52b6f149aff04333be37893, type: 2}
+    Line: I shall grant you my power, so you can defeat the Limbo God.
+  - Character: {fileID: 11400000, guid: fc999666037e1024e86f7f80b0d1cb77, type: 2}
+    Line: A-a-chooooo! Did someone call me?
+  - Character: {fileID: 11400000, guid: dece07a5a52b6f149aff04333be37893, type: 2}
+    Line: Oh no! Quick! In the right moment, you'll need to press a button, which
+      you'll see in the middle of the box thing.
+  - Character: {fileID: 11400000, guid: fc999666037e1024e86f7f80b0d1cb77, type: 2}
+    Line: What do you think you are doing!? Come back quickly!
+  - Character: {fileID: 11400000, guid: dece07a5a52b6f149aff04333be37893, type: 2}
+    Line: Good luck my fellow feline friend!
+  - Character: {fileID: 11400000, guid: dece07a5a52b6f149aff04333be37893, type: 2}
+    Line: Oh! And before I forget! You only have once chance every two hits.
