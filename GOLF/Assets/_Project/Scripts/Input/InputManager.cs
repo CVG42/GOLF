@@ -77,7 +77,6 @@ namespace Golf
 
         private void Update()
         {
-            PauseButton();
             CheckUIButtonInput();
             CheckForControllerType();
             CheckForControllerConnected();
@@ -85,6 +84,7 @@ namespace Golf
             if (!_isEnabled) return;
             if (GameStateManager.Source.CurrentGameState != GameState.OnPlay) return;
 
+            PauseButton();
             ChangePowerUpInput();
             ActivatePowerUpInput();
             CheckGameButtonInput();
