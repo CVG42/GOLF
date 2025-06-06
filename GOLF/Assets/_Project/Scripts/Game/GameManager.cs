@@ -16,7 +16,7 @@ namespace Golf
         public event Action OnBallRespawn;
         public int CurrentHitsLeft => _strokesNumber;
 
-        private readonly HashSet<string> _excludedScenes = new HashSet<string> { "Tutorial", "LevelSelector", "FireballCave" };
+        private readonly HashSet<string> _excludedScenes = new HashSet<string> { "Tutorial", "LevelSelector", "FireballCave", "HeavyShotCave", "IcePowerupCave" };
 
         private void Start()
         {
