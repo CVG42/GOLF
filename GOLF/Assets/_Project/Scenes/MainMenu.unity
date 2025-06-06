@@ -2861,7 +2861,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 124.8, y: 0}
+  m_AnchoredPosition: {x: 75, y: 0}
   m_SizeDelta: {x: 100, y: -30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &539173543
@@ -6641,7 +6641,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -74, y: -154}
+  m_AnchoredPosition: {x: -581, y: -325}
   m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1419442192
@@ -6657,7 +6657,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inputImage: {fileID: 1419442193}
-  _keyboardInputSprite: {fileID: 1781108151, guid: bbf56e8a4f4b10a47a7568d6f83e4e7f, type: 3}
+  _keyboardInputSprite: {fileID: -189874488, guid: 0e9081fb467268843addce76e4bb2d7d, type: 3}
   _controllerInputSprite: {fileID: 244066996, guid: ddac484acc79fe14f87cd20268cd4897, type: 3}
 --- !u!114 &1419442193
 MonoBehaviour:
