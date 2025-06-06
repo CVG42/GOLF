@@ -9,6 +9,7 @@ namespace Golf
         [SerializeField] private GameObject _boxingCat, _powerupUI;
         [SerializeField] private CanvasGroup _canvasBlink;
 
+        private bool _canTriggerSequence = true;
         private Sequence _firePowerupSequence;
 
         private void OnTriggerEnter2D(Collider2D collision)
@@ -17,13 +18,16 @@ namespace Golf
             _rbCollider.angularVelocity = 0f;
             _rbCollider.velocity = Vector3.zero;
             TriggerDialogue();
-            gameObject.SetActive(false);
         }
 
         private void TriggerDialogue()
         {
             GameStateManager.Source.ChangeState(GameState.OnDialogue);
-            DialogueManager.Source.StartCinematicDialogue(_dialogue, PowerUpSequence);
+            DialogueManager.Source.StartCinematicDialogue(_dialogue, () =>
+            {
+                if (_canTriggerSequence && isActiveAndEnabled)
+                    PowerUpSequence();
+            });
         }
 
         private void PowerUpSequence()
@@ -34,7 +38,7 @@ namespace Golf
                 .AppendCallback(() => _boxingCat.SetActive(false))
                 .Append(_canvasBlink.DOFade(0, 2))
                 .AppendCallback(() => _powerupUI.SetActive(true));
+            gameObject.SetActive(false);
         }
-
     }
 }
