@@ -9,9 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8f2ef42025e8bf4cb0da4e4bbd87ec6, type: 3}
-  m_Name: Cat basketball
+  m_Script: {fileID: 11500000, guid: b850ad4353d327b4a977a47853d92577, type: 3}
+  m_Name: IceCave
   m_EditorClassIdentifier: 
-  Name: Kobe
-  Icon: {fileID: -602666459, guid: 1016e25b5e7a5cb49aacd8f0584def0f, type: 3}
-  AudioName: Blip
+  RightThresholdMap: 0.94
+  LeftThresholdMap: 0.94
+  UpThresholdMap: 10.31
+  DownThresholdMap: 3.63

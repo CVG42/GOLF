@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c8f2ef42025e8bf4cb0da4e4bbd87ec6, type: 3}
-  m_Name: Cat basketball
+  m_Name: LimboGod_Ice
   m_EditorClassIdentifier: 
-  Name: Kobe
-  Icon: {fileID: -602666459, guid: 1016e25b5e7a5cb49aacd8f0584def0f, type: 3}
+  Name: The Limbo's God
+  Icon: {fileID: 839857570, guid: 4046fc4e3e36d5848aa4043ccc27ae13, type: 3}
   AudioName: Blip

@@ -1511,6 +1511,7 @@ GameObject:
   - component: {fileID: 6013529362089881203}
   - component: {fileID: 231693569175841811}
   - component: {fileID: 2754746655277985278}
+  - component: {fileID: 8558002566371018415}
   m_Layer: 5
   m_Name: Aim
   m_TagString: Untagged
@@ -1634,6 +1635,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &8558002566371018415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5118534861945406523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8edf7238d57876b44bce0a38f4d6dbd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  localizationKey: Aim
 --- !u!1 &5166283259047398499
 GameObject:
   m_ObjectHideFlags: 0
@@ -1736,6 +1750,7 @@ GameObject:
   - component: {fileID: 8594134333633636427}
   - component: {fileID: 6829870931160773611}
   - component: {fileID: 3276168771949352246}
+  - component: {fileID: 7024051220321888267}
   m_Layer: 5
   m_Name: Camera Controls
   m_TagString: Untagged
@@ -1861,6 +1876,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &7024051220321888267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5540492040871464464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8edf7238d57876b44bce0a38f4d6dbd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  localizationKey: Camera controls
 --- !u!1 &5593138779982611757
 GameObject:
   m_ObjectHideFlags: 0
@@ -2553,6 +2581,7 @@ GameObject:
   - component: {fileID: 7494998025865894649}
   - component: {fileID: 389524010938919976}
   - component: {fileID: 6606544658805971587}
+  - component: {fileID: 2897615679261183213}
   m_Layer: 5
   m_Name: Shoot
   m_TagString: Untagged
@@ -2678,6 +2707,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &2897615679261183213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8709620011375919122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8edf7238d57876b44bce0a38f4d6dbd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  localizationKey: Shoot
 --- !u!1 &8859746836665733393
 GameObject:
   m_ObjectHideFlags: 0
@@ -2987,7 +3029,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 653, y: -22}
+  m_AnchoredPosition: {x: 601, y: -22}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1327369486440741430

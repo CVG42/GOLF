@@ -34,7 +34,6 @@ namespace Golf
             _resumeButton.onClick.AddListener(DeactivatePausePanel);
             _settingsButton.onClick.AddListener(ShowSettingsPanel);
             _closeSettingsButton.onClick.AddListener(HideSettingsPanel);
-            _mainMenuButton.onClick.AddListener(BackToMainMenu);
         }
 
         private void OnDestroy()
@@ -47,7 +46,7 @@ namespace Golf
 
         public void UpdateHitsLeft(int hitsLeft)
         {
-            _strokesText.text = "Strokes left: " + hitsLeft;
+            _strokesText.text = "Strokes left:".Localize() + " " + hitsLeft;
         }
 
         public void ShowLosePanel()
@@ -69,11 +68,6 @@ namespace Golf
             _settingsPanel.enabled = false;
             _pausePanel.enabled = true;
             EventSystem.current.SetSelectedGameObject(_resumeButton.gameObject);
-        }
-
-        private void BackToMainMenu()
-        {
-            LevelManager.Source.LoadScene("MainMenu");
         }
 
         public void HidePanels()
